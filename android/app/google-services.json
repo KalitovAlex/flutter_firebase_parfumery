@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1051252126048",
+    "project_id": "parfumery-solo-project",
+    "storage_bucket": "parfumery-solo-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051252126048:android:08cb478ed3ab29025aee05",
+        "android_client_info": {
+          "package_name": "com.example.flutter_firebase_parfumery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051252126048-2gtusil805lsnlcr5rh5f99fehea784s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh6pp3BQb22Ta8TiarPUrGhyIwsNyfK-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051252126048-2gtusil805lsnlcr5rh5f99fehea784s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1051252126048-s1ge2q2213kg9c99c8lp17cj4ja4j7lo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterFirebaseParfumery"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
