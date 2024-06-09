@@ -4,8 +4,10 @@ part of 'google_bloc.dart';
 class GoogleEvent {
   String fullName;
   String phoneNumber;
+  String? uid;
   GoogleEvent({
     required this.fullName,
     required this.phoneNumber,
+    required this.uid,
   });
 }

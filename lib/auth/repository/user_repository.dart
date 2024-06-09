@@ -24,7 +24,7 @@ class UserRepository extends AbstractUserRepository {
   }
   
   @override
-  Future<bool> authWithGoogle() async{
+  Future<UserCredential?> authWithGoogle() async{
     try{
       // begin interactive process
       final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
@@ -39,10 +39,10 @@ class UserRepository extends AbstractUserRepository {
       //make final Sign in
       final response = await FirebaseAuth.instance.signInWithCredential(credential);
       talker.log(response.user!.uid);
-      return true;
+      return response;
     }catch (e){
       talker.log(e);
-      return false;
+      return null;
     }
   }
   
@@ -57,5 +57,15 @@ class UserRepository extends AbstractUserRepository {
       return false;
     }
   }
-
+  
+  @override
+  Future<bool> registrationWithGoogle(UserModel user, String? uid) async{
+    try{ 
+    await userReference.doc(uid).set(user.toJson());
+    return true;
+    } catch(e){
+      talker.error(e);
+      return false;
+    }
+  }
 }

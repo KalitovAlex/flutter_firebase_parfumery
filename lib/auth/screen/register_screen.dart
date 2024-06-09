@@ -38,7 +38,7 @@ class RegisterScreen extends StatelessWidget {
         }
         if(state is RegisterLoadedWithGoogle){
           Navigator.pop(context);
-          AutoRouter.of(context).push(GoogleRegRoute());
+          AutoRouter.of(context).push(GoogleRegRoute(uid: state.uid));
           ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Good', 'Super! fill in all the information in order to get into the world of the best smells', ContentType.success));
         }
         if(state is RegisterFailure){

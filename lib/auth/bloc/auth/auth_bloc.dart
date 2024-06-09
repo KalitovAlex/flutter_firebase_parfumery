@@ -10,10 +10,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoading());
       try{
       await Future.delayed(const Duration(milliseconds: 500));
-      bool response = event.ifGoogle == false ? await userRepository.auth(event.email, event.password) : await userRepository.authWithGoogle();
+      if(event.ifGoogle == true){
+      final response = await userRepository.authWithGoogle();
+      response == true ? emit(AuthLoaded()) : emit(AuthFailure());
+      }
+      else{
+      final response = await userRepository.auth(event.email, event.password);
       userModel = userModel.copyWith(email: event.email, password: event.password);
       response == true ?
       emit(AuthLoaded()) : emit(AuthFailure());
+      }
       } catch(e){
         emit(AuthFailure());
         talker.log(e);

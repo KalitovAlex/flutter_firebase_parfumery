@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/auth/bloc/google/google_bloc.dart';
+import 'package:flutter_firebase_parfumery/core/routes.gr.dart';
+import 'package:flutter_firebase_parfumery/widgets/show_loading_circle.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../core/globals.dart';
@@ -12,25 +14,27 @@ import '../../core/styles/widget/text_styles.dart';
 import '../../widgets/show_snack_bar.dart';
 @RoutePage()
 class GoogleRegScreen extends StatelessWidget {
-  GoogleRegScreen({super.key});
+  GoogleRegScreen({super.key,required uid});
+  String? uid;
   final TextEditingController _fullNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final blocCommand = BlocProvider.of<GoogleBloc>(context);
      return BlocConsumer<GoogleBloc, GoogleState>(
        listener: (context, state) {
         if(state is GoogleLoading){
-
+          showLoadingCircle(context);
         }
         if(state is GoogleLoaded){
-
+          Navigator.pop(context);
+          AutoRouter.of(context).push(const HomeRoute());
+          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner('Nice', 'You have successfully logged in, good luck! ', ContentType.success));
         }
         if(state is GoogleFailure){
-
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner('Bad', 'We may have problems on the server, try logging in again, we will fix everything soon', ContentType.failure));
         }
        },
        builder: (context, state) {
@@ -80,8 +84,8 @@ class GoogleRegScreen extends StatelessWidget {
                     height: 6.h,
                     child: TextButton(
                         onPressed: () {
-                          if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _confirmPasswordController.text.isNotEmpty && _fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty && _passwordController.text == _confirmPasswordController.text && _emailController.text.contains('@') && _emailController.text.contains('.')){
-     
+                          if(_fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty){
+                            blocCommand.add(GoogleEvent(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, uid: uid));
                           }
                           else{
                             ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Oops', 'fill in all the fields correctly, you may have made a mistake somewhere)', ContentType.failure));
