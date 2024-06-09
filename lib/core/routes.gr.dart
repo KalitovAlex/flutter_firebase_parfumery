@@ -36,9 +36,11 @@ abstract class $AppRouter extends _i6.RootStackRouter {
       );
     },
     GoogleRegRoute.name: (routeData) {
+      final args = routeData.argsAs<GoogleRegRouteArgs>(
+          orElse: () => const GoogleRegRouteArgs());
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.GoogleRegScreen(),
+        child: _i3.GoogleRegScreen(key: args.key),
       );
     },
     HomeRoute.name: (routeData) {
@@ -88,16 +90,31 @@ class AuthRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.GoogleRegScreen]
-class GoogleRegRoute extends _i6.PageRouteInfo<void> {
-  const GoogleRegRoute({List<_i6.PageRouteInfo>? children})
-      : super(
+class GoogleRegRoute extends _i6.PageRouteInfo<GoogleRegRouteArgs> {
+  GoogleRegRoute({
+    _i7.Key? key,
+    List<_i6.PageRouteInfo>? children,
+  }) : super(
           GoogleRegRoute.name,
+          args: GoogleRegRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'GoogleRegRoute';
 
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+  static const _i6.PageInfo<GoogleRegRouteArgs> page =
+      _i6.PageInfo<GoogleRegRouteArgs>(name);
+}
+
+class GoogleRegRouteArgs {
+  const GoogleRegRouteArgs({this.key});
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return 'GoogleRegRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

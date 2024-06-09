@@ -38,7 +38,7 @@ class RegisterScreen extends StatelessWidget {
         }
         if(state is RegisterLoadedWithGoogle){
           Navigator.pop(context);
-          AutoRouter.of(context).push(const GoogleRegRoute());
+          AutoRouter.of(context).push(GoogleRegRoute());
           ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Good', 'Super! fill in all the information in order to get into the world of the best smells', ContentType.success));
         }
         if(state is RegisterFailure){
@@ -147,7 +147,9 @@ class RegisterScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
-                        onPressed: () async {},
+                        onPressed: () async {
+                          blocCommand.add(RegisterEvent(ifGoogle: true));
+                        },
                         icon: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
                             child: Image.asset('assets/google_logo.png',
