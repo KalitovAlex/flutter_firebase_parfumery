@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/globals.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/banner_widget.dart';
 import 'package:sizer/sizer.dart';
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -30,12 +31,10 @@ class HomeScreen extends StatelessWidget {
                     IconButton(onPressed: (){}, icon: Image.asset('assets/search_icon.png', width: 10.w,height: 6.h,))
                   ],
                 ),
-                
               ],
             ),
             SizedBox(height: 2.h,),
-            // CarouselView(itemExtent:, children: children)
-
+            const banner_main()
           ],
         ),
       ),

@@ -26,7 +26,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
   initDependencies();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());
@@ -45,7 +45,7 @@ void initDependencies() {
           printEventFullData: true));
 }
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,17 +65,14 @@ class MyApp extends StatelessWidget {
             deepLinkBuilder: (deepLink) async {
             final preferences = await SharedPreferences.getInstance();
             final uid = preferences.getString('uid');
-            await userRepository.sharedAuth(uid!);
-            
-
-          final response = await userRepository.sharedAuth(uid);
-          if(response == true){
-          return const DeepLink([HomeRoute()]);}
-          else{
-            preferences.remove(uid);
-            return const DeepLink([AuthBoard()]);
-          }
-                      },
+            if(uid != null){
+            await userRepository.sharedAuth(uid);
+            return const DeepLink([HomeRoute()]);
+            }
+            else { 
+              return const DeepLink([AuthRoute()]);
+            }
+            },
             navigatorObservers: () => [
               TalkerRouteObserver(talker)
             ],
