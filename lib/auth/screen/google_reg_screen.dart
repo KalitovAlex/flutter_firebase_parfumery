@@ -85,7 +85,7 @@ class GoogleRegScreen extends StatelessWidget {
                     child: TextButton(
                         onPressed: () {
                           if(_fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty){
-                            blocCommand.add(GoogleEvent(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text, uid: uid));
+                            blocCommand.add(GoogleEvent(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text));
                           }
                           else{
                             ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Oops', 'fill in all the fields correctly, you may have made a mistake somewhere)', ContentType.failure));

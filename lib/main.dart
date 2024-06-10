@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
             return const DeepLink([HomeRoute()]);
             }
             else { 
-              return const DeepLink([AuthRoute()]);
+              return const DeepLink([AuthBoard()]);
             }
             },
             navigatorObservers: () => [

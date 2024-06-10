@@ -11,7 +11,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       try{
        bool? response;
        if (event.ifGoogle == true) {
-       final response = await userRepository.authWithGoogle();
+       final response = await userRepository.regWithGoogle();
        response == true ? emit(RegisterLoadedWithGoogle(uid: uid)) : emit(RegisterFailure());
        } else {
           response = await userRepository.registration(userModel = userModel.copyWith(email: event.email,password: event.password,phoneNumber: event.phoneNumber, username: event.userName,));

@@ -24,6 +24,29 @@ class UserRepository extends AbstractUserRepository {
   }
   
   @override
+  Future<bool> regWithGoogle() async{
+    try{
+      // begin interactive process
+      final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+      
+      // make credential user
+      final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken,
+        idToken: gAuth.idToken
+      );
+      
+      //make final Sign in
+      final response = await FirebaseAuth.instance.signInWithCredential(credential);
+      uid = response.user!.uid; 
+      talker.log(response.user!.uid);
+      return true;
+    }catch (e){
+      talker.log(e);
+      return false;
+    }
+  }
+    @override
   Future<bool> authWithGoogle() async{
     try{
       // begin interactive process
@@ -38,6 +61,8 @@ class UserRepository extends AbstractUserRepository {
       
       //make final Sign in
       final response = await FirebaseAuth.instance.signInWithCredential(credential);
+      final user = await userReference.doc(response.user!.uid).get();
+      userModel = userModel.copyWith(email: response.user!.email ,phoneNumber: user.get('phone_number') , username: user.get('username') );
       talker.log(response.user!.uid);
       return true;
     }catch (e){
@@ -59,7 +84,7 @@ class UserRepository extends AbstractUserRepository {
   }
   
   @override
-  Future<bool> registrationWithGoogle(UserModel user, String? uid) async{
+  Future<bool> registrationWithGoogle(UserModel user) async{
     try{ 
     await userReference.doc(uid).set(user.toJson());
     return true;
