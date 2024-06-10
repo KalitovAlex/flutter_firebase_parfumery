@@ -35,5 +35,6 @@ UserModel userModel = GetIt.I<UserModel>();
 
 
 //Firebase features
+String? uid;
 final fireStore = FirebaseFirestore.instance;
 const String userCollection = 'users';

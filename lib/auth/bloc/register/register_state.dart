@@ -10,7 +10,7 @@ final class RegisterLoading extends RegisterState {}
 final class RegisterLoaded extends RegisterState {}
 
 class RegisterLoadedWithGoogle extends RegisterState {
-  String uid;
+  String? uid;
   RegisterLoadedWithGoogle({
     required this.uid,
   });

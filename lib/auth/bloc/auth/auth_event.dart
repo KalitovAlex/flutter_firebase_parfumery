@@ -5,9 +5,11 @@ class AuthEvent {
  bool ifGoogle;
  String? email;
  String? password;
+ bool? rememberMe;
   AuthEvent({
     required this.ifGoogle,
     this.email,
     this.password,
+    this.rememberMe,
   });
 }

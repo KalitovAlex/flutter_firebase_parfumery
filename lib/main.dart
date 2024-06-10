@@ -7,6 +7,7 @@ import 'package:flutter_firebase_parfumery/auth/bloc/register/register_bloc.dart
 import 'package:flutter_firebase_parfumery/auth/model/user_model.dart';
 import 'package:flutter_firebase_parfumery/firebase_options.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -21,8 +22,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+  final preferences = await SharedPreferences.getInstance();
+  final uid = preferences.getString('uid');
   initDependencies();
-  runApp(const MyApp());
+  runApp(MyApp(uid: uid,));
 }
 void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());
@@ -41,7 +44,8 @@ void initDependencies() {
           printEventFullData: true));
 }
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key, required uid});
+  String? uid;
 
   @override
   Widget build(BuildContext context) {

@@ -28,6 +28,8 @@ mixin _$UserModel {
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: "password")
   String? get password => throw _privateConstructorUsedError;
+  @JsonKey(name: 'uid')
+  String? get uid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +46,8 @@ abstract class $UserModelCopyWith<$Res> {
       {@JsonKey(name: "username") String? username,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "email") String? email,
-      @JsonKey(name: "password") String? password});
+      @JsonKey(name: "password") String? password,
+      @JsonKey(name: 'uid') String? uid});
 }
 
 /// @nodoc
@@ -64,6 +67,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? password = freezed,
+    Object? uid = freezed,
   }) {
     return _then(_value.copyWith(
       username: freezed == username
@@ -82,6 +86,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -98,7 +106,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       {@JsonKey(name: "username") String? username,
       @JsonKey(name: "phone_number") String? phoneNumber,
       @JsonKey(name: "email") String? email,
-      @JsonKey(name: "password") String? password});
+      @JsonKey(name: "password") String? password,
+      @JsonKey(name: 'uid') String? uid});
 }
 
 /// @nodoc
@@ -116,6 +125,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? password = freezed,
+    Object? uid = freezed,
   }) {
     return _then(_$UserModelImpl(
       username: freezed == username
@@ -134,6 +144,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -145,7 +159,8 @@ class _$UserModelImpl implements _UserModel {
       {@JsonKey(name: "username") this.username,
       @JsonKey(name: "phone_number") this.phoneNumber,
       @JsonKey(name: "email") this.email,
-      @JsonKey(name: "password") this.password});
+      @JsonKey(name: "password") this.password,
+      @JsonKey(name: 'uid') this.uid});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -162,10 +177,13 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey(name: "password")
   final String? password;
+  @override
+  @JsonKey(name: 'uid')
+  final String? uid;
 
   @override
   String toString() {
-    return 'UserModel(username: $username, phoneNumber: $phoneNumber, email: $email, password: $password)';
+    return 'UserModel(username: $username, phoneNumber: $phoneNumber, email: $email, password: $password, uid: $uid)';
   }
 
   @override
@@ -179,13 +197,14 @@ class _$UserModelImpl implements _UserModel {
                 other.phoneNumber == phoneNumber) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.uid, uid) || other.uid == uid));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, username, phoneNumber, email, password);
+      Object.hash(runtimeType, username, phoneNumber, email, password, uid);
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +225,8 @@ abstract class _UserModel implements UserModel {
       {@JsonKey(name: "username") final String? username,
       @JsonKey(name: "phone_number") final String? phoneNumber,
       @JsonKey(name: "email") final String? email,
-      @JsonKey(name: "password") final String? password}) = _$UserModelImpl;
+      @JsonKey(name: "password") final String? password,
+      @JsonKey(name: 'uid') final String? uid}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -223,6 +243,9 @@ abstract class _UserModel implements UserModel {
   @override
   @JsonKey(name: "password")
   String? get password;
+  @override
+  @JsonKey(name: 'uid')
+  String? get uid;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

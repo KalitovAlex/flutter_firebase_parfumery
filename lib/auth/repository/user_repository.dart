@@ -11,7 +11,7 @@ class UserRepository extends AbstractUserRepository {
     try{
       final response = await FirebaseAuth.instance.signInWithEmailAndPassword(email: login!, password: password!);
       final user = await userReference.doc(response.user!.uid).get();
-      userModel = userModel.copyWith(phoneNumber: user.get('phone_number'), username: user.get('username'));
+      userModel = userModel.copyWith(phoneNumber: user.get('phone_number'), username: user.get('username'), uid: response.user!.uid);
       talker.log(userModel.phoneNumber);
       return true;
     } on FirebaseAuthException{
@@ -24,7 +24,7 @@ class UserRepository extends AbstractUserRepository {
   }
   
   @override
-  Future<UserCredential?> authWithGoogle() async{
+  Future<bool> authWithGoogle() async{
     try{
       // begin interactive process
       final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
@@ -38,11 +38,12 @@ class UserRepository extends AbstractUserRepository {
       
       //make final Sign in
       final response = await FirebaseAuth.instance.signInWithCredential(credential);
+      uid = response.user!.uid;
       talker.log(response.user!.uid);
-      return response;
+      return true;
     }catch (e){
       talker.log(e);
-      return null;
+      return false;
     }
   }
   

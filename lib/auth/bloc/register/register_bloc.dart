@@ -12,11 +12,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
        bool? response;
        if (event.ifGoogle == true) {
        final response = await userRepository.authWithGoogle();
-       response == true ? emit(RegisterLoadedWithGoogle(uid: response!.user!.uid)) : emit(RegisterFailure());
+       response == true ? emit(RegisterLoadedWithGoogle(uid: uid)) : emit(RegisterFailure());
        } else {
           response = await userRepository.registration(userModel = userModel.copyWith(email: event.email,password: event.password,phoneNumber: event.phoneNumber, username: event.userName,));
+          response == true ? emit(RegisterLoaded()) : emit(RegisterFailure());
        }
-       response == true ? emit(RegisterLoaded()) : emit(RegisterFailure());
       } catch(e){
         emit(RegisterFailure());
         talker.error(e);

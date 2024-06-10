@@ -85,7 +85,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 Container(height: 6.h,width: 90.w,decoration: auth_button_container, child: TextButton(onPressed: () async{
                   if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _emailController.text.contains('@') && _emailController.text.contains('.')){
-                    blocCommand.add(AuthEvent(ifGoogle: false, email: _emailController.text, password: _passwordController.text));
+                    blocCommand.add(AuthEvent(ifGoogle: false, email: _emailController.text, password: _passwordController.text,rememberMe: isChecked));
                   } else{
                     ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Oops', 'Check your email and password,maybye you forget your email or password', ContentType.failure));
                   }

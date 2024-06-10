@@ -10,7 +10,7 @@ class GoogleBloc extends Bloc<GoogleEvent, GoogleState> {
     on<GoogleEvent>((event, emit) async {
       emit(GoogleLoading());
       try{
-        final response = await userRepository.registrationWithGoogle(userModel = userModel.copyWith(phoneNumber: event.phoneNumber, username: event.fullName), event.uid);
+        final response = await userRepository.registrationWithGoogle(userModel = userModel.copyWith(phoneNumber: event.phoneNumber, username: event.fullName),event.uid);
         response == true ? emit(GoogleLoaded()) : emit(GoogleFailure());
       } catch(e){
         talker.error(e);
