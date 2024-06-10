@@ -38,7 +38,6 @@ class UserRepository extends AbstractUserRepository {
       
       //make final Sign in
       final response = await FirebaseAuth.instance.signInWithCredential(credential);
-      uid = response.user!.uid;
       talker.log(response.user!.uid);
       return true;
     }catch (e){
@@ -80,4 +79,17 @@ class UserRepository extends AbstractUserRepository {
       return false;
     }
   }
+  
+  @override
+  Future<bool> sharedAuth(String uid) async{
+    try{
+      final response = await userReference.doc(uid).get();
+      userModel = userModel.copyWith(email: response['email'], password: response['password'], username: response['username'], phoneNumber: response['phone_number']);
+      return true;
+    } catch(e){
+      talker.error(e);
+      return false;
+    }
+  }
+  
 }

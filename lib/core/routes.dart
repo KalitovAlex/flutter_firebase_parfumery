@@ -9,7 +9,7 @@ class AppRouter extends $AppRouter {
   AutoRoute(page: AuthRoute.page),
   AutoRoute(page: AuthBoard.page),
   AutoRoute(page: RegisterRoute.page),
-  AutoRoute(page: HomeRoute.page,path: '/'),
+  AutoRoute(page: HomeRoute.page),
   AutoRoute(page: GoogleRegRoute.page),
   AutoRoute(page: ForgotPassword.page)
  ];

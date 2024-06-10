@@ -29,7 +29,8 @@ class HomeScreen extends StatelessWidget {
                     IconButton(onPressed: (){}, icon: Image.asset('assets/bell_icon.png',width: 10.w,height: 6.h,)),
                     IconButton(onPressed: (){}, icon: Image.asset('assets/search_icon.png', width: 10.w,height: 6.h,))
                   ],
-                )
+                ),
+                
               ],
             ),
             SizedBox(height: 2.h,),
