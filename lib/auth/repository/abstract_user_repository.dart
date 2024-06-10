@@ -7,6 +7,7 @@ abstract class AbstractUserRepository {
   Future<bool> authWithGoogle();
   Future<bool> registration(UserModel user);
   Future<bool> registrationWithGoogle(UserModel user, String? uid);
+  Future<bool> resetPassword(String email);
   late final CollectionReference userReference;
   AbstractUserRepository(){
     userReference = fireStore.collection(userCollection);

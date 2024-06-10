@@ -80,7 +80,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         Text('Remember me', style: textStylePicker(context).labelMedium),
                       ],
                     ),
-                      TextButton(onPressed: () {}, child: Text('Forgot password ?',style: textStylePicker(context).headlineSmall,)),
+                      TextButton(onPressed: () {
+                        AutoRouter.of(context).push(ForgotPassword());
+                      }, child: Text('Forgot password ?',style: textStylePicker(context).headlineSmall,)),
                   ],
                 ),
                 Container(height: 6.h,width: 90.w,decoration: auth_button_container, child: TextButton(onPressed: () async{

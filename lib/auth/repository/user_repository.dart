@@ -69,4 +69,15 @@ class UserRepository extends AbstractUserRepository {
       return false;
     }
   }
+  
+  @override
+  Future<bool> resetPassword(String email) async {
+    try{
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return true;
+    } catch(e){
+      talker.error(e);
+      return false;
+    }
+  }
 }

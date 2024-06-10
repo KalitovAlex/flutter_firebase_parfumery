@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/auth/bloc/auth/auth_bloc.dart';
+import 'package:flutter_firebase_parfumery/auth/bloc/forgot_password/forgot_password_bloc.dart';
 import 'package:flutter_firebase_parfumery/auth/bloc/google/google_bloc.dart';
 import 'package:flutter_firebase_parfumery/auth/bloc/register/register_bloc.dart';
 import 'package:flutter_firebase_parfumery/auth/model/user_model.dart';
@@ -54,7 +55,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => RegisterBloc()),
-        BlocProvider(create: (context) => GoogleBloc())
+        BlocProvider(create: (context) => GoogleBloc()),
+        BlocProvider(create: (context) => ForgotPasswordBloc())
       ],
       child: Sizer(
         builder: (context, orientation, deviceType) {

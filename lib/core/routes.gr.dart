@@ -38,9 +38,11 @@ abstract class $AppRouter extends _i7.RootStackRouter {
       );
     },
     ForgotPassword.name: (routeData) {
+      final args = routeData.argsAs<ForgotPasswordArgs>(
+          orElse: () => const ForgotPasswordArgs());
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.ForgotPassword(),
+        child: _i3.ForgotPassword(key: args.key),
       );
     },
     GoogleRegRoute.name: (routeData) {
@@ -100,16 +102,31 @@ class AuthRoute extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.ForgotPassword]
-class ForgotPassword extends _i7.PageRouteInfo<void> {
-  const ForgotPassword({List<_i7.PageRouteInfo>? children})
-      : super(
+class ForgotPassword extends _i7.PageRouteInfo<ForgotPasswordArgs> {
+  ForgotPassword({
+    _i8.Key? key,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
           ForgotPassword.name,
+          args: ForgotPasswordArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'ForgotPassword';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i7.PageInfo<ForgotPasswordArgs> page =
+      _i7.PageInfo<ForgotPasswordArgs>(name);
+}
+
+class ForgotPasswordArgs {
+  const ForgotPasswordArgs({this.key});
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'ForgotPasswordArgs{key: $key}';
+  }
 }
 
 /// generated route for
