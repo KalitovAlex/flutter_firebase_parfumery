@@ -1,12 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/globals.dart';
-import 'package:flutter_firebase_parfumery/main/widgets/banner_widget.dart';
 import 'package:sizer/sizer.dart';
 @RoutePage()
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getall();
+  }
+  getall ()async{
+    await mainRepository.getAllProducts();
+  }
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
@@ -34,7 +46,12 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 2.h,),
-            const banner_main()
+            // PageView.builder(
+            //   itemCount: mainModel.banner!.length,
+            //   itemBuilder: (context, index){
+            //     final model = mainModel.banner![index];
+            //     return banner_main(img_url: model.url!);
+            // })
           ],
         ),
       ),

@@ -1,6 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_parfumery/main/models/main.dart';
+import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
@@ -27,7 +29,10 @@ textStylePicker(context){
 
 //GetIt init
 AbstractUserRepository userRepository = GetIt.I<AbstractUserRepository>();
+AbstractMainRepository mainRepository = GetIt.I<AbstractMainRepository>();
 UserModel userModel = GetIt.I<UserModel>();
+Main mainModel = GetIt.I<Main>();
+// AbstractMainRepository mainRepository = GetIt.I<AbstractMainRepository>();
 
 
 //beautiful features 
@@ -38,3 +43,4 @@ UserModel userModel = GetIt.I<UserModel>();
 String? uid;
 final fireStore = FirebaseFirestore.instance;
 const String userCollection = 'users';
+const String bannersCollection = 'banners';

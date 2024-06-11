@@ -38,7 +38,6 @@ class UserRepository extends AbstractUserRepository {
       
       //make final Sign in
       final response = await FirebaseAuth.instance.signInWithCredential(credential);
-      uid = response.user!.uid; 
       talker.log(response.user!.uid);
       return true;
     }catch (e){
@@ -63,7 +62,7 @@ class UserRepository extends AbstractUserRepository {
       final response = await FirebaseAuth.instance.signInWithCredential(credential);
       final user = await userReference.doc(response.user!.uid).get();
       userModel = userModel.copyWith(email: response.user!.email ,phoneNumber: user.get('phone_number') , username: user.get('username') );
-      talker.log(response.user!.uid);
+      uid = response.user!.uid; 
       return true;
     }catch (e){
       talker.log(e);

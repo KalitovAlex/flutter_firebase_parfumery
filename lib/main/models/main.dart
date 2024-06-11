@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'main.freezed.dart';
 part 'main.g.dart';
 
@@ -7,11 +6,11 @@ part 'main.g.dart';
 class Main with _$Main {
     const factory Main({
         @JsonKey(name: "Banner")
-        required List<Banner> banner,
+        List<Banner>? banner,
         @JsonKey(name: "Category")
-        required List<Category> category,
+        List<Category>? category,
         @JsonKey(name: "Items")
-        required List<Item> items,
+        List<Item>? items,
     }) = _Main;
 
     factory Main.fromJson(Map<String, dynamic> json) => _$MainFromJson(json);
@@ -21,7 +20,7 @@ class Main with _$Main {
 class Banner with _$Banner {
     const factory Banner({
         @JsonKey(name: "url")
-        required String url,
+        String? url,
     }) = _Banner;
 
     factory Banner.fromJson(Map<String, dynamic> json) => _$BannerFromJson(json);
@@ -31,11 +30,11 @@ class Banner with _$Banner {
 class Category with _$Category {
     const factory Category({
         @JsonKey(name: "id")
-        required int id,
+        int? id,
         @JsonKey(name: "picUrl")
-        required String picUrl,
+        String? picUrl,
         @JsonKey(name: "title")
-        required String title,
+        String? title,
     }) = _Category;
 
     factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
@@ -45,15 +44,15 @@ class Category with _$Category {
 class Item with _$Item {
     const factory Item({
         @JsonKey(name: "description")
-        required String description,
+        String? description,
         @JsonKey(name: "picUrl")
-        required List<String> picUrl,
+        List<String>? picUrl,
         @JsonKey(name: "price")
-        required int price,
+        int? price,
         @JsonKey(name: "rating")
-        required double rating,
+        double? rating,
         @JsonKey(name: "title")
-        required String title,
+        String? title,
     }) = _Item;
 
     factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

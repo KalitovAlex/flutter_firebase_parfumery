@@ -7,14 +7,14 @@ part of 'main.dart';
 // **************************************************************************
 
 _$MainImpl _$$MainImplFromJson(Map<String, dynamic> json) => _$MainImpl(
-      banner: (json['Banner'] as List<dynamic>)
-          .map((e) => Banner.fromJson(e as Map<String, dynamic>))
+      banner: (json['Banner'] as List<dynamic>?)
+          ?.map((e) => Banner.fromJson(e as Map<String, dynamic>))
           .toList(),
-      category: (json['Category'] as List<dynamic>)
-          .map((e) => Category.fromJson(e as Map<String, dynamic>))
+      category: (json['Category'] as List<dynamic>?)
+          ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
           .toList(),
-      items: (json['Items'] as List<dynamic>)
-          .map((e) => Item.fromJson(e as Map<String, dynamic>))
+      items: (json['Items'] as List<dynamic>?)
+          ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -26,7 +26,7 @@ Map<String, dynamic> _$$MainImplToJson(_$MainImpl instance) =>
     };
 
 _$BannerImpl _$$BannerImplFromJson(Map<String, dynamic> json) => _$BannerImpl(
-      url: json['url'] as String,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$BannerImplToJson(_$BannerImpl instance) =>
@@ -36,9 +36,9 @@ Map<String, dynamic> _$$BannerImplToJson(_$BannerImpl instance) =>
 
 _$CategoryImpl _$$CategoryImplFromJson(Map<String, dynamic> json) =>
     _$CategoryImpl(
-      id: (json['id'] as num).toInt(),
-      picUrl: json['picUrl'] as String,
-      title: json['title'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      picUrl: json['picUrl'] as String?,
+      title: json['title'] as String?,
     );
 
 Map<String, dynamic> _$$CategoryImplToJson(_$CategoryImpl instance) =>
@@ -49,12 +49,12 @@ Map<String, dynamic> _$$CategoryImplToJson(_$CategoryImpl instance) =>
     };
 
 _$ItemImpl _$$ItemImplFromJson(Map<String, dynamic> json) => _$ItemImpl(
-      description: json['description'] as String,
+      description: json['description'] as String?,
       picUrl:
-          (json['picUrl'] as List<dynamic>).map((e) => e as String).toList(),
-      price: (json['price'] as num).toInt(),
-      rating: (json['rating'] as num).toDouble(),
-      title: json['title'] as String,
+          (json['picUrl'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      price: (json['price'] as num?)?.toInt(),
+      rating: (json['rating'] as num?)?.toDouble(),
+      title: json['title'] as String?,
     );
 
 Map<String, dynamic> _$$ItemImplToJson(_$ItemImpl instance) =>

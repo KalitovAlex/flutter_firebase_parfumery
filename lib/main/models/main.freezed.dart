@@ -21,11 +21,11 @@ Main _$MainFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Main {
   @JsonKey(name: "Banner")
-  List<Banner> get banner => throw _privateConstructorUsedError;
+  List<Banner>? get banner => throw _privateConstructorUsedError;
   @JsonKey(name: "Category")
-  List<Category> get category => throw _privateConstructorUsedError;
+  List<Category>? get category => throw _privateConstructorUsedError;
   @JsonKey(name: "Items")
-  List<Item> get items => throw _privateConstructorUsedError;
+  List<Item>? get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,9 +38,9 @@ abstract class $MainCopyWith<$Res> {
       _$MainCopyWithImpl<$Res, Main>;
   @useResult
   $Res call(
-      {@JsonKey(name: "Banner") List<Banner> banner,
-      @JsonKey(name: "Category") List<Category> category,
-      @JsonKey(name: "Items") List<Item> items});
+      {@JsonKey(name: "Banner") List<Banner>? banner,
+      @JsonKey(name: "Category") List<Category>? category,
+      @JsonKey(name: "Items") List<Item>? items});
 }
 
 /// @nodoc
@@ -56,23 +56,23 @@ class _$MainCopyWithImpl<$Res, $Val extends Main>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? banner = null,
-    Object? category = null,
-    Object? items = null,
+    Object? banner = freezed,
+    Object? category = freezed,
+    Object? items = freezed,
   }) {
     return _then(_value.copyWith(
-      banner: null == banner
+      banner: freezed == banner
           ? _value.banner
           : banner // ignore: cast_nullable_to_non_nullable
-              as List<Banner>,
-      category: null == category
+              as List<Banner>?,
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as List<Category>,
-      items: null == items
+              as List<Category>?,
+      items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<Item>?,
     ) as $Val);
   }
 }
@@ -85,9 +85,9 @@ abstract class _$$MainImplCopyWith<$Res> implements $MainCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "Banner") List<Banner> banner,
-      @JsonKey(name: "Category") List<Category> category,
-      @JsonKey(name: "Items") List<Item> items});
+      {@JsonKey(name: "Banner") List<Banner>? banner,
+      @JsonKey(name: "Category") List<Category>? category,
+      @JsonKey(name: "Items") List<Item>? items});
 }
 
 /// @nodoc
@@ -100,23 +100,23 @@ class __$$MainImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? banner = null,
-    Object? category = null,
-    Object? items = null,
+    Object? banner = freezed,
+    Object? category = freezed,
+    Object? items = freezed,
   }) {
     return _then(_$MainImpl(
-      banner: null == banner
+      banner: freezed == banner
           ? _value._banner
           : banner // ignore: cast_nullable_to_non_nullable
-              as List<Banner>,
-      category: null == category
+              as List<Banner>?,
+      category: freezed == category
           ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
-              as List<Category>,
-      items: null == items
+              as List<Category>?,
+      items: freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<Item>?,
     ));
   }
 }
@@ -125,9 +125,9 @@ class __$$MainImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MainImpl implements _Main {
   const _$MainImpl(
-      {@JsonKey(name: "Banner") required final List<Banner> banner,
-      @JsonKey(name: "Category") required final List<Category> category,
-      @JsonKey(name: "Items") required final List<Item> items})
+      {@JsonKey(name: "Banner") final List<Banner>? banner,
+      @JsonKey(name: "Category") final List<Category>? category,
+      @JsonKey(name: "Items") final List<Item>? items})
       : _banner = banner,
         _category = category,
         _items = items;
@@ -135,31 +135,37 @@ class _$MainImpl implements _Main {
   factory _$MainImpl.fromJson(Map<String, dynamic> json) =>
       _$$MainImplFromJson(json);
 
-  final List<Banner> _banner;
+  final List<Banner>? _banner;
   @override
   @JsonKey(name: "Banner")
-  List<Banner> get banner {
+  List<Banner>? get banner {
+    final value = _banner;
+    if (value == null) return null;
     if (_banner is EqualUnmodifiableListView) return _banner;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_banner);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Category> _category;
+  final List<Category>? _category;
   @override
   @JsonKey(name: "Category")
-  List<Category> get category {
+  List<Category>? get category {
+    final value = _category;
+    if (value == null) return null;
     if (_category is EqualUnmodifiableListView) return _category;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_category);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Item> _items;
+  final List<Item>? _items;
   @override
   @JsonKey(name: "Items")
-  List<Item> get items {
+  List<Item>? get items {
+    final value = _items;
+    if (value == null) return null;
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -201,21 +207,21 @@ class _$MainImpl implements _Main {
 
 abstract class _Main implements Main {
   const factory _Main(
-      {@JsonKey(name: "Banner") required final List<Banner> banner,
-      @JsonKey(name: "Category") required final List<Category> category,
-      @JsonKey(name: "Items") required final List<Item> items}) = _$MainImpl;
+      {@JsonKey(name: "Banner") final List<Banner>? banner,
+      @JsonKey(name: "Category") final List<Category>? category,
+      @JsonKey(name: "Items") final List<Item>? items}) = _$MainImpl;
 
   factory _Main.fromJson(Map<String, dynamic> json) = _$MainImpl.fromJson;
 
   @override
   @JsonKey(name: "Banner")
-  List<Banner> get banner;
+  List<Banner>? get banner;
   @override
   @JsonKey(name: "Category")
-  List<Category> get category;
+  List<Category>? get category;
   @override
   @JsonKey(name: "Items")
-  List<Item> get items;
+  List<Item>? get items;
   @override
   @JsonKey(ignore: true)
   _$$MainImplCopyWith<_$MainImpl> get copyWith =>
@@ -229,7 +235,7 @@ Banner _$BannerFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Banner {
   @JsonKey(name: "url")
-  String get url => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -241,7 +247,7 @@ abstract class $BannerCopyWith<$Res> {
   factory $BannerCopyWith(Banner value, $Res Function(Banner) then) =
       _$BannerCopyWithImpl<$Res, Banner>;
   @useResult
-  $Res call({@JsonKey(name: "url") String url});
+  $Res call({@JsonKey(name: "url") String? url});
 }
 
 /// @nodoc
@@ -257,13 +263,13 @@ class _$BannerCopyWithImpl<$Res, $Val extends Banner>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? url = null,
+    Object? url = freezed,
   }) {
     return _then(_value.copyWith(
-      url: null == url
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -275,7 +281,7 @@ abstract class _$$BannerImplCopyWith<$Res> implements $BannerCopyWith<$Res> {
       __$$BannerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "url") String url});
+  $Res call({@JsonKey(name: "url") String? url});
 }
 
 /// @nodoc
@@ -289,13 +295,13 @@ class __$$BannerImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? url = null,
+    Object? url = freezed,
   }) {
     return _then(_$BannerImpl(
-      url: null == url
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -303,14 +309,14 @@ class __$$BannerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BannerImpl implements _Banner {
-  const _$BannerImpl({@JsonKey(name: "url") required this.url});
+  const _$BannerImpl({@JsonKey(name: "url") this.url});
 
   factory _$BannerImpl.fromJson(Map<String, dynamic> json) =>
       _$$BannerImplFromJson(json);
 
   @override
   @JsonKey(name: "url")
-  final String url;
+  final String? url;
 
   @override
   String toString() {
@@ -344,14 +350,14 @@ class _$BannerImpl implements _Banner {
 }
 
 abstract class _Banner implements Banner {
-  const factory _Banner({@JsonKey(name: "url") required final String url}) =
+  const factory _Banner({@JsonKey(name: "url") final String? url}) =
       _$BannerImpl;
 
   factory _Banner.fromJson(Map<String, dynamic> json) = _$BannerImpl.fromJson;
 
   @override
   @JsonKey(name: "url")
-  String get url;
+  String? get url;
   @override
   @JsonKey(ignore: true)
   _$$BannerImplCopyWith<_$BannerImpl> get copyWith =>
@@ -365,11 +371,11 @@ Category _$CategoryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Category {
   @JsonKey(name: "id")
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "picUrl")
-  String get picUrl => throw _privateConstructorUsedError;
+  String? get picUrl => throw _privateConstructorUsedError;
   @JsonKey(name: "title")
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -383,9 +389,9 @@ abstract class $CategoryCopyWith<$Res> {
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int id,
-      @JsonKey(name: "picUrl") String picUrl,
-      @JsonKey(name: "title") String title});
+      {@JsonKey(name: "id") int? id,
+      @JsonKey(name: "picUrl") String? picUrl,
+      @JsonKey(name: "title") String? title});
 }
 
 /// @nodoc
@@ -401,23 +407,23 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? picUrl = null,
-    Object? title = null,
+    Object? id = freezed,
+    Object? picUrl = freezed,
+    Object? title = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      picUrl: null == picUrl
+              as int?,
+      picUrl: freezed == picUrl
           ? _value.picUrl
           : picUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
+              as String?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -431,9 +437,9 @@ abstract class _$$CategoryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int id,
-      @JsonKey(name: "picUrl") String picUrl,
-      @JsonKey(name: "title") String title});
+      {@JsonKey(name: "id") int? id,
+      @JsonKey(name: "picUrl") String? picUrl,
+      @JsonKey(name: "title") String? title});
 }
 
 /// @nodoc
@@ -447,23 +453,23 @@ class __$$CategoryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? picUrl = null,
-    Object? title = null,
+    Object? id = freezed,
+    Object? picUrl = freezed,
+    Object? title = freezed,
   }) {
     return _then(_$CategoryImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      picUrl: null == picUrl
+              as int?,
+      picUrl: freezed == picUrl
           ? _value.picUrl
           : picUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
+              as String?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -472,22 +478,22 @@ class __$$CategoryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CategoryImpl implements _Category {
   const _$CategoryImpl(
-      {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "picUrl") required this.picUrl,
-      @JsonKey(name: "title") required this.title});
+      {@JsonKey(name: "id") this.id,
+      @JsonKey(name: "picUrl") this.picUrl,
+      @JsonKey(name: "title") this.title});
 
   factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryImplFromJson(json);
 
   @override
   @JsonKey(name: "id")
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: "picUrl")
-  final String picUrl;
+  final String? picUrl;
   @override
   @JsonKey(name: "title")
-  final String title;
+  final String? title;
 
   @override
   String toString() {
@@ -524,22 +530,22 @@ class _$CategoryImpl implements _Category {
 
 abstract class _Category implements Category {
   const factory _Category(
-      {@JsonKey(name: "id") required final int id,
-      @JsonKey(name: "picUrl") required final String picUrl,
-      @JsonKey(name: "title") required final String title}) = _$CategoryImpl;
+      {@JsonKey(name: "id") final int? id,
+      @JsonKey(name: "picUrl") final String? picUrl,
+      @JsonKey(name: "title") final String? title}) = _$CategoryImpl;
 
   factory _Category.fromJson(Map<String, dynamic> json) =
       _$CategoryImpl.fromJson;
 
   @override
   @JsonKey(name: "id")
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: "picUrl")
-  String get picUrl;
+  String? get picUrl;
   @override
   @JsonKey(name: "title")
-  String get title;
+  String? get title;
   @override
   @JsonKey(ignore: true)
   _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
@@ -553,15 +559,15 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Item {
   @JsonKey(name: "description")
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: "picUrl")
-  List<String> get picUrl => throw _privateConstructorUsedError;
+  List<String>? get picUrl => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
-  int get price => throw _privateConstructorUsedError;
+  int? get price => throw _privateConstructorUsedError;
   @JsonKey(name: "rating")
-  double get rating => throw _privateConstructorUsedError;
+  double? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "title")
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -574,11 +580,11 @@ abstract class $ItemCopyWith<$Res> {
       _$ItemCopyWithImpl<$Res, Item>;
   @useResult
   $Res call(
-      {@JsonKey(name: "description") String description,
-      @JsonKey(name: "picUrl") List<String> picUrl,
-      @JsonKey(name: "price") int price,
-      @JsonKey(name: "rating") double rating,
-      @JsonKey(name: "title") String title});
+      {@JsonKey(name: "description") String? description,
+      @JsonKey(name: "picUrl") List<String>? picUrl,
+      @JsonKey(name: "price") int? price,
+      @JsonKey(name: "rating") double? rating,
+      @JsonKey(name: "title") String? title});
 }
 
 /// @nodoc
@@ -594,33 +600,33 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? description = null,
-    Object? picUrl = null,
-    Object? price = null,
-    Object? rating = null,
-    Object? title = null,
+    Object? description = freezed,
+    Object? picUrl = freezed,
+    Object? price = freezed,
+    Object? rating = freezed,
+    Object? title = freezed,
   }) {
     return _then(_value.copyWith(
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      picUrl: null == picUrl
+              as String?,
+      picUrl: freezed == picUrl
           ? _value.picUrl
           : picUrl // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      price: null == price
+              as List<String>?,
+      price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      rating: null == rating
+              as int?,
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      title: null == title
+              as double?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -633,11 +639,11 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "description") String description,
-      @JsonKey(name: "picUrl") List<String> picUrl,
-      @JsonKey(name: "price") int price,
-      @JsonKey(name: "rating") double rating,
-      @JsonKey(name: "title") String title});
+      {@JsonKey(name: "description") String? description,
+      @JsonKey(name: "picUrl") List<String>? picUrl,
+      @JsonKey(name: "price") int? price,
+      @JsonKey(name: "rating") double? rating,
+      @JsonKey(name: "title") String? title});
 }
 
 /// @nodoc
@@ -650,33 +656,33 @@ class __$$ItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? description = null,
-    Object? picUrl = null,
-    Object? price = null,
-    Object? rating = null,
-    Object? title = null,
+    Object? description = freezed,
+    Object? picUrl = freezed,
+    Object? price = freezed,
+    Object? rating = freezed,
+    Object? title = freezed,
   }) {
     return _then(_$ItemImpl(
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      picUrl: null == picUrl
+              as String?,
+      picUrl: freezed == picUrl
           ? _value._picUrl
           : picUrl // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      price: null == price
+              as List<String>?,
+      price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      rating: null == rating
+              as int?,
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      title: null == title
+              as double?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -685,11 +691,11 @@ class __$$ItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ItemImpl implements _Item {
   const _$ItemImpl(
-      {@JsonKey(name: "description") required this.description,
-      @JsonKey(name: "picUrl") required final List<String> picUrl,
-      @JsonKey(name: "price") required this.price,
-      @JsonKey(name: "rating") required this.rating,
-      @JsonKey(name: "title") required this.title})
+      {@JsonKey(name: "description") this.description,
+      @JsonKey(name: "picUrl") final List<String>? picUrl,
+      @JsonKey(name: "price") this.price,
+      @JsonKey(name: "rating") this.rating,
+      @JsonKey(name: "title") this.title})
       : _picUrl = picUrl;
 
   factory _$ItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -697,25 +703,27 @@ class _$ItemImpl implements _Item {
 
   @override
   @JsonKey(name: "description")
-  final String description;
-  final List<String> _picUrl;
+  final String? description;
+  final List<String>? _picUrl;
   @override
   @JsonKey(name: "picUrl")
-  List<String> get picUrl {
+  List<String>? get picUrl {
+    final value = _picUrl;
+    if (value == null) return null;
     if (_picUrl is EqualUnmodifiableListView) return _picUrl;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_picUrl);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   @JsonKey(name: "price")
-  final int price;
+  final int? price;
   @override
   @JsonKey(name: "rating")
-  final double rating;
+  final double? rating;
   @override
   @JsonKey(name: "title")
-  final String title;
+  final String? title;
 
   @override
   String toString() {
@@ -756,29 +764,29 @@ class _$ItemImpl implements _Item {
 
 abstract class _Item implements Item {
   const factory _Item(
-      {@JsonKey(name: "description") required final String description,
-      @JsonKey(name: "picUrl") required final List<String> picUrl,
-      @JsonKey(name: "price") required final int price,
-      @JsonKey(name: "rating") required final double rating,
-      @JsonKey(name: "title") required final String title}) = _$ItemImpl;
+      {@JsonKey(name: "description") final String? description,
+      @JsonKey(name: "picUrl") final List<String>? picUrl,
+      @JsonKey(name: "price") final int? price,
+      @JsonKey(name: "rating") final double? rating,
+      @JsonKey(name: "title") final String? title}) = _$ItemImpl;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$ItemImpl.fromJson;
 
   @override
   @JsonKey(name: "description")
-  String get description;
+  String? get description;
   @override
   @JsonKey(name: "picUrl")
-  List<String> get picUrl;
+  List<String>? get picUrl;
   @override
   @JsonKey(name: "price")
-  int get price;
+  int? get price;
   @override
   @JsonKey(name: "rating")
-  double get rating;
+  double? get rating;
   @override
   @JsonKey(name: "title")
-  String get title;
+  String? get title;
   @override
   @JsonKey(ignore: true)
   _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>

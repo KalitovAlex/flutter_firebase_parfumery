@@ -9,6 +9,9 @@ import 'package:flutter_firebase_parfumery/auth/bloc/register/register_bloc.dart
 import 'package:flutter_firebase_parfumery/auth/model/user_model.dart';
 import 'package:flutter_firebase_parfumery/core/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/firebase_options.dart';
+import 'package:flutter_firebase_parfumery/main/models/main.dart';
+import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
+import 'package:flutter_firebase_parfumery/main/repository/main_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
@@ -31,6 +34,8 @@ void main() async {
 void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());
   GetIt.I.registerLazySingleton<UserModel>(() => const UserModel());
+  GetIt.I.registerLazySingleton<Main>(() => const Main());
+  GetIt.I.registerLazySingleton<AbstractMainRepository>(() => MainRepository());
 }
 void initDependencies() {
   GetIt.I.registerSingleton<Talker>(talker);
