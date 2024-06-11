@@ -3,22 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/globals.dart';
 import 'package:sizer/sizer.dart';
 @RoutePage()
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    getall();
-  }
-  getall ()async{
-    await mainRepository.getAllProducts();
-  }
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
@@ -46,12 +33,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             SizedBox(height: 2.h,),
-            // PageView.builder(
-            //   itemCount: mainModel.banner!.length,
-            //   itemBuilder: (context, index){
-            //     final model = mainModel.banner![index];
-            //     return banner_main(img_url: model.url!);
-            // })
+            StreamBuilder(stream: mainRepository.mainReference.snapshots(), builder: (context, snapshots){
+              if(snapshots.hasData){
+                PageView.builder(itemCount: snapshots.data!.docs.length,itemBuilder: (context , indext){
+                  return Image.asset(snapshots.data!.docs[indext]['image_url']);
+                });
+              }
+              else{
+                return const Center(child: Text('Doesnt get any banners'),);
+              }
+              return Container();
+            })
           ],
         ),
       ),

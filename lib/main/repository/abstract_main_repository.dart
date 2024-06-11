@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_firebase_parfumery/core/globals.dart';
+
 abstract class AbstractMainRepository{
-  Future<bool> getAllProducts();
+  final mainReference = fireStore.collection(bannersCollection);
 }
