@@ -15,6 +15,11 @@ ThemeData lightTheme = ThemeData(
       fontSize: 16,
       fontWeight: FontWeight.w500
     ),
+      headlineMedium: GoogleFonts.roboto(
+      color: Colors.green,
+      fontSize: 20,
+      fontWeight: FontWeight.w500
+    ),
     displayLarge: GoogleFonts.roboto(
       color: Colors.white,
       fontSize: 30,

@@ -1,11 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/globals.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/home/banner_widget.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/home/categories_widget.dart';
 import 'package:sizer/sizer.dart';
 @RoutePage()
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
@@ -32,18 +39,23 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 2.h,),
-            StreamBuilder(stream: mainRepository.mainReference.snapshots(), builder: (context, snapshots){
-              if(snapshots.hasData){
-                PageView.builder(itemCount: snapshots.data!.docs.length,itemBuilder: (context , indext){
-                  return Image.asset(snapshots.data!.docs[indext]['image_url']);
-                });
-              }
-              else{
-                return const Center(child: Text('Doesnt get any banners'),);
-              }
-              return Container();
-            })
+            SizedBox(height: 0.5.h,),
+            const banner_widget(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Categories', style: textStylePicker(context).titleMedium,),
+                TextButton(onPressed: (){}, child: Text('See all', style: textStylePicker(context).headlineMedium,))
+              ],
+            ),
+            const categories_widget(),
+              Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Recomendation', style: textStylePicker(context).titleMedium,),
+                TextButton(onPressed: (){}, child: Text('See all', style: textStylePicker(context).headlineMedium,))
+              ],
+            ),
           ],
         ),
       ),
