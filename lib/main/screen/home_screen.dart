@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/globals.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/banner_widget.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/categories_widget.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/home/recomendation_widget.dart';
 import 'package:sizer/sizer.dart';
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -56,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 TextButton(onPressed: (){}, child: Text('See all', style: textStylePicker(context).headlineMedium,))
               ],
             ),
+            const recomendation_widget()
           ],
         ),
       ),

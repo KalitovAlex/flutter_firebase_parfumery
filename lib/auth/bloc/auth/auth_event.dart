@@ -6,10 +6,10 @@ class AuthEvent {
  String? email;
  String? password;
  bool? rememberMe;
-  AuthEvent({
-    required this.ifGoogle,
-    this.email,
-    this.password,
-    this.rememberMe,
-  });
+AuthEvent({
+   required this.ifGoogle,
+   this.email,
+   this.password,
+   this.rememberMe,
+ });
 }

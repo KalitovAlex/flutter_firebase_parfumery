@@ -29,6 +29,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
   initDependencies();
+  
+  
   runApp(const MyApp());
 }
 void initSingletons(){

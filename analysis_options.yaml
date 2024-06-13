@@ -14,6 +14,7 @@ analyzer:
     unrelated_type_equality_checks: ignore
     must_be_immutable: ignore
     camel_case_types: ignore
+    prefer_interpolation_to_compose_strings: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:
