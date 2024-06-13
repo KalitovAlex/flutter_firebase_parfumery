@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final textStyle = Theme.of(context).textTheme;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(left: 5.w,right: 5.w,top: 7.h),
+        padding: EdgeInsets.only(left: 2.w,right: 2.w,top: 7.h),
         child: Column(
           children: [
             Row(

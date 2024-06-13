@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_parfumery/main/screen/favorite_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 @RoutePage()
@@ -23,7 +24,7 @@ class BottomNavigation extends StatelessWidget {
           ),
         ),
         PersistentTabConfig(
-          screen: const HomeScreen(),
+          screen: const FavoriteScreen(),
           item: ItemConfig(
             inactiveIcon: const Icon(Icons.favorite_outline,color: Colors.white,),
             icon: const Icon(Icons.favorite,color: Colors.white,),

@@ -3,16 +3,16 @@ import 'package:flutter_firebase_parfumery/core/globals.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sizer/sizer.dart';
 
-class recomendation_widget extends StatefulWidget {
-  const recomendation_widget({
+class favorites_widget extends StatefulWidget {
+  const favorites_widget({
     super.key,
   });
 
   @override
-  State<recomendation_widget> createState() => _recomendation_widgetState();
+  State<favorites_widget> createState() => _recomendation_widgetState();
 }
 
-class _recomendation_widgetState extends State<recomendation_widget> {
+class _recomendation_widgetState extends State<favorites_widget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(stream: mainRepository.recomendationReference.snapshots(), builder: (context, snapshots){
@@ -21,14 +21,16 @@ class _recomendation_widgetState extends State<recomendation_widget> {
             Expanded(
               child: GridView.builder(shrinkWrap: true,scrollDirection: Axis.vertical,itemCount: snapshots.data!.docs.length,itemBuilder: (context , index){
                 final currentRecomendation = snapshots.data!.docs[index];
-                return Padding(
+                return Container(
+                  width: double.infinity,
+                  height: 30.h,
                   padding: const EdgeInsets.all(6),
-                  child: Column(
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Stack(
                         children: [
-                          ClipRRect(child: Image.network(currentRecomendation['pic_url']),),
+                          ClipRRect(child: Image.network(currentRecomendation['pic_url'],width: 35.w,height: 30.h,),),
                           Positioned(child: IconButton(onPressed: (){
                             setState(() {
                             if(favorite.contains(currentRecomendation.id)){
@@ -41,22 +43,30 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                             icon: favorite.contains(currentRecomendation.id) ? const Icon(Icons.favorite,color: Colors.red,) : const Icon(Icons.favorite_border_outlined,color: Colors.white70,) ))
                         ],
                       ),
-                      SizedBox(height: 0.7.h,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                        Text('\$' + currentRecomendation['price'], style: textStylePicker(context).titleSmall,),
-                        Row(
-                          children: [
-                            const Icon(Icons.star, color: Colors.yellow,),
-                            Text(currentRecomendation['rating'],style: const TextStyle(fontSize: 16),)
-                          ],
-                        )
-                      ],),
-                      Text(currentRecomendation['title'], style: textStylePicker(context).titleSmall,)
+                      SizedBox(width: 3.w,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 1.5.h),
+                          Text(currentRecomendation['title'], style: textStylePicker(context).titleMedium,),
+                          Text(currentRecomendation['desc'],maxLines: 100,overflow: TextOverflow.clip,softWrap: true),
+                          Row(
+                            children: [
+                            Text('\$' + currentRecomendation['price'], style: textStylePicker(context).titleSmall,),
+                            SizedBox(width: 3.w,),
+                            Row(
+                              children: [
+                                const Icon(Icons.star, color: Colors.yellow,),
+                                Text(currentRecomendation['rating'],style: const TextStyle(fontSize: 16),)
+                              ],
+                            )
+                          ],),
+                        ],
+                      ),
                     ],
                   ),
                 );
-              }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 2,childAspectRatio: 0.75),)
+              }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1,childAspectRatio: 2.3),)
         );
       }
       else{

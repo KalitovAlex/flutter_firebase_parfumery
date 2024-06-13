@@ -46,3 +46,6 @@ const String userCollection = 'users';
 const String bannersCollection = 'banners';
 const String categoriesCollection = 'categories';
 const String recomendationCollection = 'recomendation';
+
+//favorites
+List favorite = [];
