@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
             final uid = preferences.getString('uid');
             if(uid != null){
             await userRepository.sharedAuth(uid);
-            return const DeepLink([HomeRoute()]);
+            return const DeepLink([BottomNavigation()]);
             }
             else { 
               return const DeepLink([AuthBoard()]);
