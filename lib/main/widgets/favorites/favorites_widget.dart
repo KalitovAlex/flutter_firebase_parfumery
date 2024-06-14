@@ -22,13 +22,13 @@ class _recomendation_widgetState extends State<favorites_widget> {
             ValueListenableBuilder(
               valueListenable: Hive.box('favorite').listenable(),
               builder: (BuildContext context, box, Widget? child) {  
-              return Expanded(
-                child: GridView.builder(shrinkWrap: true,scrollDirection: Axis.vertical,itemCount: snapshots.data!.docs.length,itemBuilder: (context , index){
+                return GridView.builder(shrinkWrap: true,scrollDirection: Axis.vertical,itemCount: snapshots.data!.docs.length,itemBuilder: (context , index){
                   final isFavorite = box.get(index) != null;
                   final currentFavorites = snapshots.data!.docs[index];
+                  if(isFavorite){
                   return Container(
                     width: double.infinity,
-                    height: 30.h,
+                    height: 20.h,
                     padding: const EdgeInsets.all(6),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,9 +68,10 @@ class _recomendation_widgetState extends State<favorites_widget> {
                         ),
                       ],
                     ),
-                  );
-                }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1,childAspectRatio: 2.3),)
-              );
+                  );} else{
+                    return Container();
+                  }
+                }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1,childAspectRatio: 2.3),);
       });
       }
       else{
