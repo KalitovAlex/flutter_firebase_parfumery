@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/globals.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/cart/item_card_widget.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -36,7 +37,7 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                   final currentRecomendation = snapshots.data!.docs[index];
                   return GestureDetector(
                     onTap: (){
-                    showBarModalBottomSheet(useRootNavigator: true,context: context, builder: (context) => const Scaffold());
+                    showBarModalBottomSheet(useRootNavigator: true,context: context, builder: (context) => ItemCardWidget(currentItem: currentRecomendation));
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(6),

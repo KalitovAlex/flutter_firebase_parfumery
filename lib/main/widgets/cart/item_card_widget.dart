@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_parfumery/auth/screen/forgot_password.dart';
 import 'package:sizer/sizer.dart';
 
 class ItemCardWidget extends StatelessWidget {
-  const ItemCardWidget({super.key});
+  const ItemCardWidget({super.key, required this.currentItem});
+  final QueryDocumentSnapshot<Map<String, dynamic>>  currentItem;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,6 @@ class ItemCardWidget extends StatelessWidget {
         padding: EdgeInsets.only(left: 5.w,right: 5.w),
         child: Column(
           children: [
-            
           ],
         ),
       ),
