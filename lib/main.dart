@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +10,11 @@ import 'package:flutter_firebase_parfumery/auth/bloc/register/register_bloc.dart
 import 'package:flutter_firebase_parfumery/auth/model/user_model.dart';
 import 'package:flutter_firebase_parfumery/core/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/firebase_options.dart';
-import 'package:flutter_firebase_parfumery/main/models/main.dart';
+import 'package:flutter_firebase_parfumery/main/models/item.dart';
 import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
 import 'package:flutter_firebase_parfumery/main/repository/main_repository.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
@@ -28,16 +30,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+  await Hive.initFlutter();
   initDependencies();
-  
-  
+  await Hive.openBox('favorite');
   runApp(const MyApp());
 }
 void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());
   GetIt.I.registerLazySingleton<UserModel>(() => const UserModel());
-  GetIt.I.registerLazySingleton<Main>(() => const Main());
   GetIt.I.registerLazySingleton<AbstractMainRepository>(() => MainRepository());
+  GetIt.I.registerLazySingleton<Item>(() => const Item());
 }
 void initDependencies() {
   GetIt.I.registerSingleton<Talker>(talker);
