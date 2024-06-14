@@ -1,6 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
-import 'dart:convert';
 
 part 'item.freezed.dart';
 part 'item.g.dart';

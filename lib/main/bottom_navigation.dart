@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_parfumery/main/screen/bucket_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/favorite_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
@@ -17,7 +18,7 @@ class BottomNavigation extends StatelessWidget {
           ),
         ),
         PersistentTabConfig(
-          screen: const HomeScreen(),
+          screen: const BucketScreen(),
           item: ItemConfig(
             inactiveIcon: const Icon(CupertinoIcons.cart,color: Colors.white,),
             icon: const Icon(CupertinoIcons.cart_fill,color: Colors.white,),

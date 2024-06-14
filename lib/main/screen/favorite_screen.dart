@@ -7,8 +7,10 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  const Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-        favorites_widget()
+        favorites_widget(),
+
         ],
       ),
     );

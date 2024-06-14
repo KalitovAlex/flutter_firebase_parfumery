@@ -21,11 +21,20 @@ class _recomendation_widgetState extends State<favorites_widget> {
         return 
             ValueListenableBuilder(
               valueListenable: Hive.box('favorite').listenable(),
-              builder: (BuildContext context, box, Widget? child) {  
-                return GridView.builder(shrinkWrap: true,scrollDirection: Axis.vertical,itemCount: snapshots.data!.docs.length,itemBuilder: (context , index){
+              builder: (BuildContext context, box, Widget? child) {
+                if(box.isEmpty){
+                  return Padding(
+                    padding:  EdgeInsets.only(top: 50.h),
+                    child: Center(child: Text('Your favorite is empty', style: textStylePicker(context).titleMedium,),
+                  ));
+                }
+                else{
+                return ListView.builder(shrinkWrap: true,scrollDirection: Axis.vertical,itemCount: snapshots.data!.docs.length,itemBuilder: (context , index){
                   final isFavorite = box.get(index) != null;
                   final currentFavorites = snapshots.data!.docs[index];
-                  if(isFavorite){
+                  if(!isFavorite){
+                    return const Center();
+                  } else{
                   return Container(
                     width: double.infinity,
                     height: 20.h,
@@ -68,11 +77,9 @@ class _recomendation_widgetState extends State<favorites_widget> {
                         ),
                       ],
                     ),
-                  );} else{
-                    return Container();
-                  }
-                }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1,childAspectRatio: 2.3),);
-      });
+                  );}
+                });
+      }});
       }
       else{
        return Center(child: LoadingAnimationWidget.inkDrop(color: Colors.green, size: 30));

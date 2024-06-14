@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +32,7 @@ void main() async {
   await Hive.initFlutter();
   initDependencies();
   await Hive.openBox('favorite');
+  await Hive.openBox('cart');
   runApp(const MyApp());
 }
 void initSingletons(){
