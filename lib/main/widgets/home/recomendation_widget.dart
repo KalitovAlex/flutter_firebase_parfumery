@@ -37,7 +37,7 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                   // final QuerySnapshot snapshot = mainRepository.recomendationReference.doc(currentRecomendation.id).collection('pic_urls').ge;
                   return GestureDetector(
                     onTap: (){
-                    showBarModalBottomSheet(useRootNavigator: true,context: context, builder: (context) => ItemCardWidget(currentItem: currentRecomendation));
+                    showBarModalBottomSheet(useRootNavigator: true,context: context, builder: (context) => ItemCardWidget(currentItem: currentRecomendation,index: index,));
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(6),

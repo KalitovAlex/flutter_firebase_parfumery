@@ -1,12 +1,16 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
 import 'package:flutter_firebase_parfumery/main/models/recommendation.dart';
+import 'package:flutter_firebase_parfumery/widgets/show_snack_bar.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 class ItemCardWidget extends StatelessWidget {
-  const ItemCardWidget({super.key, required this.currentItem});
+  const ItemCardWidget({super.key, required this.currentItem,required this.index});
   final Recommendation  currentItem;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +56,15 @@ class ItemCardWidget extends StatelessWidget {
                                   Text("Total Price", style: textStylePicker(context).titleMedium,),
                                   Text(' \$ ${currentItem.price}.00',style: textStylePicker(context).headlineMedium,)
                                 ],
-                              ),
-                              Container(width: 45.w,decoration: auth_button_container,child: TextButton(onPressed: (){
-                                
-                              }, child: Text('Add to cart',style: textStylePicker(context).displayMedium,)),),
+                              ),Container(width: 45.w,decoration: auth_button_container,child: ValueListenableBuilder(
+                                builder: (BuildContext context, box, Widget? child) {  
+                                return TextButton(onPressed: (){
+                                    box.put(index, currentItem);
+                                    Navigator.of(context).pop();
+                                    ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner('Succesfuly', 'You add ${currentItem.title} to cart', ContentType.success));
+                                    talker.log(box.get(index));
+                                  }, child: Text('Add to cart',style: textStylePicker(context).displayMedium,));
+                              }, valueListenable: Hive.box('cart').listenable(),),)
                             ],
                           ),
                           SizedBox(height: 4.h,)
