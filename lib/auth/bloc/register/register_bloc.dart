@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_parfumery/core/globals.dart';
+import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';

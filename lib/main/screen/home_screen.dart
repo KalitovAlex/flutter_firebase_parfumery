@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_parfumery/core/globals.dart';
+import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/banner_widget.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/categories_widget.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/recomendation_widget.dart';

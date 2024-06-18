@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/auth/bloc/google/google_bloc.dart';
-import 'package:flutter_firebase_parfumery/core/routes.gr.dart';
+import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/widgets/show_loading_circle.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../core/globals.dart';
+import '../../core/main/globals.dart';
 import '../../core/styles/widget/button_styles.dart';
 import '../../core/styles/widget/text_styles.dart';
 import '../../widgets/show_snack_bar.dart';

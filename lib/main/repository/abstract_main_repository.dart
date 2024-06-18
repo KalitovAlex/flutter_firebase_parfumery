@@ -1,4 +1,4 @@
-import 'package:flutter_firebase_parfumery/core/globals.dart';
+import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/recommendation.dart';
 
 abstract class AbstractMainRepository{

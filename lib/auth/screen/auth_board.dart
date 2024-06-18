@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../core/globals.dart';
-import '../../core/routes.gr.dart';
+import '../../core/main/globals.dart';
+import '../../core/routes/routes.gr.dart';
 import '../../core/styles/widget/button_styles.dart';
 @RoutePage()
 class AuthBoard extends StatelessWidget {

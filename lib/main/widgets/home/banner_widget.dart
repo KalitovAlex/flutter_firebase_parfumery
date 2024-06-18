@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../core/globals.dart';
+import '../../../core/main/globals.dart';
 
 class banner_widget extends StatelessWidget {
   const banner_widget({

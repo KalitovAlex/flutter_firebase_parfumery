@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/globals.dart';
+import '../../../core/main/globals.dart';
 
 part 'google_event.dart';
 part 'google_state.dart';

@@ -6,8 +6,8 @@ import 'package:flutter_firebase_parfumery/main/repository/abstract_main_reposit
 import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
-import '../auth/model/user_model.dart';
-import '../auth/repository/abstract_user_repository.dart';
+import '../../auth/model/user_model.dart';
+import '../../auth/repository/abstract_user_repository.dart';
 // Dio dio = Dio();
 //   apiRepository() {
 //       BaseOptions options =  BaseOptions(
