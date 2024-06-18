@@ -62,7 +62,7 @@ class _recomendation_widgetState extends State<favorites_widget> {
                             Text(currentFavorites.title!, style: textStylePicker(context).titleMedium,),
                             Row(
                               children: [
-                              Text('\$' + currentFavorites.price!, style: textStylePicker(context).titleSmall,),
+                              Text('\$' + currentFavorites.price.toString(), style: textStylePicker(context).titleSmall,),
                               SizedBox(width: 3.w,),
                               Row(
                                 children: [

@@ -23,7 +23,7 @@ void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractMainRepository>(() => MainRepository());
   GetIt.I.registerLazySingleton<Recommendation>(() => const Recommendation());
 }
-void initDependencies() {
+void initTalker() {
   GetIt.I.registerSingleton<Talker>(talker);
   talker.info('App Started');
   Bloc.observer = TalkerBlocObserver(

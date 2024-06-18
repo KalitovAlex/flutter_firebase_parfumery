@@ -10,6 +10,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
   initHive();
-  initDependencies();
+  initTalker();
   runApp(const MyApp());
 }

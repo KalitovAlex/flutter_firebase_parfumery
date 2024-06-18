@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recommendation.freezed.dart';
@@ -10,7 +12,7 @@ class Recommendation with _$Recommendation {
         @JsonKey(name: "title")
         String? title,
         @JsonKey(name: "price")
-        String? price,
+        double? price,
         @JsonKey(name: "desc")
         String? desc,
         @JsonKey(name: "rating")
