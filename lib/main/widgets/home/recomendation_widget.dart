@@ -42,35 +42,37 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                     child: Padding(
                       padding: const EdgeInsets.all(6),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           SizedBox(
-                            height: 20.h,
-                            width: 40.w,
-                            child: Stack(
-                              children: [
-                                ClipRRect(
-                                        borderRadius: BorderRadius.circular(30),
-                                        child: Image.network(
-                                          fit: BoxFit.fitHeight,
-                                          ''
+                            width: double.infinity,
+                              child: Stack(
+                                children: [
+                                  ClipRRect(
+                                          borderRadius: BorderRadius.circular(30),
+                                            child: SizedBox(
+                                              height: 20.h,
+                                              child: Image.network(
+                                                fit: BoxFit.fill,
+                                                currentRecomendation.imageUrls!.first.toString()
+                                              ),
+                                            ),
                                         ),
-                                      ),
-                                Positioned(child: IconButton(onPressed: () async{
-                                    if(isFavorite){
-                                    await box.delete(index);
-                                    }
-                                    else{
-                                    await box.put(index, currentRecomendation.title);
-                                    }
-                                 setState(() {
-                                    
-                                  });
-                                  }, 
-                                  icon: isFavorite ? const Icon(Icons.favorite,color: Colors.red,) : const Icon(Icons.favorite_border_outlined,color: Colors.white70,) ))
-                              ],
+                                  Positioned(child: IconButton(onPressed: () async{
+                                      if(isFavorite){
+                                      await box.delete(index);
+                                      }
+                                      else{
+                                      await box.put(index, currentRecomendation.title);
+                                      }
+                                   setState(() {
+                                      
+                                    });
+                                    }, 
+                                    icon: isFavorite ? const Icon(Icons.favorite,color: Colors.red,) : const Icon(Icons.favorite_border_outlined,color: Colors.white70,) ))
+                                ],
+                              ),
                             ),
-                          ),
                           SizedBox(height: 0.7.h,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
@@ -87,7 +89,7 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                       ),
                     ),
                   );
-                }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 2,childAspectRatio: 0.75),)
+                }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 1,childAspectRatio: 0.75),)
               );
       });
       }

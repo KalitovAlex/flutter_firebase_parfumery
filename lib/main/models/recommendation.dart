@@ -15,7 +15,7 @@ class Recommendation with _$Recommendation {
         String? desc,
         @JsonKey(name: "rating")
         double? rating,
-        @JsonKey(name: "pic_url")
+        @JsonKey(name: "pic_urls")
         List<String>? imageUrls
     }) = _Recommendation;
 

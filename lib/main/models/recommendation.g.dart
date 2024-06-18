@@ -12,8 +12,9 @@ _$RecommendationImpl _$$RecommendationImplFromJson(Map<String, dynamic> json) =>
       price: json['price'] as String?,
       desc: json['desc'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
-      imageUrls:
-          (json['pic_url'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      imageUrls: (json['pic_urls'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$RecommendationImplToJson(
@@ -30,6 +31,6 @@ Map<String, dynamic> _$$RecommendationImplToJson(
   writeNotNull('price', instance.price);
   writeNotNull('desc', instance.desc);
   writeNotNull('rating', instance.rating);
-  writeNotNull('pic_url', instance.imageUrls);
+  writeNotNull('pic_urls', instance.imageUrls);
   return val;
 }

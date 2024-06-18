@@ -28,7 +28,7 @@ mixin _$Recommendation {
   String? get desc => throw _privateConstructorUsedError;
   @JsonKey(name: "rating")
   double? get rating => throw _privateConstructorUsedError;
-  @JsonKey(name: "pic_url")
+  @JsonKey(name: "pic_urls")
   List<String>? get imageUrls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $RecommendationCopyWith<$Res> {
       @JsonKey(name: "price") String? price,
       @JsonKey(name: "desc") String? desc,
       @JsonKey(name: "rating") double? rating,
-      @JsonKey(name: "pic_url") List<String>? imageUrls});
+      @JsonKey(name: "pic_urls") List<String>? imageUrls});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ abstract class _$$RecommendationImplCopyWith<$Res>
       @JsonKey(name: "price") String? price,
       @JsonKey(name: "desc") String? desc,
       @JsonKey(name: "rating") double? rating,
-      @JsonKey(name: "pic_url") List<String>? imageUrls});
+      @JsonKey(name: "pic_urls") List<String>? imageUrls});
 }
 
 /// @nodoc
@@ -162,7 +162,7 @@ class _$RecommendationImpl implements _Recommendation {
       @JsonKey(name: "price") this.price,
       @JsonKey(name: "desc") this.desc,
       @JsonKey(name: "rating") this.rating,
-      @JsonKey(name: "pic_url") final List<String>? imageUrls})
+      @JsonKey(name: "pic_urls") final List<String>? imageUrls})
       : _imageUrls = imageUrls;
 
   factory _$RecommendationImpl.fromJson(Map<String, dynamic> json) =>
@@ -182,7 +182,7 @@ class _$RecommendationImpl implements _Recommendation {
   final double? rating;
   final List<String>? _imageUrls;
   @override
-  @JsonKey(name: "pic_url")
+  @JsonKey(name: "pic_urls")
   List<String>? get imageUrls {
     final value = _imageUrls;
     if (value == null) return null;
@@ -235,7 +235,7 @@ abstract class _Recommendation implements Recommendation {
           @JsonKey(name: "price") final String? price,
           @JsonKey(name: "desc") final String? desc,
           @JsonKey(name: "rating") final double? rating,
-          @JsonKey(name: "pic_url") final List<String>? imageUrls}) =
+          @JsonKey(name: "pic_urls") final List<String>? imageUrls}) =
       _$RecommendationImpl;
 
   factory _Recommendation.fromJson(Map<String, dynamic> json) =
@@ -254,7 +254,7 @@ abstract class _Recommendation implements Recommendation {
   @JsonKey(name: "rating")
   double? get rating;
   @override
-  @JsonKey(name: "pic_url")
+  @JsonKey(name: "pic_urls")
   List<String>? get imageUrls;
   @override
   @JsonKey(ignore: true)

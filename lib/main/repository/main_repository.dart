@@ -19,4 +19,15 @@ class MainRepository  extends AbstractMainRepository{
       return [];
     }
   }
+//   Future<List<String>> getALlImages() async{
+//     try{
+//       List<String> imageList;
+//       final response = await fireStore.collection(recomendationCollection).doc()
+//     }on FirebaseException{
+//       talker.error('firebase error');
+//       return [];
+//     } catch(e){
+//       talker.error(e);
+//     }
+//   }
 }
