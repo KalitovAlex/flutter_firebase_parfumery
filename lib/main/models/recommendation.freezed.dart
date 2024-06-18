@@ -23,7 +23,7 @@ mixin _$Recommendation {
   @JsonKey(name: "title")
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
-  double? get price => throw _privateConstructorUsedError;
+  int? get price => throw _privateConstructorUsedError;
   @JsonKey(name: "desc")
   String? get desc => throw _privateConstructorUsedError;
   @JsonKey(name: "rating")
@@ -45,7 +45,7 @@ abstract class $RecommendationCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "title") String? title,
-      @JsonKey(name: "price") double? price,
+      @JsonKey(name: "price") int? price,
       @JsonKey(name: "desc") String? desc,
       @JsonKey(name: "rating") double? rating,
       @JsonKey(name: "pic_urls") List<String>? imageUrls});
@@ -78,7 +78,7 @@ class _$RecommendationCopyWithImpl<$Res, $Val extends Recommendation>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       desc: freezed == desc
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
@@ -105,7 +105,7 @@ abstract class _$$RecommendationImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "title") String? title,
-      @JsonKey(name: "price") double? price,
+      @JsonKey(name: "price") int? price,
       @JsonKey(name: "desc") String? desc,
       @JsonKey(name: "rating") double? rating,
       @JsonKey(name: "pic_urls") List<String>? imageUrls});
@@ -136,7 +136,7 @@ class __$$RecommendationImplCopyWithImpl<$Res>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       desc: freezed == desc
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ class _$RecommendationImpl implements _Recommendation {
   final String? title;
   @override
   @JsonKey(name: "price")
-  final double? price;
+  final int? price;
   @override
   @JsonKey(name: "desc")
   final String? desc;
@@ -232,7 +232,7 @@ class _$RecommendationImpl implements _Recommendation {
 abstract class _Recommendation implements Recommendation {
   const factory _Recommendation(
           {@JsonKey(name: "title") final String? title,
-          @JsonKey(name: "price") final double? price,
+          @JsonKey(name: "price") final int? price,
           @JsonKey(name: "desc") final String? desc,
           @JsonKey(name: "rating") final double? rating,
           @JsonKey(name: "pic_urls") final List<String>? imageUrls}) =
@@ -246,7 +246,7 @@ abstract class _Recommendation implements Recommendation {
   String? get title;
   @override
   @JsonKey(name: "price")
-  double? get price;
+  int? get price;
   @override
   @JsonKey(name: "desc")
   String? get desc;

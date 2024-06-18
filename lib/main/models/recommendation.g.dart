@@ -9,7 +9,7 @@ part of 'recommendation.dart';
 _$RecommendationImpl _$$RecommendationImplFromJson(Map<String, dynamic> json) =>
     _$RecommendationImpl(
       title: json['title'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      price: (json['price'] as num?)?.toInt(),
       desc: json['desc'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
       imageUrls: (json['pic_urls'] as List<dynamic>?)

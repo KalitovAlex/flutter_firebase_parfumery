@@ -53,7 +53,9 @@ class ItemCardWidget extends StatelessWidget {
                                   Text(' \$ ${currentItem.price}.00',style: textStylePicker(context).headlineMedium,)
                                 ],
                               ),
-                              Container(width: 30.w,decoration: auth_button_container,child: TextButton(onPressed: (){}, child: Text('Add to cart',style: textStylePicker(context).displayMedium,)),),
+                              Container(width: 45.w,decoration: auth_button_container,child: TextButton(onPressed: (){
+                                
+                              }, child: Text('Add to cart',style: textStylePicker(context).displayMedium,)),),
                             ],
                           ),
                           SizedBox(height: 4.h,)
