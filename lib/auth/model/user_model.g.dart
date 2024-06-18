@@ -15,11 +15,19 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       uid: json['uid'] as String?,
     );
 
-Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
-    <String, dynamic>{
-      'username': instance.username,
-      'phone_number': instance.phoneNumber,
-      'email': instance.email,
-      'password': instance.password,
-      'uid': instance.uid,
-    };
+Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('username', instance.username);
+  writeNotNull('phone_number', instance.phoneNumber);
+  writeNotNull('email', instance.email);
+  writeNotNull('password', instance.password);
+  writeNotNull('uid', instance.uid);
+  return val;
+}

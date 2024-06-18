@@ -5,6 +5,7 @@ part 'user_model.g.dart';
 
 @freezed
 class UserModel with _$UserModel {
+    @JsonSerializable(includeIfNull: false)
     const factory UserModel({
         @JsonKey(name: "username")
         String? username,

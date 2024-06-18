@@ -1,17 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_parfumery/main/models/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/screen/bucket_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/favorite_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 @RoutePage()
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({super.key});
+  BottomNavigation({super.key, required this.response});
+  List<Recommendation> response; 
 
   List<PersistentTabConfig> _tabs() => [
         PersistentTabConfig(
-          screen: const HomeScreen(),
+          screen: HomeScreen(response: response,),
           item: ItemConfig(
             inactiveIcon: const Icon(CupertinoIcons.compass,color: Colors.white,),
             icon: const Icon(CupertinoIcons.compass_fill,color: Colors.white,),
@@ -31,10 +33,10 @@ class BottomNavigation extends StatelessWidget {
             icon: const Icon(Icons.favorite,color: Colors.white,),
           ),
         ),
-        PersistentTabConfig(screen: const HomeScreen(), item: ItemConfig(
+        PersistentTabConfig(screen: const Scaffold(), item: ItemConfig(
           inactiveIcon: const Icon(CupertinoIcons.doc,color: Colors.white,),
           icon: const Icon(CupertinoIcons.doc_fill,color: Colors.white,))),
-        PersistentTabConfig(screen: const HomeScreen(), item: ItemConfig(icon: const Icon(CupertinoIcons.person_fill,color: Colors.white,),inactiveIcon: const Icon(CupertinoIcons.person, color: Colors.white,)))
+        PersistentTabConfig(screen: const Scaffold(), item: ItemConfig(icon: const Icon(CupertinoIcons.person_fill,color: Colors.white,),inactiveIcon: const Icon(CupertinoIcons.person, color: Colors.white,)))
       ];
 
   @override

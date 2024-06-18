@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/globals.dart';
+import 'package:flutter_firebase_parfumery/main/models/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/cart/item_card_widget.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -9,7 +10,9 @@ import 'package:sizer/sizer.dart';
 class recomendation_widget extends StatefulWidget {
   const recomendation_widget({
     super.key,
+    required this.recomendation
   });
+  final List<Recommendation> recomendation;
 
   @override
   State<recomendation_widget> createState() => _recomendation_widgetState();
@@ -17,16 +20,12 @@ class recomendation_widget extends StatefulWidget {
 
 class _recomendation_widgetState extends State<recomendation_widget> {
   @override
-  void initState() {
-    super.initState();
-    setState(() {
-      
-    });
-  }
-  @override
   Widget build(BuildContext context) {
     return StreamBuilder(stream: mainRepository.recomendationReference.snapshots(), builder: (context, snapshots){
-      if(snapshots.hasData){
+      if(snapshots.connectionState == ConnectionState.none){
+        return const Center(child: Text('please try again,your internet have error'),);
+      }
+      else if(snapshots.hasData){
         return 
             ValueListenableBuilder(
               valueListenable: Hive.box('favorite').listenable(),
@@ -34,7 +33,8 @@ class _recomendation_widgetState extends State<recomendation_widget> {
               return Expanded(
                 child: GridView.builder(shrinkWrap: true,scrollDirection: Axis.vertical,itemCount: snapshots.data!.docs.length,itemBuilder: (context , index){
                   final isFavorite = box.get(index) != null;
-                  final currentRecomendation = snapshots.data!.docs[index];
+                  final currentRecomendation = widget.recomendation[index];
+                  // final QuerySnapshot snapshot = mainRepository.recomendationReference.doc(currentRecomendation.id).collection('pic_urls').ge;
                   return GestureDetector(
                     onTap: (){
                     showBarModalBottomSheet(useRootNavigator: true,context: context, builder: (context) => ItemCardWidget(currentItem: currentRecomendation));
@@ -44,35 +44,45 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Stack(
-                            children: [
-                              ClipRRect(child: Image.network(currentRecomendation['pic_url']),),
-                              Positioned(child: IconButton(onPressed: () async{
-                                  if(isFavorite){
-                                  await box.delete(index);
-                                  }
-                                  else{
-                                  await box.put(index, currentRecomendation['title']);
-                                  }
-                               setState(() {
-                                  
-                                });
-                                }, 
-                                icon: isFavorite ? const Icon(Icons.favorite,color: Colors.red,) : const Icon(Icons.favorite_border_outlined,color: Colors.white70,) ))
-                            ],
+                          SizedBox(
+                            height: 20.h,
+                            width: 40.w,
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                        borderRadius: BorderRadius.circular(30),
+                                        child: Image.network(
+                                          fit: BoxFit.fitHeight,
+                                          ''
+                                        ),
+                                      ),
+                                Positioned(child: IconButton(onPressed: () async{
+                                    if(isFavorite){
+                                    await box.delete(index);
+                                    }
+                                    else{
+                                    await box.put(index, currentRecomendation.title);
+                                    }
+                                 setState(() {
+                                    
+                                  });
+                                  }, 
+                                  icon: isFavorite ? const Icon(Icons.favorite,color: Colors.red,) : const Icon(Icons.favorite_border_outlined,color: Colors.white70,) ))
+                              ],
+                            ),
                           ),
                           SizedBox(height: 0.7.h,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                            Text('\$' + currentRecomendation['price'], style: textStylePicker(context).titleSmall,),
+                            Text('\$' + currentRecomendation.price.toString(), style: textStylePicker(context).titleSmall,),
                             Row(
                               children: [
                                 const Icon(Icons.star, color: Colors.yellow,),
-                                Text(currentRecomendation['rating'],style: const TextStyle(fontSize: 16),)
+                                Text(currentRecomendation.rating.toString(),style: const TextStyle(fontSize: 16),)
                               ],
                             )
                           ],),
-                          Text(currentRecomendation['title'], style: textStylePicker(context).titleSmall,)
+                          Text(currentRecomendation.title!, style: textStylePicker(context).titleSmall,)
                         ],
                       ),
                     ),

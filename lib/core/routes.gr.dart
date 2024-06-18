@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:flutter/cupertino.dart' as _i9;
+import 'package:flutter/material.dart' as _i11;
 import 'package:flutter_firebase_parfumery/auth/screen/auth_board.dart' as _i1;
 import 'package:flutter_firebase_parfumery/auth/screen/auth_screen.dart' as _i2;
 import 'package:flutter_firebase_parfumery/auth/screen/forgot_password.dart'
@@ -19,6 +20,8 @@ import 'package:flutter_firebase_parfumery/auth/screen/google_reg_screen.dart'
 import 'package:flutter_firebase_parfumery/auth/screen/register_screen.dart'
     as _i7;
 import 'package:flutter_firebase_parfumery/main/bottom_navigation.dart' as _i3;
+import 'package:flutter_firebase_parfumery/main/models/recommendation.dart'
+    as _i10;
 import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart' as _i6;
 
 abstract class $AppRouter extends _i8.RootStackRouter {
@@ -39,9 +42,13 @@ abstract class $AppRouter extends _i8.RootStackRouter {
       );
     },
     BottomNavigation.name: (routeData) {
+      final args = routeData.argsAs<BottomNavigationArgs>();
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.BottomNavigation(),
+        child: _i3.BottomNavigation(
+          key: args.key,
+          response: args.response,
+        ),
       );
     },
     ForgotPassword.name: (routeData) {
@@ -63,9 +70,13 @@ abstract class $AppRouter extends _i8.RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeRouteArgs>();
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.HomeScreen(),
+        child: _i6.HomeScreen(
+          key: args.key,
+          response: args.response,
+        ),
       );
     },
     RegisterRoute.name: (routeData) {
@@ -109,16 +120,40 @@ class AuthRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.BottomNavigation]
-class BottomNavigation extends _i8.PageRouteInfo<void> {
-  const BottomNavigation({List<_i8.PageRouteInfo>? children})
-      : super(
+class BottomNavigation extends _i8.PageRouteInfo<BottomNavigationArgs> {
+  BottomNavigation({
+    _i9.Key? key,
+    required List<_i10.Recommendation> response,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
           BottomNavigation.name,
+          args: BottomNavigationArgs(
+            key: key,
+            response: response,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'BottomNavigation';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i8.PageInfo<BottomNavigationArgs> page =
+      _i8.PageInfo<BottomNavigationArgs>(name);
+}
+
+class BottomNavigationArgs {
+  const BottomNavigationArgs({
+    this.key,
+    required this.response,
+  });
+
+  final _i9.Key? key;
+
+  final List<_i10.Recommendation> response;
+
+  @override
+  String toString() {
+    return 'BottomNavigationArgs{key: $key, response: $response}';
+  }
 }
 
 /// generated route for
@@ -190,16 +225,40 @@ class GoogleRegRouteArgs {
 
 /// generated route for
 /// [_i6.HomeScreen]
-class HomeRoute extends _i8.PageRouteInfo<void> {
-  const HomeRoute({List<_i8.PageRouteInfo>? children})
-      : super(
+class HomeRoute extends _i8.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
+    _i11.Key? key,
+    required List<_i10.Recommendation> response,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
           HomeRoute.name,
+          args: HomeRouteArgs(
+            key: key,
+            response: response,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i8.PageInfo<HomeRouteArgs> page =
+      _i8.PageInfo<HomeRouteArgs>(name);
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({
+    this.key,
+    required this.response,
+  });
+
+  final _i11.Key? key;
+
+  final List<_i10.Recommendation> response;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key, response: $response}';
+  }
 }
 
 /// generated route for

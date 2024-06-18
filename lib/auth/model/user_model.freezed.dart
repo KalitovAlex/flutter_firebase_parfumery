@@ -153,7 +153,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
       {@JsonKey(name: "username") this.username,

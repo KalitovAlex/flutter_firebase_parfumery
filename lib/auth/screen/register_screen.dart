@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
         }
         if(state is RegisterLoaded){
           Navigator.pop(context);
-          AutoRouter.of(context).push(const HomeRoute());
+          AutoRouter.of(context).push( HomeRoute(response: recomendationList));
           ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Good', 'Good luck)', ContentType.success));
         }
         if(state is RegisterLoadedWithGoogle){

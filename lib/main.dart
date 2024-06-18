@@ -9,7 +9,7 @@ import 'package:flutter_firebase_parfumery/auth/bloc/register/register_bloc.dart
 import 'package:flutter_firebase_parfumery/auth/model/user_model.dart';
 import 'package:flutter_firebase_parfumery/core/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/firebase_options.dart';
-import 'package:flutter_firebase_parfumery/main/models/item.dart';
+import 'package:flutter_firebase_parfumery/main/models/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
 import 'package:flutter_firebase_parfumery/main/repository/main_repository.dart';
 import 'package:get_it/get_it.dart';
@@ -39,7 +39,7 @@ void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());
   GetIt.I.registerLazySingleton<UserModel>(() => const UserModel());
   GetIt.I.registerLazySingleton<AbstractMainRepository>(() => MainRepository());
-  GetIt.I.registerLazySingleton<Item>(() => const Item());
+  GetIt.I.registerLazySingleton<Recommendation>(() => const Recommendation());
 }
 void initDependencies() {
   GetIt.I.registerSingleton<Talker>(talker);
@@ -76,7 +76,8 @@ class MyApp extends StatelessWidget {
             final uid = preferences.getString('uid');
             if(uid != null){
             await userRepository.sharedAuth(uid);
-            return const DeepLink([BottomNavigation()]);
+            final response = await mainRepository.getAllRecomendation();
+            return DeepLink([BottomNavigation(response: response)]);
             }
             else { 
               return const DeepLink([AuthBoard()]);

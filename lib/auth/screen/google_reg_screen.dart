@@ -29,7 +29,7 @@ class GoogleRegScreen extends StatelessWidget {
         }
         if(state is GoogleLoaded){
           Navigator.pop(context);
-          AutoRouter.of(context).push(const HomeRoute());
+          AutoRouter.of(context).push( HomeRoute(response: recomendationList));
           ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner('Nice', 'You have successfully logged in, good luck! ', ContentType.success));
         }
         if(state is GoogleFailure){

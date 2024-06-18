@@ -5,15 +5,21 @@ import 'package:flutter_firebase_parfumery/main/widgets/home/banner_widget.dart'
 import 'package:flutter_firebase_parfumery/main/widgets/home/categories_widget.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/recomendation_widget.dart';
 import 'package:sizer/sizer.dart';
+
+import '../models/recommendation.dart';
 @RoutePage()
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
+  HomeScreen({super.key,required this.response});
+  List<Recommendation> response;
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme;
@@ -57,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 TextButton(onPressed: (){}, child: Text('See all', style: textStylePicker(context).headlineMedium,))
               ],
             ),
-            const recomendation_widget()
+            recomendation_widget(recomendation: widget.response,)
           ],
         ),
       ),
