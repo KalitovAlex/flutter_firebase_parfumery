@@ -41,7 +41,7 @@ class _recomendation_widgetState extends State<favorites_widget> {
                         SizedBox(
                           child: Stack(
                             children: [
-                              ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network(width: 40.w,height: 25.h,currentFavorites.imageUrls!.first,fit: BoxFit.cover,),),
+                              ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network(width: 40.w,height: 25.h,currentFavorites.picUrls!.first,fit: BoxFit.cover,),),
                               Positioned(child: IconButton(onPressed: () async{
                                 if(isFavorite){
                                 await box.delete(index);

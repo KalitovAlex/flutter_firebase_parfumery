@@ -29,7 +29,7 @@ mixin _$Recommendation {
   @JsonKey(name: "rating")
   double? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "pic_urls")
-  List<String>? get imageUrls => throw _privateConstructorUsedError;
+  List<String>? get picUrls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +48,7 @@ abstract class $RecommendationCopyWith<$Res> {
       @JsonKey(name: "price") int? price,
       @JsonKey(name: "desc") String? desc,
       @JsonKey(name: "rating") double? rating,
-      @JsonKey(name: "pic_urls") List<String>? imageUrls});
+      @JsonKey(name: "pic_urls") List<String>? picUrls});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$RecommendationCopyWithImpl<$Res, $Val extends Recommendation>
     Object? price = freezed,
     Object? desc = freezed,
     Object? rating = freezed,
-    Object? imageUrls = freezed,
+    Object? picUrls = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -87,9 +87,9 @@ class _$RecommendationCopyWithImpl<$Res, $Val extends Recommendation>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
-      imageUrls: freezed == imageUrls
-          ? _value.imageUrls
-          : imageUrls // ignore: cast_nullable_to_non_nullable
+      picUrls: freezed == picUrls
+          ? _value.picUrls
+          : picUrls // ignore: cast_nullable_to_non_nullable
               as List<String>?,
     ) as $Val);
   }
@@ -108,7 +108,7 @@ abstract class _$$RecommendationImplCopyWith<$Res>
       @JsonKey(name: "price") int? price,
       @JsonKey(name: "desc") String? desc,
       @JsonKey(name: "rating") double? rating,
-      @JsonKey(name: "pic_urls") List<String>? imageUrls});
+      @JsonKey(name: "pic_urls") List<String>? picUrls});
 }
 
 /// @nodoc
@@ -126,7 +126,7 @@ class __$$RecommendationImplCopyWithImpl<$Res>
     Object? price = freezed,
     Object? desc = freezed,
     Object? rating = freezed,
-    Object? imageUrls = freezed,
+    Object? picUrls = freezed,
   }) {
     return _then(_$RecommendationImpl(
       title: freezed == title
@@ -145,25 +145,24 @@ class __$$RecommendationImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
-      imageUrls: freezed == imageUrls
-          ? _value._imageUrls
-          : imageUrls // ignore: cast_nullable_to_non_nullable
+      picUrls: freezed == picUrls
+          ? _value._picUrls
+          : picUrls // ignore: cast_nullable_to_non_nullable
               as List<String>?,
     ));
   }
 }
 
 /// @nodoc
-
-@JsonSerializable(includeIfNull: false)
+@JsonSerializable()
 class _$RecommendationImpl implements _Recommendation {
   const _$RecommendationImpl(
       {@JsonKey(name: "title") this.title,
       @JsonKey(name: "price") this.price,
       @JsonKey(name: "desc") this.desc,
       @JsonKey(name: "rating") this.rating,
-      @JsonKey(name: "pic_urls") final List<String>? imageUrls})
-      : _imageUrls = imageUrls;
+      @JsonKey(name: "pic_urls") final List<String>? picUrls})
+      : _picUrls = picUrls;
 
   factory _$RecommendationImpl.fromJson(Map<String, dynamic> json) =>
       _$$RecommendationImplFromJson(json);
@@ -180,20 +179,20 @@ class _$RecommendationImpl implements _Recommendation {
   @override
   @JsonKey(name: "rating")
   final double? rating;
-  final List<String>? _imageUrls;
+  final List<String>? _picUrls;
   @override
   @JsonKey(name: "pic_urls")
-  List<String>? get imageUrls {
-    final value = _imageUrls;
+  List<String>? get picUrls {
+    final value = _picUrls;
     if (value == null) return null;
-    if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
+    if (_picUrls is EqualUnmodifiableListView) return _picUrls;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'Recommendation(title: $title, price: $price, desc: $desc, rating: $rating, imageUrls: $imageUrls)';
+    return 'Recommendation(title: $title, price: $price, desc: $desc, rating: $rating, picUrls: $picUrls)';
   }
 
   @override
@@ -205,14 +204,13 @@ class _$RecommendationImpl implements _Recommendation {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.desc, desc) || other.desc == desc) &&
             (identical(other.rating, rating) || other.rating == rating) &&
-            const DeepCollectionEquality()
-                .equals(other._imageUrls, _imageUrls));
+            const DeepCollectionEquality().equals(other._picUrls, _picUrls));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, title, price, desc, rating,
-      const DeepCollectionEquality().hash(_imageUrls));
+      const DeepCollectionEquality().hash(_picUrls));
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +233,7 @@ abstract class _Recommendation implements Recommendation {
           @JsonKey(name: "price") final int? price,
           @JsonKey(name: "desc") final String? desc,
           @JsonKey(name: "rating") final double? rating,
-          @JsonKey(name: "pic_urls") final List<String>? imageUrls}) =
+          @JsonKey(name: "pic_urls") final List<String>? picUrls}) =
       _$RecommendationImpl;
 
   factory _Recommendation.fromJson(Map<String, dynamic> json) =
@@ -255,7 +253,7 @@ abstract class _Recommendation implements Recommendation {
   double? get rating;
   @override
   @JsonKey(name: "pic_urls")
-  List<String>? get imageUrls;
+  List<String>? get picUrls;
   @override
   @JsonKey(ignore: true)
   _$$RecommendationImplCopyWith<_$RecommendationImpl> get copyWith =>

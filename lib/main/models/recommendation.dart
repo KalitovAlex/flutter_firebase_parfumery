@@ -5,7 +5,6 @@ part 'recommendation.g.dart';
 
 @freezed
 class Recommendation with _$Recommendation {
-    @JsonSerializable(includeIfNull: false)
     const factory Recommendation({
         @JsonKey(name: "title")
         String? title,
@@ -16,7 +15,7 @@ class Recommendation with _$Recommendation {
         @JsonKey(name: "rating")
         double? rating,
         @JsonKey(name: "pic_urls")
-        List<String>? imageUrls
+        List<String>? picUrls,
     }) = _Recommendation;
 
     factory Recommendation.fromJson(Map<String, dynamic> json) => _$RecommendationFromJson(json);

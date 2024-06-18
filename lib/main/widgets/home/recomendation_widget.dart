@@ -54,7 +54,7 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                                               height: 20.h,
                                               child: Image.network(
                                                 fit: BoxFit.fill,
-                                                currentRecomendation.imageUrls!.first.toString()
+                                                currentRecomendation.picUrls!.first.toString()
                                               ),
                                             ),
                                         ),

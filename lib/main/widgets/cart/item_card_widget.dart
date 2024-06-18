@@ -21,8 +21,8 @@ class ItemCardWidget extends StatelessWidget {
               SizedBox(
                 height: 40.h,
                 width: double.infinity,
-                child: PageView.builder(itemCount: currentItem.imageUrls!.length,itemBuilder: (context, index){
-                  return Container(padding: EdgeInsets.only(right: 4.w,left: 4.w,top: 2.h),child: ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network(currentItem.imageUrls![index],fit: BoxFit.fill,)));
+                child: PageView.builder(itemCount: currentItem.picUrls!.length,itemBuilder: (context, index){
+                  return Container(padding: EdgeInsets.only(right: 4.w,left: 4.w,top: 2.h),child: ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network(currentItem.picUrls![index],fit: BoxFit.fill,)));
                 }),
               ),
               SizedBox(height: 1.h,),
