@@ -21,14 +21,19 @@ Recommendation _$RecommendationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Recommendation {
   @JsonKey(name: "title")
+  @HiveField(0)
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
+  @HiveField(1)
   int? get price => throw _privateConstructorUsedError;
   @JsonKey(name: "desc")
+  @HiveField(2)
   String? get desc => throw _privateConstructorUsedError;
   @JsonKey(name: "rating")
+  @HiveField(3)
   double? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "pic_urls")
+  @HiveField(4)
   List<String>? get picUrls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,11 +49,11 @@ abstract class $RecommendationCopyWith<$Res> {
       _$RecommendationCopyWithImpl<$Res, Recommendation>;
   @useResult
   $Res call(
-      {@JsonKey(name: "title") String? title,
-      @JsonKey(name: "price") int? price,
-      @JsonKey(name: "desc") String? desc,
-      @JsonKey(name: "rating") double? rating,
-      @JsonKey(name: "pic_urls") List<String>? picUrls});
+      {@JsonKey(name: "title") @HiveField(0) String? title,
+      @JsonKey(name: "price") @HiveField(1) int? price,
+      @JsonKey(name: "desc") @HiveField(2) String? desc,
+      @JsonKey(name: "rating") @HiveField(3) double? rating,
+      @JsonKey(name: "pic_urls") @HiveField(4) List<String>? picUrls});
 }
 
 /// @nodoc
@@ -104,11 +109,11 @@ abstract class _$$RecommendationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "title") String? title,
-      @JsonKey(name: "price") int? price,
-      @JsonKey(name: "desc") String? desc,
-      @JsonKey(name: "rating") double? rating,
-      @JsonKey(name: "pic_urls") List<String>? picUrls});
+      {@JsonKey(name: "title") @HiveField(0) String? title,
+      @JsonKey(name: "price") @HiveField(1) int? price,
+      @JsonKey(name: "desc") @HiveField(2) String? desc,
+      @JsonKey(name: "rating") @HiveField(3) double? rating,
+      @JsonKey(name: "pic_urls") @HiveField(4) List<String>? picUrls});
 }
 
 /// @nodoc
@@ -157,11 +162,11 @@ class __$$RecommendationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RecommendationImpl implements _Recommendation {
   const _$RecommendationImpl(
-      {@JsonKey(name: "title") this.title,
-      @JsonKey(name: "price") this.price,
-      @JsonKey(name: "desc") this.desc,
-      @JsonKey(name: "rating") this.rating,
-      @JsonKey(name: "pic_urls") final List<String>? picUrls})
+      {@JsonKey(name: "title") @HiveField(0) this.title,
+      @JsonKey(name: "price") @HiveField(1) this.price,
+      @JsonKey(name: "desc") @HiveField(2) this.desc,
+      @JsonKey(name: "rating") @HiveField(3) this.rating,
+      @JsonKey(name: "pic_urls") @HiveField(4) final List<String>? picUrls})
       : _picUrls = picUrls;
 
   factory _$RecommendationImpl.fromJson(Map<String, dynamic> json) =>
@@ -169,19 +174,24 @@ class _$RecommendationImpl implements _Recommendation {
 
   @override
   @JsonKey(name: "title")
+  @HiveField(0)
   final String? title;
   @override
   @JsonKey(name: "price")
+  @HiveField(1)
   final int? price;
   @override
   @JsonKey(name: "desc")
+  @HiveField(2)
   final String? desc;
   @override
   @JsonKey(name: "rating")
+  @HiveField(3)
   final double? rating;
   final List<String>? _picUrls;
   @override
   @JsonKey(name: "pic_urls")
+  @HiveField(4)
   List<String>? get picUrls {
     final value = _picUrls;
     if (value == null) return null;
@@ -229,30 +239,36 @@ class _$RecommendationImpl implements _Recommendation {
 
 abstract class _Recommendation implements Recommendation {
   const factory _Recommendation(
-          {@JsonKey(name: "title") final String? title,
-          @JsonKey(name: "price") final int? price,
-          @JsonKey(name: "desc") final String? desc,
-          @JsonKey(name: "rating") final double? rating,
-          @JsonKey(name: "pic_urls") final List<String>? picUrls}) =
-      _$RecommendationImpl;
+      {@JsonKey(name: "title") @HiveField(0) final String? title,
+      @JsonKey(name: "price") @HiveField(1) final int? price,
+      @JsonKey(name: "desc") @HiveField(2) final String? desc,
+      @JsonKey(name: "rating") @HiveField(3) final double? rating,
+      @JsonKey(name: "pic_urls")
+      @HiveField(4)
+      final List<String>? picUrls}) = _$RecommendationImpl;
 
   factory _Recommendation.fromJson(Map<String, dynamic> json) =
       _$RecommendationImpl.fromJson;
 
   @override
   @JsonKey(name: "title")
+  @HiveField(0)
   String? get title;
   @override
   @JsonKey(name: "price")
+  @HiveField(1)
   int? get price;
   @override
   @JsonKey(name: "desc")
+  @HiveField(2)
   String? get desc;
   @override
   @JsonKey(name: "rating")
+  @HiveField(3)
   double? get rating;
   @override
   @JsonKey(name: "pic_urls")
+  @HiveField(4)
   List<String>? get picUrls;
   @override
   @JsonKey(ignore: true)
