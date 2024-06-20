@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_firebase_parfumery/core/main/init_options.dart';
 import 'package:flutter_firebase_parfumery/firebase_options.dart';
+import 'core/main/get_all_data.dart';
 import 'core/main/my_app.dart';
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -18,5 +19,6 @@ void main() async {
   );
   initHive();
   initTalker();
+  getallData();
   runApp(const MyApp());
 }
