@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
             final uid = preferences.getString('uid');
             if(uid != null){
             await userRepository.sharedAuth(uid);
+            await mainRepository.getAllRecomendation();
             return DeepLink([BottomNavigation(response: recomendationList)]);
             }
             else { 

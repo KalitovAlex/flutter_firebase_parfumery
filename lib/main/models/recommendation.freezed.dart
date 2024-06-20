@@ -35,6 +35,9 @@ mixin _$Recommendation {
   @JsonKey(name: "pic_urls")
   @HiveField(4)
   List<String>? get picUrls => throw _privateConstructorUsedError;
+  @HiveField(5)
+  @JsonKey(name: "id")
+  int? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +56,8 @@ abstract class $RecommendationCopyWith<$Res> {
       @JsonKey(name: "price") @HiveField(1) int? price,
       @JsonKey(name: "desc") @HiveField(2) String? desc,
       @JsonKey(name: "rating") @HiveField(3) double? rating,
-      @JsonKey(name: "pic_urls") @HiveField(4) List<String>? picUrls});
+      @JsonKey(name: "pic_urls") @HiveField(4) List<String>? picUrls,
+      @HiveField(5) @JsonKey(name: "id") int? id});
 }
 
 /// @nodoc
@@ -74,6 +78,7 @@ class _$RecommendationCopyWithImpl<$Res, $Val extends Recommendation>
     Object? desc = freezed,
     Object? rating = freezed,
     Object? picUrls = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -96,6 +101,10 @@ class _$RecommendationCopyWithImpl<$Res, $Val extends Recommendation>
           ? _value.picUrls
           : picUrls // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -113,7 +122,8 @@ abstract class _$$RecommendationImplCopyWith<$Res>
       @JsonKey(name: "price") @HiveField(1) int? price,
       @JsonKey(name: "desc") @HiveField(2) String? desc,
       @JsonKey(name: "rating") @HiveField(3) double? rating,
-      @JsonKey(name: "pic_urls") @HiveField(4) List<String>? picUrls});
+      @JsonKey(name: "pic_urls") @HiveField(4) List<String>? picUrls,
+      @HiveField(5) @JsonKey(name: "id") int? id});
 }
 
 /// @nodoc
@@ -132,6 +142,7 @@ class __$$RecommendationImplCopyWithImpl<$Res>
     Object? desc = freezed,
     Object? rating = freezed,
     Object? picUrls = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$RecommendationImpl(
       title: freezed == title
@@ -154,6 +165,10 @@ class __$$RecommendationImplCopyWithImpl<$Res>
           ? _value._picUrls
           : picUrls // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -166,7 +181,8 @@ class _$RecommendationImpl implements _Recommendation {
       @JsonKey(name: "price") @HiveField(1) this.price,
       @JsonKey(name: "desc") @HiveField(2) this.desc,
       @JsonKey(name: "rating") @HiveField(3) this.rating,
-      @JsonKey(name: "pic_urls") @HiveField(4) final List<String>? picUrls})
+      @JsonKey(name: "pic_urls") @HiveField(4) final List<String>? picUrls,
+      @HiveField(5) @JsonKey(name: "id") this.id})
       : _picUrls = picUrls;
 
   factory _$RecommendationImpl.fromJson(Map<String, dynamic> json) =>
@@ -201,8 +217,13 @@ class _$RecommendationImpl implements _Recommendation {
   }
 
   @override
+  @HiveField(5)
+  @JsonKey(name: "id")
+  final int? id;
+
+  @override
   String toString() {
-    return 'Recommendation(title: $title, price: $price, desc: $desc, rating: $rating, picUrls: $picUrls)';
+    return 'Recommendation(title: $title, price: $price, desc: $desc, rating: $rating, picUrls: $picUrls, id: $id)';
   }
 
   @override
@@ -214,13 +235,14 @@ class _$RecommendationImpl implements _Recommendation {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.desc, desc) || other.desc == desc) &&
             (identical(other.rating, rating) || other.rating == rating) &&
-            const DeepCollectionEquality().equals(other._picUrls, _picUrls));
+            const DeepCollectionEquality().equals(other._picUrls, _picUrls) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, title, price, desc, rating,
-      const DeepCollectionEquality().hash(_picUrls));
+      const DeepCollectionEquality().hash(_picUrls), id);
 
   @JsonKey(ignore: true)
   @override
@@ -243,9 +265,8 @@ abstract class _Recommendation implements Recommendation {
       @JsonKey(name: "price") @HiveField(1) final int? price,
       @JsonKey(name: "desc") @HiveField(2) final String? desc,
       @JsonKey(name: "rating") @HiveField(3) final double? rating,
-      @JsonKey(name: "pic_urls")
-      @HiveField(4)
-      final List<String>? picUrls}) = _$RecommendationImpl;
+      @JsonKey(name: "pic_urls") @HiveField(4) final List<String>? picUrls,
+      @HiveField(5) @JsonKey(name: "id") final int? id}) = _$RecommendationImpl;
 
   factory _Recommendation.fromJson(Map<String, dynamic> json) =
       _$RecommendationImpl.fromJson;
@@ -270,6 +291,10 @@ abstract class _Recommendation implements Recommendation {
   @JsonKey(name: "pic_urls")
   @HiveField(4)
   List<String>? get picUrls;
+  @override
+  @HiveField(5)
+  @JsonKey(name: "id")
+  int? get id;
   @override
   @JsonKey(ignore: true)
   _$$RecommendationImplCopyWith<_$RecommendationImpl> get copyWith =>

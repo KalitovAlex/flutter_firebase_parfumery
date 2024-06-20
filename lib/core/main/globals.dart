@@ -25,8 +25,6 @@ UserModel userModel = GetIt.I<UserModel>();
 
 //beautiful features 
 
-
-
 //Firebase features
 String? uid;
 final fireStore = FirebaseFirestore.instance;

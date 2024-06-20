@@ -33,16 +33,16 @@ class _BucketScreenState extends State<BucketScreen> {
                 children: [
                   Expanded(
                     child: ListView.builder(
-                      itemCount: recomendationList.length,
+                      itemCount: 10,
                       itemBuilder: (BuildContext context, int index) {
+                        final currentItem = box.get(index);
                         final isCart = box.get(index) != null;
-                        final currentItem =  recomendationList[index];
                         int value = 1;
-                        talker.log(recomendationList[index]);
+                        talker.log(currentItem);
                         if(!isCart){
                           return Container();
                         }
-                        else{
+                        else if (isCart){
                         return Container(
                           margin: EdgeInsets.only(bottom: 1.5.h,right: 2.w,left: 2.w),
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white70,boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2),offset: const Offset(0, 4) ,blurRadius: 10)]),
@@ -81,17 +81,19 @@ class _BucketScreenState extends State<BucketScreen> {
                                             IconButton(onPressed: (){setState(() {
                                               value --;
                                               if(value < 0){
-                                            
                                               setState(() {
-                                                  
+                                                  box.delete(currentItem.id);
                                               });
                                               }
                                               talker.log(value);
                                             });}, icon: const Icon(CupertinoIcons.minus_circle_fill, color: Colors.white,)),
-                                            Container(width: 20.w,decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(50)),child: Text('',style: textStylePicker(context).titleSmall,textAlign: TextAlign.center,)),
+                                            Container(width: 20.w,decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(50)),child: Text(value.toString(),style: textStylePicker(context).titleSmall,textAlign: TextAlign.center,)),
                                             IconButton(onPressed: (){
                                               value ++;
                                               talker.log(value);
+                                              setState(() {
+                                                
+                                              });
                                               }, icon: const Icon(Icons.add_circle,color: Colors.white,))
                                           ],
                                         ),
@@ -103,7 +105,11 @@ class _BucketScreenState extends State<BucketScreen> {
                             Positioned(top: 0.5.h,left: 83.w,child: IconButton(onPressed: (){}, icon: const Icon(CupertinoIcons.xmark,)))
                             ]
                           ),
-                        );}
+                        );
+                        }
+                        else{
+                          return const Center(child: Text('Something Went wrong'),);
+                        }
                       },
                     )
                   ),

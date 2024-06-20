@@ -58,8 +58,8 @@ class ItemCardWidget extends StatelessWidget {
                                 ],
                               ),Container(width: 45.w,decoration: auth_button_container,child: ValueListenableBuilder(
                                 builder: (BuildContext context, box, Widget? child) {  
-                                return TextButton(onPressed: () {
-                                    box.put(index, currentItem);
+                                return TextButton(onPressed: ()  {
+                                   box.put(currentItem.id, currentItem);
                                     Navigator.of(context).pop();
                                     ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner('Succesfuly', 'You add ${currentItem.title} to cart', ContentType.success));
                                   }, child: Text('Add to cart',style: textStylePicker(context).displayMedium,));
