@@ -79,12 +79,7 @@ class _BucketScreenState extends State<BucketScreen> {
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             IconButton(onPressed: (){setState(() {
-                                              value --;
-                                              if(value < 0){
-                                              setState(() {
-                                                  box.delete(currentItem.id);
-                                              });
-                                              }
+                                              box.delete(index);
                                               talker.log(value);
                                             });}, icon: const Icon(CupertinoIcons.minus_circle_fill, color: Colors.white,)),
                                             Container(width: 20.w,decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(50)),child: Text(value.toString(),style: textStylePicker(context).titleSmall,textAlign: TextAlign.center,)),

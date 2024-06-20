@@ -6,7 +6,7 @@ import 'package:flutter_firebase_parfumery/main/widgets/home/categories_widget.d
 import 'package:flutter_firebase_parfumery/main/widgets/home/recomendation_widget.dart';
 import 'package:sizer/sizer.dart';
 
-import '../models/recommendation.dart';
+import '../models/recomendation/recommendation.dart';
 @RoutePage()
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key,required this.response});

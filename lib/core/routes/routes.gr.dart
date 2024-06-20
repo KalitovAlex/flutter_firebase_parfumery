@@ -20,7 +20,7 @@ import 'package:flutter_firebase_parfumery/auth/screen/google_reg_screen.dart'
 import 'package:flutter_firebase_parfumery/auth/screen/register_screen.dart'
     as _i7;
 import 'package:flutter_firebase_parfumery/main/bottom_navigation.dart' as _i3;
-import 'package:flutter_firebase_parfumery/main/models/recommendation.dart'
+import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart'
     as _i10;
 import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart' as _i6;
 
