@@ -17,8 +17,7 @@ void initHive() async{
   Hive.registerAdapter(RecommendationAdapter());
   await Hive.openBox('favorite');
   await Hive.openBox('cart');
-  Hive.box('cart').clear()
-;}
+}
 void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());
   GetIt.I.registerLazySingleton<UserModel>(() => const UserModel());
