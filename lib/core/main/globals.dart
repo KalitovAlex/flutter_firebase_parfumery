@@ -36,4 +36,3 @@ const String recomendationCollection = 'recomendation';
 //favorites
 List favorite = [];
 List<Recommendation> recomendationList = [];
-List<Card> cartList = [];

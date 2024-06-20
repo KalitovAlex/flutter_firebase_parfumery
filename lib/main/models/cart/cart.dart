@@ -6,8 +6,8 @@ part 'cart.g.dart';
 
 @freezed
 @HiveType(typeId: 2)
-class Card with _$Card {
-    const factory Card({
+class Cart with _$Cart {
+    const factory Cart({
         @JsonKey(name: "title")
         @HiveField(0)
         String? title,
@@ -15,17 +15,15 @@ class Card with _$Card {
         @HiveField(1)
         int? price,
         @JsonKey(name: "rating")
-        @HiveField(3)
+        @HiveField(2)
         double? rating,
         @JsonKey(name: "pic_urls")
-        @HiveField(4)
+        @HiveField(3)
         List<String>? picUrls,
-        @HiveField(5)
-        @JsonKey(name: "id")
-        @HiveField(6)
         @JsonKey(name: "count")
+        @HiveField(4)
         int? count
-    }) = _Card;
+    }) = _Cart;
 
-    factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
+    factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
 }

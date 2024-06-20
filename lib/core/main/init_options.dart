@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
+import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
@@ -15,6 +16,7 @@ import '../../main/repository/main_repository.dart';
 void initHive() async{
   await Hive.initFlutter();
   Hive.registerAdapter(RecommendationAdapter());
+  Hive.registerAdapter(CartAdapter());
   await Hive.openBox('favorite');
   await Hive.openBox('cart');
   }

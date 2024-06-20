@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Card _$CardFromJson(Map<String, dynamic> json) {
-  return _Card.fromJson(json);
+Cart _$CartFromJson(Map<String, dynamic> json) {
+  return _Cart.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Card {
+mixin _$Cart {
   @JsonKey(name: "title")
   @HiveField(0)
   String? get title => throw _privateConstructorUsedError;
@@ -27,43 +27,37 @@ mixin _$Card {
   @HiveField(1)
   int? get price => throw _privateConstructorUsedError;
   @JsonKey(name: "rating")
-  @HiveField(3)
+  @HiveField(2)
   double? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "pic_urls")
-  @HiveField(4)
+  @HiveField(3)
   List<String>? get picUrls => throw _privateConstructorUsedError;
-  @HiveField(5)
-  @JsonKey(name: "id")
-  @HiveField(6)
   @JsonKey(name: "count")
+  @HiveField(4)
   int? get count => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CardCopyWith<Card> get copyWith => throw _privateConstructorUsedError;
+  $CartCopyWith<Cart> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CardCopyWith<$Res> {
-  factory $CardCopyWith(Card value, $Res Function(Card) then) =
-      _$CardCopyWithImpl<$Res, Card>;
+abstract class $CartCopyWith<$Res> {
+  factory $CartCopyWith(Cart value, $Res Function(Cart) then) =
+      _$CartCopyWithImpl<$Res, Cart>;
   @useResult
   $Res call(
       {@JsonKey(name: "title") @HiveField(0) String? title,
       @JsonKey(name: "price") @HiveField(1) int? price,
-      @JsonKey(name: "rating") @HiveField(3) double? rating,
-      @JsonKey(name: "pic_urls") @HiveField(4) List<String>? picUrls,
-      @HiveField(5)
-      @JsonKey(name: "id")
-      @HiveField(6)
-      @JsonKey(name: "count")
-      int? count});
+      @JsonKey(name: "rating") @HiveField(2) double? rating,
+      @JsonKey(name: "pic_urls") @HiveField(3) List<String>? picUrls,
+      @JsonKey(name: "count") @HiveField(4) int? count});
 }
 
 /// @nodoc
-class _$CardCopyWithImpl<$Res, $Val extends Card>
-    implements $CardCopyWith<$Res> {
-  _$CardCopyWithImpl(this._value, this._then);
+class _$CartCopyWithImpl<$Res, $Val extends Cart>
+    implements $CartCopyWith<$Res> {
+  _$CartCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -105,29 +99,25 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
 }
 
 /// @nodoc
-abstract class _$$CardImplCopyWith<$Res> implements $CardCopyWith<$Res> {
-  factory _$$CardImplCopyWith(
-          _$CardImpl value, $Res Function(_$CardImpl) then) =
-      __$$CardImplCopyWithImpl<$Res>;
+abstract class _$$CartImplCopyWith<$Res> implements $CartCopyWith<$Res> {
+  factory _$$CartImplCopyWith(
+          _$CartImpl value, $Res Function(_$CartImpl) then) =
+      __$$CartImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: "title") @HiveField(0) String? title,
       @JsonKey(name: "price") @HiveField(1) int? price,
-      @JsonKey(name: "rating") @HiveField(3) double? rating,
-      @JsonKey(name: "pic_urls") @HiveField(4) List<String>? picUrls,
-      @HiveField(5)
-      @JsonKey(name: "id")
-      @HiveField(6)
-      @JsonKey(name: "count")
-      int? count});
+      @JsonKey(name: "rating") @HiveField(2) double? rating,
+      @JsonKey(name: "pic_urls") @HiveField(3) List<String>? picUrls,
+      @JsonKey(name: "count") @HiveField(4) int? count});
 }
 
 /// @nodoc
-class __$$CardImplCopyWithImpl<$Res>
-    extends _$CardCopyWithImpl<$Res, _$CardImpl>
-    implements _$$CardImplCopyWith<$Res> {
-  __$$CardImplCopyWithImpl(_$CardImpl _value, $Res Function(_$CardImpl) _then)
+class __$$CartImplCopyWithImpl<$Res>
+    extends _$CartCopyWithImpl<$Res, _$CartImpl>
+    implements _$$CartImplCopyWith<$Res> {
+  __$$CartImplCopyWithImpl(_$CartImpl _value, $Res Function(_$CartImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -139,7 +129,7 @@ class __$$CardImplCopyWithImpl<$Res>
     Object? picUrls = freezed,
     Object? count = freezed,
   }) {
-    return _then(_$CardImpl(
+    return _then(_$CartImpl(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -166,21 +156,17 @@ class __$$CardImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CardImpl implements _Card {
-  const _$CardImpl(
+class _$CartImpl implements _Cart {
+  const _$CartImpl(
       {@JsonKey(name: "title") @HiveField(0) this.title,
       @JsonKey(name: "price") @HiveField(1) this.price,
-      @JsonKey(name: "rating") @HiveField(3) this.rating,
-      @JsonKey(name: "pic_urls") @HiveField(4) final List<String>? picUrls,
-      @HiveField(5)
-      @JsonKey(name: "id")
-      @HiveField(6)
-      @JsonKey(name: "count")
-      this.count})
+      @JsonKey(name: "rating") @HiveField(2) this.rating,
+      @JsonKey(name: "pic_urls") @HiveField(3) final List<String>? picUrls,
+      @JsonKey(name: "count") @HiveField(4) this.count})
       : _picUrls = picUrls;
 
-  factory _$CardImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CardImplFromJson(json);
+  factory _$CartImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CartImplFromJson(json);
 
   @override
   @JsonKey(name: "title")
@@ -192,12 +178,12 @@ class _$CardImpl implements _Card {
   final int? price;
   @override
   @JsonKey(name: "rating")
-  @HiveField(3)
+  @HiveField(2)
   final double? rating;
   final List<String>? _picUrls;
   @override
   @JsonKey(name: "pic_urls")
-  @HiveField(4)
+  @HiveField(3)
   List<String>? get picUrls {
     final value = _picUrls;
     if (value == null) return null;
@@ -207,22 +193,20 @@ class _$CardImpl implements _Card {
   }
 
   @override
-  @HiveField(5)
-  @JsonKey(name: "id")
-  @HiveField(6)
   @JsonKey(name: "count")
+  @HiveField(4)
   final int? count;
 
   @override
   String toString() {
-    return 'Card(title: $title, price: $price, rating: $rating, picUrls: $picUrls, count: $count)';
+    return 'Cart(title: $title, price: $price, rating: $rating, picUrls: $picUrls, count: $count)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CardImpl &&
+            other is _$CartImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.rating, rating) || other.rating == rating) &&
@@ -238,30 +222,26 @@ class _$CardImpl implements _Card {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CardImplCopyWith<_$CardImpl> get copyWith =>
-      __$$CardImplCopyWithImpl<_$CardImpl>(this, _$identity);
+  _$$CartImplCopyWith<_$CartImpl> get copyWith =>
+      __$$CartImplCopyWithImpl<_$CartImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CardImplToJson(
+    return _$$CartImplToJson(
       this,
     );
   }
 }
 
-abstract class _Card implements Card {
-  const factory _Card(
+abstract class _Cart implements Cart {
+  const factory _Cart(
       {@JsonKey(name: "title") @HiveField(0) final String? title,
       @JsonKey(name: "price") @HiveField(1) final int? price,
-      @JsonKey(name: "rating") @HiveField(3) final double? rating,
-      @JsonKey(name: "pic_urls") @HiveField(4) final List<String>? picUrls,
-      @HiveField(5)
-      @JsonKey(name: "id")
-      @HiveField(6)
-      @JsonKey(name: "count")
-      final int? count}) = _$CardImpl;
+      @JsonKey(name: "rating") @HiveField(2) final double? rating,
+      @JsonKey(name: "pic_urls") @HiveField(3) final List<String>? picUrls,
+      @JsonKey(name: "count") @HiveField(4) final int? count}) = _$CartImpl;
 
-  factory _Card.fromJson(Map<String, dynamic> json) = _$CardImpl.fromJson;
+  factory _Cart.fromJson(Map<String, dynamic> json) = _$CartImpl.fromJson;
 
   @override
   @JsonKey(name: "title")
@@ -273,20 +253,18 @@ abstract class _Card implements Card {
   int? get price;
   @override
   @JsonKey(name: "rating")
-  @HiveField(3)
+  @HiveField(2)
   double? get rating;
   @override
   @JsonKey(name: "pic_urls")
-  @HiveField(4)
+  @HiveField(3)
   List<String>? get picUrls;
   @override
-  @HiveField(5)
-  @JsonKey(name: "id")
-  @HiveField(6)
   @JsonKey(name: "count")
+  @HiveField(4)
   int? get count;
   @override
   @JsonKey(ignore: true)
-  _$$CardImplCopyWith<_$CardImpl> get copyWith =>
+  _$$CartImplCopyWith<_$CartImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
