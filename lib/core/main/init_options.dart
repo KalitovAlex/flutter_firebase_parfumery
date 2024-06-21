@@ -12,13 +12,15 @@ import '../../auth/repository/user_repository.dart';
 import '../../main/models/recomendation/recommendation.dart';
 import '../../main/repository/abstract_main_repository.dart';
 import '../../main/repository/main_repository.dart';
-
+import 'consants.dart';
 void initHive() async{
   await Hive.initFlutter();
   Hive.registerAdapter(RecommendationAdapter());
   Hive.registerAdapter(CartAdapter());
-  await Hive.openBox('favorite');
-  await Hive.openBox('cart');
+  await Hive.openBox(favorites);
+  currentCart = await Hive.openBox(cart);
+  final currentList = await mainRepository.getCard();
+  talker.log(currentList);
   }
 void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());

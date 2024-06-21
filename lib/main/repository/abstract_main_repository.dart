@@ -1,8 +1,14 @@
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
+import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
+
+import '../../core/main/consants.dart';
 
 abstract class AbstractMainRepository{
   Future<List<Recommendation>> getAllRecomendation();
+  Future<void> makeCard(Cart card);
+  Future<Cart> changeCard();
+  Future<List<dynamic>> getCard();
   // Future<List<String>> getALlImages();
   final bannersReference = fireStore.collection(bannersCollection);
   final categoriesReference = fireStore.collection(categoriesCollection);

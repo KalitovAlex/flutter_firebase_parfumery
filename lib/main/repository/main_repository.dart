@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
+import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import '../../core/main/consants.dart';
 
 class MainRepository  extends AbstractMainRepository{
   @override
@@ -19,15 +22,34 @@ class MainRepository  extends AbstractMainRepository{
       return [];
     }
   }
-//   Future<List<String>> getALlImages() async{
-//     try{
-//       List<String> imageList;
-//       final response = await fireStore.collection(recomendationCollection).doc()
-//     }on FirebaseException{
-//       talker.error('firebase error');
-//       return [];
-//     } catch(e){
-//       talker.error(e);
-//     }
-//   }
+
+  @override
+  Future<Cart> changeCard() {
+    // TODO: implement changeCard
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<dynamic>> getCard() async {
+    try{
+      final cartBox = await Hive.openBox(cart);
+      final cartList = cartBox.values.toList();
+      await cartBox.close();
+      return cartList;
+    } catch(e){
+      talker.error(e);
+      return [];
+    }
+  }
+
+  @override
+  Future<void> makeCard(Cart card) async{
+    try{
+      final cartBox = await Hive.openBox(cart);
+      cartBox.add(card);
+      cartBox.close();
+    } catch(e){
+      talker.error(e);
+    }
+  }
 }

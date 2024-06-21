@@ -28,11 +28,11 @@ UserModel userModel = GetIt.I<UserModel>();
 //Firebase features
 String? uid;
 final fireStore = FirebaseFirestore.instance;
-const String userCollection = 'users';
-const String bannersCollection = 'banners';
-const String categoriesCollection = 'categories';
-const String recomendationCollection = 'recomendation';
 
 //favorites
 List favorite = [];
 List<Recommendation> recomendationList = [];
+
+//hive
+late dynamic currentCart;
+
