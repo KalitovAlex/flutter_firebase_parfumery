@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/routes/routes.dart';
+import 'package:flutter_firebase_parfumery/main/bloc/cart/cart_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => RegisterBloc()),
         BlocProvider(create: (context) => GoogleBloc()),
-        BlocProvider(create: (context) => ForgotPasswordBloc())
+        BlocProvider(create: (context) => ForgotPasswordBloc()),
+        BlocProvider(create: (context) => CartBloc())
       ],
       child: Sizer(
         builder: (context, orientation, deviceType){

@@ -1,6 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
 import 'package:get_it/get_it.dart';
@@ -20,6 +21,7 @@ textStylePicker(context){
 AbstractUserRepository userRepository = GetIt.I<AbstractUserRepository>();
 AbstractMainRepository mainRepository = GetIt.I<AbstractMainRepository>();
 UserModel userModel = GetIt.I<UserModel>();
+Cart diCart = GetIt.I<Cart>();
 // AbstractMainRepository mainRepository = GetIt.I<AbstractMainRepository>();
 
 
@@ -35,4 +37,5 @@ List<Recommendation> recomendationList = [];
 
 //hive
 late dynamic currentCart;
+late List<dynamic> allCart;
 

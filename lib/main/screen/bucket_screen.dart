@@ -5,7 +5,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 class BucketScreen extends StatefulWidget {
-  const BucketScreen({super.key});
+  BucketScreen({super.key, required this.cartList});
+  List<dynamic> cartList;
 
   @override
   State<BucketScreen> createState() => _BucketScreenState();

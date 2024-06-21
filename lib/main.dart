@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/core/main/init_options.dart';
 import 'package:flutter_firebase_parfumery/firebase_options.dart';
 import 'core/main/get_all_data.dart';
@@ -17,6 +18,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+  allCart = await mainRepository.getCard();
   initHive();
   initTalker();
   getallData();

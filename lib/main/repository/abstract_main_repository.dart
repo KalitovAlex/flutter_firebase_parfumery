@@ -6,7 +6,7 @@ import '../../core/main/consants.dart';
 
 abstract class AbstractMainRepository{
   Future<List<Recommendation>> getAllRecomendation();
-  Future<void> makeCard(Cart card);
+  Future<bool> makeCard(Cart card);
   Future<Cart> changeCard();
   Future<List<dynamic>> getCard();
   // Future<List<String>> getALlImages();

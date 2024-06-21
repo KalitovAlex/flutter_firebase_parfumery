@@ -43,13 +43,15 @@ class MainRepository  extends AbstractMainRepository{
   }
 
   @override
-  Future<void> makeCard(Cart card) async{
+  Future<bool> makeCard(Cart card) async{
     try{
       final cartBox = await Hive.openBox(cart);
       cartBox.add(card);
       cartBox.close();
+      return true;
     } catch(e){
       talker.error(e);
+      return false;
     }
   }
 }

@@ -27,6 +27,7 @@ void initSingletons(){
   GetIt.I.registerLazySingleton<UserModel>(() => const UserModel());
   GetIt.I.registerLazySingleton<AbstractMainRepository>(() => MainRepository());
   GetIt.I.registerLazySingleton<Recommendation>(() => const Recommendation());
+  GetIt.I.registerLazySingleton<Cart>(() => const Cart());
 }
 void initTalker() {
   GetIt.I.registerSingleton<Talker>(talker);
