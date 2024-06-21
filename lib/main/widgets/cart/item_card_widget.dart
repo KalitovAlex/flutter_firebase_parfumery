@@ -1,6 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_firebase_parfumery/core/main/get_all_data.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
 import 'package:flutter_firebase_parfumery/main/bloc/cart/cart_bloc.dart';
@@ -9,27 +10,33 @@ import 'package:flutter_firebase_parfumery/widgets/show_loading_circle.dart';
 import 'package:flutter_firebase_parfumery/widgets/show_snack_bar.dart';
 import 'package:sizer/sizer.dart';
 
-class ItemCardWidget extends StatelessWidget {
+class ItemCardWidget extends StatefulWidget {
   const ItemCardWidget(
       {super.key, required this.currentItem, required this.index});
   final Recommendation currentItem;
   final int index;
 
   @override
+  State<ItemCardWidget> createState() => _ItemCardWidgetState();
+}
+
+class _ItemCardWidgetState extends State<ItemCardWidget> {
+  @override
   Widget build(BuildContext context) {
     final bloccommand = BlocProvider.of<CartBloc>(context);
     return BlocListener<CartBloc, CartState>(
-      listener: (context, state) {
+      listener: (context, state)  {
         if(state is CartLoading){
           showLoadingCircle(context);
         }
-        if(state is CartLoaded){
+        if(state is CartLoaded) {
         Navigator.of(context).pop();
+        getallCart();
         ScaffoldMessenger.of(context)
         ..clearSnackBars
         ..showSnackBar(materialBanner(
         'Succesfuly',
-        'You add ${currentItem.title} to cart',
+        'You add ${widget.currentItem.title} to cart',
         ContentType.success));
         }
         if(state is CartFailure){
@@ -41,6 +48,15 @@ class ItemCardWidget extends StatelessWidget {
         'Maybye internal server error',
         ContentType.failure));
         }
+        if(state is CartAlready){
+        Navigator.of(context).pop();
+        ScaffoldMessenger.of(context)
+        ..clearSnackBars
+        ..showSnackBar(materialBanner(
+        'Oops',
+        'You have this item in your cart',
+        ContentType.help));
+        }
       },
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 237, 237, 237),
@@ -50,7 +66,7 @@ class ItemCardWidget extends StatelessWidget {
               height: 40.h,
               width: double.infinity,
               child: PageView.builder(
-                  itemCount: currentItem.picUrls!.length,
+                  itemCount: widget.currentItem.picUrls!.length,
                   itemBuilder: (context, index) {
                     return Container(
                         padding:
@@ -58,7 +74,7 @@ class ItemCardWidget extends StatelessWidget {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
                             child: Image.network(
-                              currentItem.picUrls![index],
+                              widget.currentItem.picUrls![index],
                               fit: BoxFit.fill,
                             )));
                   }),
@@ -83,11 +99,11 @@ class ItemCardWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              currentItem.title!,
+                              widget.currentItem.title!,
                               style: textStylePicker(context).titleMedium,
                             ),
                             Text(
-                              currentItem.rating.toString(),
+                              widget.currentItem.rating.toString(),
                               style: textStylePicker(context).headlineMedium,
                             )
                           ],
@@ -95,7 +111,7 @@ class ItemCardWidget extends StatelessWidget {
                         SizedBox(
                           height: 1.h,
                         ),
-                        Text(currentItem.desc!),
+                        Text(widget.currentItem.desc!),
                         SizedBox(
                           height: 2.h,
                         ),
@@ -110,7 +126,7 @@ class ItemCardWidget extends StatelessWidget {
                                   style: textStylePicker(context).titleMedium,
                                 ),
                                 Text(
-                                  ' \$ ${currentItem.price}.00',
+                                  ' \$ ${widget.currentItem.price}.00',
                                   style:
                                       textStylePicker(context).headlineMedium,
                                 )
@@ -121,7 +137,7 @@ class ItemCardWidget extends StatelessWidget {
                               decoration: auth_button_container,
                               child:  TextButton(
                                   onPressed: () {
-                                    bloccommand.add(CartEvent(currentItem: currentItem));
+                                    bloccommand.add(CartEvent(currentItem: widget.currentItem));
                                   },
                                   child: Text(
                                     'Add to cart',

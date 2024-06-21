@@ -18,9 +18,8 @@ void initHive() async{
   Hive.registerAdapter(RecommendationAdapter());
   Hive.registerAdapter(CartAdapter());
   await Hive.openBox(favorites);
-  currentCart = await Hive.openBox(cart);
-  final currentList = await mainRepository.getCard();
-  talker.log(currentList);
+  await Hive.openBox(cart);
+  allCart = await mainRepository.getCard();
   }
 void initSingletons(){
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());

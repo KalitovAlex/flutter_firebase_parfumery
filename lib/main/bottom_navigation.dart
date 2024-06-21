@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/screen/bucket_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/favorite_screen.dart';
@@ -21,6 +20,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   void initState() {
     super.initState();
+    setState(() {
+      
+    });
   }
   List<PersistentTabConfig> _tabs() => [
         PersistentTabConfig(
@@ -31,7 +33,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
         ),
         PersistentTabConfig(
-          screen: BucketScreen(cartList: allCart,),
+          screen: const BucketScreen(),
           item: ItemConfig(
             inactiveIcon: const Icon(CupertinoIcons.cart,color: Colors.white,),
             icon: const Icon(CupertinoIcons.cart_fill,color: Colors.white,),
