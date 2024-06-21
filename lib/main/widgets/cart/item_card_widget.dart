@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/get_all_data.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
+import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
 import 'package:flutter_firebase_parfumery/main/bloc/cart/cart_bloc.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
@@ -30,8 +32,8 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
           showLoadingCircle(context);
         }
         if(state is CartLoaded) {
-        Navigator.of(context).pop();
         getallCart();
+        AutoRouter.of(context).push(BottomNavigation(response: recomendationList));
         ScaffoldMessenger.of(context)
         ..clearSnackBars
         ..showSnackBar(materialBanner(
@@ -40,7 +42,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
         ContentType.success));
         }
         if(state is CartFailure){
-         Navigator.of(context).pop();
+        Navigator.of(context).pop();
         ScaffoldMessenger.of(context)
         ..clearSnackBars
         ..showSnackBar(materialBanner(

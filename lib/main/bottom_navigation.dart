@@ -53,15 +53,17 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ];
 
   @override
-  Widget build(BuildContext context) => PersistentTabView(
-        margin: const EdgeInsets.only(bottom: 1,left: 15,right: 15),
-        avoidBottomPadding: true,
-        navBarHeight: 70,
-        resizeToAvoidBottomInset: true,
-        tabs: _tabs(),
-        navBarBuilder: (navBarConfig) => Style1BottomNavBar(
-          navBarDecoration: const NavBarDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15),bottomRight: Radius.circular(15) ,bottomLeft: Radius.circular(15)),color: Colors.green),
-          navBarConfig: navBarConfig,
+  Widget build(BuildContext context) => PopScope(
+    child: PersistentTabView(
+          margin: const EdgeInsets.only(bottom: 1,left: 15,right: 15),
+          avoidBottomPadding: true,
+          navBarHeight: 70,
+          resizeToAvoidBottomInset: true,
+          tabs: _tabs(),
+          navBarBuilder: (navBarConfig) => Style1BottomNavBar(
+            navBarDecoration: const NavBarDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15),bottomRight: Radius.circular(15) ,bottomLeft: Radius.circular(15)),color: Colors.green),
+            navBarConfig: navBarConfig,
+          ),
         ),
-      );
+  );
 }
