@@ -29,6 +29,7 @@ class MainRepository  extends AbstractMainRepository{
       final cartBox = await Hive.openBox(cart);
       final cartList = cartBox.values.toList();
       await cartBox.putAt(cartList.indexWhere((element) => currentCart.title == element.title), currentCart);
+      allCart = cartList;
       await cartBox.close();
     } catch(e){
       talker.error(e);

@@ -54,6 +54,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) => PopScope(
+    canPop: false,
     child: PersistentTabView(
           margin: const EdgeInsets.only(bottom: 1,left: 15,right: 15),
           avoidBottomPadding: true,
