@@ -24,9 +24,15 @@ class MainRepository  extends AbstractMainRepository{
   }
 
   @override
-  Future<Cart> changeCard() {
-    // TODO: implement changeCard
-    throw UnimplementedError();
+  Future<void> changeCard(Cart currentCart) async{
+    try{
+      final cartBox = await Hive.openBox(cart);
+      final cartList = cartBox.values.toList();
+      await cartBox.putAt(cartList.indexWhere((element) => currentCart.title == element.title), currentCart);
+      await cartBox.close();
+    } catch(e){
+      talker.error(e);
+    }
   }
 
   @override

@@ -29,7 +29,7 @@ class _BucketScreenState extends State<BucketScreen> {
                     child: ListView.builder(
                       itemCount: allCart.length,
                       itemBuilder: (BuildContext context, int index) { 
-                        final currentCart = allCart[index];
+                        currentCart = allCart[index];
                         return Container(
                           margin: EdgeInsets.only(bottom: 1.5.h,right: 2.w,left: 2.w),
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white70,boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2),offset: const Offset(0, 4) ,blurRadius: 10)]),
@@ -66,11 +66,13 @@ class _BucketScreenState extends State<BucketScreen> {
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             IconButton(onPressed: (){setState(() {
+                                              currentCart.price -= 1;
                                             });}, icon: const Icon(CupertinoIcons.minus_circle_fill, color: Colors.white,)),
-                                            Container(width: 20.w,decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(50)),child: Text(''.toString(),style: textStylePicker(context).titleSmall,textAlign: TextAlign.center,)),
+                                            Container(width: 20.w,decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(50)),child: Text(currentCart.count.toString(),style: textStylePicker(context).titleSmall,textAlign: TextAlign.center,)),
                                             IconButton(onPressed: (){
                                               setState(() {
-                                                
+                                                currentCart = currentCart.copyWith(count: currentCart.count + 1);
+                                                talker.log(currentCart.count);
                                               });
                                               }, icon: const Icon(Icons.add_circle,color: Colors.white,))
                                           ],
