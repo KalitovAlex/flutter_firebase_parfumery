@@ -5,6 +5,7 @@ import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendat
 import 'package:flutter_firebase_parfumery/main/screen/bucket_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/favorite_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart';
+import 'package:flutter_firebase_parfumery/main/screen/profile_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 @RoutePage()
@@ -49,7 +50,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         PersistentTabConfig(screen: const Scaffold(), item: ItemConfig(
           inactiveIcon: const Icon(CupertinoIcons.doc,color: Colors.white,),
           icon: const Icon(CupertinoIcons.doc_fill,color: Colors.white,))),
-        PersistentTabConfig(screen: const Scaffold(), item: ItemConfig(icon: const Icon(CupertinoIcons.person_fill,color: Colors.white,),inactiveIcon: const Icon(CupertinoIcons.person, color: Colors.white,)))
+        PersistentTabConfig(screen: const ProfileScreen(), item: ItemConfig(icon: const Icon(CupertinoIcons.person_fill,color: Colors.white,),inactiveIcon: const Icon(CupertinoIcons.person, color: Colors.white,)))
       ];
 
   @override

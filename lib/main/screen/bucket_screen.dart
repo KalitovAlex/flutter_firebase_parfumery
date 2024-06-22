@@ -102,6 +102,7 @@ class _BucketScreenState extends State<BucketScreen> {
                                                               final countDefenition = currentCart.count > 0 ? currentCart.count - 1 : currentCart.count + 1;
                                                               currentCart = currentCart.copyWith(count: countDefenition);
                                                               await mainRepository.changeCard(currentCart);
+                                                              sumall = 0;
                                                               minusAllCartItems();
                                                               setState(() {});
                                                               }
@@ -112,6 +113,7 @@ class _BucketScreenState extends State<BucketScreen> {
                                                              plusOne() async {
                                                              currentCart = currentCart.copyWith(count: currentCart.count + 1);
                                                              await mainRepository.changeCard(currentCart);
+                                                             sumall = 0;
                                                              sumAllCartitems();
                                                              setState(() {});
                                                              }

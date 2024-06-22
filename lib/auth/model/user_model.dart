@@ -9,6 +9,8 @@ class UserModel with _$UserModel {
     const factory UserModel({
         @JsonKey(name: "username")
         String? username,
+        @JsonKey(name: "pic_url")
+        String? pic_url,
         @JsonKey(name: "phone_number")
         String? phoneNumber,
         @JsonKey(name: "email")

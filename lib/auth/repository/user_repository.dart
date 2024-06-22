@@ -11,7 +11,7 @@ class UserRepository extends AbstractUserRepository {
     try{
       final response = await FirebaseAuth.instance.signInWithEmailAndPassword(email: login!, password: password!);
       final user = await userReference.doc(response.user!.uid).get();
-      userModel = userModel.copyWith(phoneNumber: user.get('phone_number'), username: user.get('username'), uid: response.user!.uid);
+      userModel = userModel.copyWith(phoneNumber: user.get('phone_number'), username: user.get('username'), uid: response.user!.uid, pic_url: user.get('pic_url'));
       talker.log(userModel.phoneNumber);
       return true;
     } on FirebaseAuthException{
@@ -108,7 +108,7 @@ class UserRepository extends AbstractUserRepository {
   Future<bool> sharedAuth(String uid) async{
     try{
       final response = await userReference.doc(uid).get();
-      userModel = userModel.copyWith(email: response['email'], password: response['password'], username: response['username'], phoneNumber: response['phone_number']);
+      userModel = userModel.copyWith(email: response['email'], password: response['password'], username: response['username'], phoneNumber: response['phone_number'], pic_url: response['pic_url']);
       return true;
     } catch(e){
       talker.error(e);
