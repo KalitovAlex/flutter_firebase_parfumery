@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
-import 'package:flutter_firebase_parfumery/utils/get_image_from_gallery.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -35,7 +34,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 left: 35.w,
                 top: 15.h,
                 child: IconButton(onPressed: () async {
-                  await getImageFromGallery(context);}, icon: const Icon(CupertinoIcons.camera)),
+
+                }, icon: const Icon(CupertinoIcons.camera)),
               )
               ]
             ),

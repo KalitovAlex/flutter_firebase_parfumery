@@ -41,7 +41,7 @@ class UserRepository extends AbstractUserRepository {
       talker.log(response.user!.uid);
       return true;
     }catch (e){
-      talker.log(e);
+      talker.error(e);
       return false;
     }
   }
@@ -61,11 +61,17 @@ class UserRepository extends AbstractUserRepository {
       //make final Sign in
       final response = await FirebaseAuth.instance.signInWithCredential(credential);
       final user = await userReference.doc(response.user!.uid).get();
+      if(user.exists == true){
       userModel = userModel.copyWith(email: response.user!.email ,phoneNumber: user.get('phone_number') , username: user.get('username') );
-      uid = response.user!.uid; 
+        uid = response.user!.uid; 
+      talker.log(user);
       return true;
+      }
+      else{
+        return false;
+      }
     }catch (e){
-      talker.log(e);
+      talker.error(e);
       return false;
     }
   }
