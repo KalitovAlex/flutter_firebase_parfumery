@@ -14,3 +14,5 @@ const String phoneNumber = 'phone_number';
 const String picUrl = 'pic_url';
 const String userUid = 'uid';
 const String userName = 'username';
+const String good = 'Good';
+const String oops = 'Oops';
