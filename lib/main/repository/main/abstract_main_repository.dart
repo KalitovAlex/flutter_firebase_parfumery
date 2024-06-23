@@ -2,7 +2,7 @@ import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 
-import '../../core/main/consants.dart';
+import '../../../core/main/consants.dart';
 
 abstract class AbstractMainRepository{
   Future<List<Recommendation>> getAllRecomendation();

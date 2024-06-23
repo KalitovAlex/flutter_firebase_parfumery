@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
-import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
+import 'package:flutter_firebase_parfumery/main/repository/main/abstract_main_repository.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../../core/main/consants.dart';
+import '../../../core/main/consants.dart';
 
 class MainRepository  extends AbstractMainRepository{
   @override

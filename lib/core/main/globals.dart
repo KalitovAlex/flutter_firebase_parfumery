@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
-import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
+import 'package:flutter_firebase_parfumery/main/repository/main/abstract_main_repository.dart';
 import 'package:flutter_firebase_parfumery/main/repository/profile/abstract_profile_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';

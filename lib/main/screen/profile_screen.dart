@@ -37,6 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ImagePicker picker = ImagePicker();
                   String uniqueName = userModel.email! + avatar;
                   selectImage = await picker.pickImage(source: ImageSource.gallery);
+                  final userAvatar = profileRepository.addUserImage(uniqueName, selectImage);
                 }, icon: const Icon(CupertinoIcons.camera)),
               )
               ]

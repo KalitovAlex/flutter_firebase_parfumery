@@ -12,8 +12,8 @@ import '../../auth/model/user_model.dart';
 import '../../auth/repository/abstract_user_repository.dart';
 import '../../auth/repository/user_repository.dart';
 import '../../main/models/recomendation/recommendation.dart';
-import '../../main/repository/abstract_main_repository.dart';
-import '../../main/repository/main_repository.dart';
+import '../../main/repository/main/abstract_main_repository.dart';
+import '../../main/repository/main/main_repository.dart';
 import 'consants.dart';
 void initHive() async{
   await Hive.initFlutter();

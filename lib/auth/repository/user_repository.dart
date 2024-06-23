@@ -122,4 +122,16 @@ class UserRepository extends AbstractUserRepository {
     }
   }
   
+  @override
+  Future<bool> changeUser(String photo) async {
+    try {
+      final response = await userReference.doc(uid).update(dataToUpdate);
+      userModel = userModel.copyWith(pic_url: photo);
+      return true;
+    } catch (e) {
+      talker.error(e);
+      return false;
+    }
+  }
+  
 }

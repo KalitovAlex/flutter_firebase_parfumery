@@ -12,8 +12,17 @@ abstract class AbstractUserRepository {
   Future<bool> resetPassword(String email);
   Future<bool> sharedAuth(String uid);
   Future<bool> regWithGoogle();
+  Future<bool> changeUser(String photo);
   late final CollectionReference userReference;
   AbstractUserRepository(){
     userReference = fireStore.collection(userCollection);
   }
+  Map<String,String?> dataToUpdate = {
+    email: userModel.email,
+    password: userModel.password,
+    phoneNumber: userModel.phoneNumber,
+    picUrl: userModel.pic_url,
+    userUid: userModel.uid,
+    userName: userModel.username
+  };
 }
