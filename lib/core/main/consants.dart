@@ -4,3 +4,7 @@ const String userCollection = 'users';
 const String bannersCollection = 'banners';
 const String categoriesCollection = 'categories';
 const String recomendationCollection = 'recomendation';
+const String avatar = '_avatar';
+const String avatars = 'avatars';
+const String imgUrl = 'image_url';
+const String defaultAvatar = 'assets/default_backround_user.png';

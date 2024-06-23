@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/repository/abstract_main_repository.dart';
+import 'package:flutter_firebase_parfumery/main/repository/profile/abstract_profile_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
@@ -20,6 +21,7 @@ textStylePicker(context){
 //GetIt init
 AbstractUserRepository userRepository = GetIt.I<AbstractUserRepository>();
 AbstractMainRepository mainRepository = GetIt.I<AbstractMainRepository>();
+AbstractProfileRepository profileRepository = GetIt.I<AbstractProfileRepository>();
 UserModel userModel = GetIt.I<UserModel>();
 Cart diCart = GetIt.I<Cart>();
 // AbstractMainRepository mainRepository = GetIt.I<AbstractMainRepository>();
