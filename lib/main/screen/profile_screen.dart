@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_firebase_parfumery/utils/get_image_from_gallery.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -17,15 +17,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-        File? currentImage;
-          Future<void> picImage() async{
-          var image = await ImagePicker().pickImage(source: ImageSource.gallery);
-          if(image != null){
-            setState(() {
-            currentImage = File(image.path);
-         });
-        }
-      }
+    File? selectImage;
+
     return Scaffold(
       appBar: AppBar(title: Text('Profile', style: theme.textTheme.titleMedium), centerTitle: false,),
       body: Container(padding: EdgeInsets.only(left: 5.w,right: 5.w,top: 4.h),
@@ -36,10 +29,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
               CircleAvatar(
                 radius: 100,
-                backgroundImage: userModel.pic_url == "default" ? const AssetImage('assets/default_backround_user.png') : NetworkImage(userModel.pic_url.toString()),
+                backgroundImage: selectImage == null ? const AssetImage('assets/default_backround_user.png') : userModel.pic_url == "default" ? const AssetImage('assets/default_backround_user.png') : NetworkImage(selectImage.toString()),
               ),
               Positioned(
-                child: IconButton(onPressed: () => picImage(), icon: const Icon(CupertinoIcons.camera)),
+                left: 35.w,
+                top: 15.h,
+                child: IconButton(onPressed: () async {
+                  await getImageFromGallery(context);}, icon: const Icon(CupertinoIcons.camera)),
               )
               ]
             ),
