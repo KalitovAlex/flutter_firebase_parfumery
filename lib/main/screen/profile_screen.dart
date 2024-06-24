@@ -1,25 +1,23 @@
-import 'dart:io';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
+import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
+import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
 import 'package:flutter_firebase_parfumery/main/bloc/profile/profile_bloc.dart';
 import 'package:flutter_firebase_parfumery/widgets/show_loading_circle.dart';
 import 'package:flutter_firebase_parfumery/widgets/show_snack_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 
-class ProfileScreen extends StatefulWidget {
+import '../../core/styles/widget/text_form_styles.dart';
+
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -32,6 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         }
         if(state is ProfileLoaded){
           Navigator.of(context).pop();
+          AutoRouter.of(context).push(BottomNavigation(response: recomendationList));
           ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'you succesfully changed profile info', ContentType.success));
         }
         if(state is ProfileFailure){
@@ -44,6 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         }
       },
       builder: (context, state) {
+        TextEditingController emailController = TextEditingController();
         final blocCommand = BlocProvider.of<ProfileBloc>(context);
         return Scaffold(
           appBar: AppBar(
@@ -55,27 +55,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(children: [
               Center(
                 child: Stack(children: [
-                  CircleAvatar(
-                    radius: 100,
-                    backgroundImage: selectImage == null
-                        ? const AssetImage(defaultAvatar)
-                        : userModel.pic_url == "default"
-                            ? const AssetImage(defaultAvatar)
-                            : FileImage(File(selectImage!.path)),
+                  SizedBox(
+                    height: 25.h,
+                    width: 50.w,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(350),
+                        child: userModel.pic_url == "default"
+                            ? Image.asset(defaultAvatar, fit: BoxFit.cover,)
+                            : Image.network(userModel.pic_url!,fit: BoxFit.cover,)
+                      ),
                   ),
                   Positioned(
-                    left: 35.w,
+                    left: 38.w,
                     top: 15.h,
                     child: IconButton(
                         onPressed: () async {
                           ImagePicker picker = ImagePicker();
-                          String uniqueName = userModel.email! + avatar;
                           selectImage = await picker.pickImage(source: ImageSource.gallery);
-                          blocCommand.add(ProfileEvent(uniqueName: uniqueName, selectedImage: selectImage));
                         },
                         icon: const Icon(CupertinoIcons.camera)),
                   )
                 ]),
+              ),
+              SizedBox(height: 5.h,),
+              main_textFormField(controller: emailController, icon: Icons.email, hint: email,),
+              main_textFormField(controller: emailController, icon: Icons.lock, hint: password,),
+              main_textFormField(controller: emailController, icon: Icons.phone, hint: phoneNumber,),
+              main_textFormField(controller: emailController, icon: Icons.man, hint: userName,),
+              Container(
+                width: 100.w,
+                height: 6.h,
+                decoration: auth_button_container,
+                child: TextButton(onPressed: (){
+                blocCommand.add(ProfileEvent(uniqueName: userModel.email! + avatar, selectedImage: selectImage));
+                }, child: Text('Save info', style: textStylePicker(context).displayMedium)),
               )
             ]),
           ),
