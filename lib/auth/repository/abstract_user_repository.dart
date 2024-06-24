@@ -17,12 +17,4 @@ abstract class AbstractUserRepository {
   AbstractUserRepository(){
     userReference = fireStore.collection(userCollection);
   }
-  Map<String,String?> dataToUpdate = {
-    email: userModel.email,
-    password: userModel.password,
-    phoneNumber: userModel.phoneNumber,
-    picUrl: userModel.pic_url,
-    userUid: userModel.uid,
-    userName: userModel.username
-  };
 }

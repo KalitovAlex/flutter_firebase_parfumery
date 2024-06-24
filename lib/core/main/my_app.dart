@@ -38,11 +38,17 @@ class MyApp extends StatelessWidget {
           routerConfig: appRouter.config(
             deepLinkBuilder: (deepLink) async {
             final preferences = await SharedPreferences.getInstance();
-            final uid = preferences.getString('uid');
-            if(uid != null){
-            await userRepository.sharedAuth(uid);
+            final authUid = preferences.getString('uid');
+            uid = preferences.getString('uid');
+            if(authUid != null){
+            final response = await userRepository.sharedAuth(uid!);
+            if(response == true){
             await mainRepository.getAllRecomendation();
             return DeepLink([BottomNavigation(response: recomendationList)]);
+            }
+            else{
+            return const DeepLink([AuthBoard()]);
+            }
             }
             else { 
               return const DeepLink([AuthBoard()]);

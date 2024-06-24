@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../core/main/globals.dart';
@@ -114,8 +115,13 @@ class UserRepository extends AbstractUserRepository {
   Future<bool> sharedAuth(String uid) async{
     try{
       final response = await userReference.doc(uid).get();
-      userModel = userModel.copyWith(email: response['email'], password: response['password'], username: response['username'], phoneNumber: response['phone_number'], pic_url: response['pic_url']);
-      return true;
+      userModel = userModel.copyWith(email: response[email], password: response[password], username: response[userName], phoneNumber: response[phoneNumber], pic_url: response[picUrl]);
+      if(response[email] == null || response[password] == null || response[userName] == null || response[phoneNumber] == null || response[picUrl] == null ){
+        return false;
+      }
+      else{
+        return true;
+      }
     } catch(e){
       talker.error(e);
       return false;
@@ -125,8 +131,15 @@ class UserRepository extends AbstractUserRepository {
   @override
   Future<bool> changeUser(String photo) async {
     try {
-      final response = await userReference.doc(uid).update(dataToUpdate);
       userModel = userModel.copyWith(pic_url: photo);
+      final response = await userReference.doc(uid).update(
+      {
+      email: userModel.email,
+      password: userModel.password,
+      userName: userModel.username,
+      phoneNumber: userModel.phoneNumber,
+      picUrl: photo,
+      });
       return true;
     } catch (e) {
       talker.error(e);

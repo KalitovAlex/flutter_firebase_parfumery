@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,19 +31,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
           showLoadingCircle(context);
         }
         if(state is ProfileLoaded){
-          setState(() {});
+          Navigator.of(context).pop();
           ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'you succesfully changed profile info', ContentType.success));
         }
         if(state is ProfileFailure){
-          setState(() {});
+          Navigator.of(context).pop();
           ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'failed, you wrong type info', ContentType.failure));
         }
         if(state is ProfileFirestoreFailure){
-          setState(() {});
+          Navigator.of(context).pop();
           ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'Our servers are currently sleeping, we will fix this soon, sorry', ContentType.failure));
         }
       },
       builder: (context, state) {
+        final blocCommand = BlocProvider.of<ProfileBloc>(context);
         return Scaffold(
           appBar: AppBar(
             title: Text('Profile', style: theme.textTheme.titleMedium),
@@ -58,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ? const AssetImage(defaultAvatar)
                         : userModel.pic_url == "default"
                             ? const AssetImage(defaultAvatar)
-                            : NetworkImage(selectImage.toString()),
+                            : FileImage(File(selectImage!.path)),
                   ),
                   Positioned(
                     left: 35.w,
@@ -67,10 +70,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onPressed: () async {
                           ImagePicker picker = ImagePicker();
                           String uniqueName = userModel.email! + avatar;
-                          selectImage = await picker.pickImage(
-                              source: ImageSource.gallery);
-                          final userAvatar = profileRepository.addUserImage(
-                              uniqueName, selectImage);
+                          selectImage = await picker.pickImage(source: ImageSource.gallery);
+                          blocCommand.add(ProfileEvent(uniqueName: uniqueName, selectedImage: selectImage));
                         },
                         icon: const Icon(CupertinoIcons.camera)),
                   )

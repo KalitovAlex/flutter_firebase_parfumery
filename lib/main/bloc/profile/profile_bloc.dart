@@ -14,14 +14,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(ProfileLoading());
       try {
         final response = await profileRepository.addUserImage(event.uniqueName, event.selectedImage);
-        final result = userRepository.changeUser(response!);
-        result == true ? emit(ProfileLoaded()) : ProfileFailure();
+        final result = await userRepository.changeUser(response!);
+        result == true ? emit(ProfileLoaded()) : emit(ProfileFailure());
       } 
       on(FirebaseException,) {
         emit(ProfileFirestoreFailure());
       }
       catch (e) {
-        emit(ProfileFailure());
         talker.error(e);
       } 
     });

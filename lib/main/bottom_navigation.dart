@@ -8,26 +8,15 @@ import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/profile_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
+
 @RoutePage()
-class BottomNavigation extends StatefulWidget {
+class BottomNavigation extends StatelessWidget {
   BottomNavigation({super.key, required this.response});
   List<Recommendation> response; 
 
-  @override
-  State<BottomNavigation> createState() => _BottomNavigationState();
-}
-
-class _BottomNavigationState extends State<BottomNavigation> {
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      
-    });
-  }
   List<PersistentTabConfig> _tabs() => [
         PersistentTabConfig(
-          screen: HomeScreen(response: widget.response,),
+          screen: HomeScreen(response: response,),
           item: ItemConfig(
             inactiveIcon: const Icon(CupertinoIcons.compass,color: Colors.white,),
             icon: const Icon(CupertinoIcons.compass_fill,color: Colors.white,),
