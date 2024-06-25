@@ -12,7 +12,7 @@ abstract class AbstractUserRepository {
   Future<bool> resetPassword(String email);
   Future<bool> sharedAuth(String uid);
   Future<bool> regWithGoogle();
-  Future<bool> changeUser(String photo);
+  Future<bool> changeUser(String? photo, String emailChange, String passwordChange, String phoneNumberChange, String usernameChange);
   late final CollectionReference userReference;
   AbstractUserRepository(){
     userReference = fireStore.collection(userCollection);

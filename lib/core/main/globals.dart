@@ -6,6 +6,7 @@ import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendat
 import 'package:flutter_firebase_parfumery/main/repository/main/abstract_main_repository.dart';
 import 'package:flutter_firebase_parfumery/main/repository/profile/abstract_profile_repository.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 import '../../auth/model/user_model.dart';
@@ -40,3 +41,6 @@ List<Recommendation> recomendationList = [];
 //hive
 late List<dynamic> allCart;
 
+
+//profile
+XFile? selectImage;

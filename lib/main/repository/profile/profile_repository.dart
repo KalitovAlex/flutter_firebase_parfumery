@@ -14,9 +14,14 @@ class ProfileRepository extends AbstractProfileRepository{
     Reference referenceDirMessage  = referenceRoot.child(avatars);
     Reference referenceDirUpload = referenceDirMessage.child(uniqueName);
     try {
-     await referenceDirUpload.putFile(File(selectImage!.path));
+    if(selectImage == null){
+      return null;
+    }
+    else{
+     await referenceDirUpload.putFile(File(selectImage.path));
      final reference = referenceDirUpload.getDownloadURL();
      return reference;
+  }
     } catch (e) {
       talker.error(e);
       return null;

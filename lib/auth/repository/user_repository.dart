@@ -129,16 +129,16 @@ class UserRepository extends AbstractUserRepository {
   }
   
   @override
-  Future<bool> changeUser(String photo) async {
+  Future<bool> changeUser(String? photo, String emailChange, String passwordChange, String phoneNumberChange, String usernameChange) async {
     try {
-      userModel = userModel.copyWith(pic_url: photo);
+      userModel = userModel.copyWith(pic_url: photo ?? userModel.pic_url, email: emailChange, password: passwordChange,phoneNumber: phoneNumberChange, username: usernameChange);
       final response = await userReference.doc(uid).update(
       {
-      email: userModel.email,
-      password: userModel.password,
-      userName: userModel.username,
-      phoneNumber: userModel.phoneNumber,
-      picUrl: photo,
+      email: emailChange,
+      password: passwordChange,
+      userName: usernameChange,
+      phoneNumber: phoneNumberChange,
+      picUrl: photo ?? userModel.pic_url,
       });
       return true;
     } catch (e) {

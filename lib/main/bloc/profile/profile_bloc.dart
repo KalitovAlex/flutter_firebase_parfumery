@@ -14,7 +14,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(ProfileLoading());
       try {
         final response = await profileRepository.addUserImage(event.uniqueName, event.selectedImage);
-        final result = await userRepository.changeUser(response!);
+        final result = await userRepository.changeUser(response, event.emai, event.password, event.phoneNumber, event.username);
         result == true ? emit(ProfileLoaded()) : emit(ProfileFailure());
       } 
       on(FirebaseException,) {
