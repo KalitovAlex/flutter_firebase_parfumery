@@ -61,7 +61,7 @@ class _BucketScreenState extends State<BucketScreen> {
                                     child: ListView.builder(
                                       itemCount: allCart.length,
                                       itemBuilder: (BuildContext context, int index) { 
-                                        currentCart = allCart[index];
+                                        dynamic currentCart = allCart[index];
                                         return Container(
                                           margin: EdgeInsets.only(bottom: 1.5.h,right: 2.w,left: 2.w),
                                           decoration: cartDecoration,

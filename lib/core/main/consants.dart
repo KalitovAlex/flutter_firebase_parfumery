@@ -16,3 +16,4 @@ const String userUid = 'uid';
 const String userName = 'username';
 const String good = 'Good';
 const String oops = 'Oops';
+const String errorIcon = 'assets/error_icon.png';

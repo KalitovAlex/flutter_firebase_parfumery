@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/cart/item_card_widget.dart';
+import 'package:flutter_firebase_parfumery/widgets/loading_widget.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -41,51 +44,67 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(6),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          SizedBox(
-                            width: double.infinity,
-                              child: Stack(
-                                children: [
-                                  ClipRRect(
-                                          borderRadius: BorderRadius.circular(30),
-                                            child: SizedBox(
-                                              height: 20.h,
-                                              child: Image.network(
-                                                fit: BoxFit.fill,
-                                                currentRecomendation.picUrls!.first.toString()
+                      child: CachedNetworkImage(
+                        imageUrl: currentRecomendation.picUrls!.first.toString(),
+                        placeholder: (context, url) {
+                          return const loadingWidget();
+                        },
+                        errorWidget: (context, url, error) {
+                          return Image.asset(errorIcon);
+                        },
+                        imageBuilder: (context, imageProvider) {
+                          return  Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            SizedBox(
+                              width: double.infinity,
+                                child: Stack(
+                                  children: [
+                                    ClipRRect(
+                                            borderRadius: BorderRadius.circular(30),
+                                              child: SizedBox(
+                                                height: 20.h,
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(image: 
+                                                    imageProvider,
+                                                    fit: BoxFit.cover
+                                                    )
+                                                  ),
+                                                )
                                               ),
-                                            ),
-                                        ),
-                                  Positioned(child: IconButton(onPressed: () async{
-                                      if(isFavorite){
-                                      await box.delete(index);
-                                      }
-                                      else{
-                                      await box.put(index, currentRecomendation.title);
-                                      }
-                                   setState(() {
-                                      
-                                    });
-                                    }, 
-                                    icon: isFavorite ? const Icon(Icons.favorite,color: Colors.red,) : const Icon(Icons.favorite_border_outlined,color: Colors.white70,) ))
-                                ],
+                                          ),
+                                    Positioned(child: IconButton(onPressed: () async{
+                                        if(isFavorite){
+                                        await box.delete(index);
+                                        }
+                                        else{
+                                        await box.put(index, currentRecomendation.title);
+                                        }
+                                     setState(() {
+                                        
+                                      });
+                                      }, 
+                                      icon: isFavorite ? const Icon(Icons.favorite,color: Colors.red,) : const Icon(Icons.favorite_border_outlined,color: Colors.white70,) ))
+                                  ],
+                                ),
                               ),
-                            ),
-                          SizedBox(height: 0.7.h,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                            Text('\$' + currentRecomendation.price.toString(), style: textStylePicker(context).titleSmall,),
+                            SizedBox(height: 0.7.h,),
                             Row(
-                              children: [
-                                const Icon(Icons.star, color: Colors.yellow,),
-                                Text(currentRecomendation.rating.toString(),style: const TextStyle(fontSize: 16),)
-                              ],
-                            )
-                          ],),
-                          Text(currentRecomendation.title!, style: textStylePicker(context).titleSmall,)
-                        ],
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+                              Text('\$' + currentRecomendation.price.toString(), style: textStylePicker(context).titleSmall,),
+                              Row(
+                                children: [
+                                  const Icon(Icons.star, color: Colors.yellow,),
+                                  Text(currentRecomendation.rating.toString(),style: const TextStyle(fontSize: 16),)
+                                ],
+                              )
+                            ],),
+                            Text(currentRecomendation.title!, style: textStylePicker(context).titleSmall,)
+                          ],
+                        );
+                        }
+
                       ),
                     ),
                   );

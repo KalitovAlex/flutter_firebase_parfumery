@@ -38,6 +38,5 @@ List favorite = [];
 List<Recommendation> recomendationList = [];
 
 //hive
-late dynamic currentCart;
 late List<dynamic> allCart;
 

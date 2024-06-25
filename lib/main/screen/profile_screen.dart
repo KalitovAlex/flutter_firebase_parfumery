@@ -15,14 +15,22 @@ import 'package:sizer/sizer.dart';
 
 import '../../core/styles/widget/text_form_styles.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     XFile? selectImage;
-
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, state) {
         if(state is ProfileLoading){
@@ -43,7 +51,6 @@ class ProfileScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        TextEditingController emailController = TextEditingController();
         final blocCommand = BlocProvider.of<ProfileBloc>(context);
         return Scaffold(
           appBar: AppBar(
@@ -78,15 +85,23 @@ class ProfileScreen extends StatelessWidget {
                 ]),
               ),
               SizedBox(height: 5.h,),
-              main_textFormField(controller: emailController, icon: Icons.email, hint: email,),
-              main_textFormField(controller: emailController, icon: Icons.lock, hint: password,),
-              main_textFormField(controller: emailController, icon: Icons.phone, hint: phoneNumber,),
-              main_textFormField(controller: emailController, icon: Icons.man, hint: userName,),
+              main_textFormField(controller: emailController, icon: Icons.email, hint: email, initVal: userModel.email ?? '',),
+              main_textFormField(controller: passwordController, icon: Icons.lock, hint: password,initVal:  userModel.password ?? ''),
+              main_textFormField(controller: phoneNumberController, icon: Icons.phone, hint: phoneNumber,initVal:  userModel.phoneNumber ?? ''),
+              main_textFormField(controller: userNameController, icon: Icons.man, hint: userName,initVal:  userModel.username ?? ''),
               Container(
                 width: 100.w,
                 height: 6.h,
                 decoration: auth_button_container,
                 child: TextButton(onPressed: (){
+                if(emailController.text == userModel.email || passwordController.text == userModel.password || phoneNumberController.text == userModel.phoneNumber || userNameController == userModel.username || selectImage != userModel.pic_url){
+                  ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'You dont Change any parameters', ContentType.failure));
+                }
+                else if(emailController.text.isEmpty && passwordController.text.isEmpty && phoneNumberController.text.isEmpty && userNameController.text.isEmpty){
+                  ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'All fields cannot be empty', ContentType.failure));
+                }
+                else{
+                }
                 blocCommand.add(ProfileEvent(uniqueName: userModel.email! + avatar, selectedImage: selectImage));
                 }, child: Text('Save info', style: textStylePicker(context).displayMedium)),
               )

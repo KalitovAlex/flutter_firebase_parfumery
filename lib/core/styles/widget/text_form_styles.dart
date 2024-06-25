@@ -6,12 +6,14 @@ import 'package:sizer/sizer.dart';
 class main_textFormField extends StatelessWidget {
    main_textFormField({
     super.key,
-    required this.controller,
+    required this.initVal,
     required this.icon,
-    required this.hint
+    required this.hint,
+    required this.controller,
   });
   IconData icon;
   String hint;
+  String initVal;
   TextEditingController controller;
 
   @override
@@ -21,6 +23,7 @@ class main_textFormField extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 2.h),
       decoration: authTextStyles,
       child: TextFormField(
+        initialValue: initVal,
         decoration: textFormFieldRegistrationDecoration(icon, hint),
       ),
     ),);
