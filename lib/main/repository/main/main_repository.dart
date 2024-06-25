@@ -61,4 +61,19 @@ class MainRepository  extends AbstractMainRepository{
       return false;
     }
   }
+  
+  @override
+  Future<bool> removeCard(Cart cartelement) async{
+    try{
+      final cartBox = await Hive.openBox(cart);
+      final cartList = cartBox.values.toList();
+      await cartBox.deleteAt(cartList.indexWhere((element) => element.title == cartelement.title));
+      await cartBox.close();
+      return true;
+    } catch(e){
+      talker.error(e);
+      return false;
+    }
+  }
+  
 }

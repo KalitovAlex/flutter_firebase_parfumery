@@ -9,7 +9,7 @@ abstract class AbstractMainRepository{
   Future<bool> makeCard(Cart card);
   Future<void> changeCard(Cart currentCart);
   Future<List<dynamic>> getCard();
-  // Future<List<String>> getALlImages();
+  Future<bool> removeCard(Cart cartelement);
   final bannersReference = fireStore.collection(bannersCollection);
   final categoriesReference = fireStore.collection(categoriesCollection);
   final recomendationReference = fireStore.collection(recomendationCollection);
