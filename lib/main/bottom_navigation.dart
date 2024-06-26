@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/screen/bucket_screen.dart';
 import 'package:flutter_firebase_parfumery/main/screen/favorite_screen.dart';
@@ -43,9 +44,19 @@ class BottomNavigation extends StatelessWidget {
       ];
 
   @override
-  Widget build(BuildContext context) => PopScope(
+  Widget build(BuildContext context){
+    return PopScope(
     canPop: false,
-    child: PersistentTabView(
+    child: AutoTabsRouter(
+      routes: [
+        HomeRoute(response: response),
+        const BucketRoute(),
+        const FavoriteRoute(),
+        const HistoryRoute(),
+        const ProfileRoute(),
+      ],
+      builder: (context, child) {
+        return PersistentTabView(
           margin: const EdgeInsets.only(bottom: 1,left: 15,right: 15),
           avoidBottomPadding: true,
           navBarHeight: 70,
@@ -55,6 +66,8 @@ class BottomNavigation extends StatelessWidget {
             navBarDecoration: const NavBarDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15),bottomRight: Radius.circular(15) ,bottomLeft: Radius.circular(15)),color: Colors.green),
             navBarConfig: navBarConfig,
           ),
-        ),
-  );
+        );
+      },
+    )
+  );}
 }

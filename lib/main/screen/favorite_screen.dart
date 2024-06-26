@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/favorites/favorites_widget.dart';
+@RoutePage()
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
 

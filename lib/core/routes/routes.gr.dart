@@ -8,42 +8,50 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i8;
-import 'package:flutter/cupertino.dart' as _i9;
-import 'package:flutter/material.dart' as _i11;
+import 'package:auto_route/auto_route.dart' as _i12;
+import 'package:flutter/cupertino.dart' as _i13;
+import 'package:flutter/material.dart' as _i15;
 import 'package:flutter_firebase_parfumery/auth/screen/auth_board.dart' as _i1;
 import 'package:flutter_firebase_parfumery/auth/screen/auth_screen.dart' as _i2;
 import 'package:flutter_firebase_parfumery/auth/screen/forgot_password.dart'
-    as _i4;
+    as _i6;
 import 'package:flutter_firebase_parfumery/auth/screen/google_reg_screen.dart'
-    as _i5;
-import 'package:flutter_firebase_parfumery/auth/screen/register_screen.dart'
     as _i7;
+import 'package:flutter_firebase_parfumery/auth/screen/register_screen.dart'
+    as _i11;
 import 'package:flutter_firebase_parfumery/main/bottom_navigation.dart' as _i3;
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart'
+    as _i14;
+import 'package:flutter_firebase_parfumery/main/screen/bucket_screen.dart'
+    as _i4;
+import 'package:flutter_firebase_parfumery/main/screen/favorite_screen.dart'
+    as _i5;
+import 'package:flutter_firebase_parfumery/main/screen/history_screen.dart'
+    as _i8;
+import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart' as _i9;
+import 'package:flutter_firebase_parfumery/main/screen/profile_screen.dart'
     as _i10;
-import 'package:flutter_firebase_parfumery/main/screen/home_screen.dart' as _i6;
 
-abstract class $AppRouter extends _i8.RootStackRouter {
+abstract class $AppRouter extends _i12.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i8.PageFactory> pagesMap = {
+  final Map<String, _i12.PageFactory> pagesMap = {
     AuthBoard.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.AuthBoard(),
       );
     },
     AuthRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.AuthScreen(),
       );
     },
     BottomNavigation.name: (routeData) {
       final args = routeData.argsAs<BottomNavigationArgs>();
-      return _i8.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i3.BottomNavigation(
           key: args.key,
@@ -51,40 +59,64 @@ abstract class $AppRouter extends _i8.RootStackRouter {
         ),
       );
     },
+    BucketRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i4.BucketScreen(),
+      );
+    },
+    FavoriteRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.FavoriteScreen(),
+      );
+    },
     ForgotPassword.name: (routeData) {
       final args = routeData.argsAs<ForgotPasswordArgs>(
           orElse: () => const ForgotPasswordArgs());
-      return _i8.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i4.ForgotPassword(key: args.key),
+        child: _i6.ForgotPassword(key: args.key),
       );
     },
     GoogleRegRoute.name: (routeData) {
       final args = routeData.argsAs<GoogleRegRouteArgs>();
-      return _i8.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i5.GoogleRegScreen(
+        child: _i7.GoogleRegScreen(
           key: args.key,
           uid: args.uid,
         ),
       );
     },
+    HistoryRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i8.HistoryScreen(),
+      );
+    },
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
-      return _i8.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i6.HomeScreen(
+        child: _i9.HomeScreen(
           key: args.key,
           response: args.response,
         ),
       );
     },
+    ProfileRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i10.ProfileScreen(),
+      );
+    },
     RegisterRoute.name: (routeData) {
       final args = routeData.argsAs<RegisterRouteArgs>(
           orElse: () => const RegisterRouteArgs());
-      return _i8.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i7.RegisterScreen(key: args.key),
+        child: _i11.RegisterScreen(key: args.key),
       );
     },
   };
@@ -92,8 +124,8 @@ abstract class $AppRouter extends _i8.RootStackRouter {
 
 /// generated route for
 /// [_i1.AuthBoard]
-class AuthBoard extends _i8.PageRouteInfo<void> {
-  const AuthBoard({List<_i8.PageRouteInfo>? children})
+class AuthBoard extends _i12.PageRouteInfo<void> {
+  const AuthBoard({List<_i12.PageRouteInfo>? children})
       : super(
           AuthBoard.name,
           initialChildren: children,
@@ -101,13 +133,13 @@ class AuthBoard extends _i8.PageRouteInfo<void> {
 
   static const String name = 'AuthBoard';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.AuthScreen]
-class AuthRoute extends _i8.PageRouteInfo<void> {
-  const AuthRoute({List<_i8.PageRouteInfo>? children})
+class AuthRoute extends _i12.PageRouteInfo<void> {
+  const AuthRoute({List<_i12.PageRouteInfo>? children})
       : super(
           AuthRoute.name,
           initialChildren: children,
@@ -115,16 +147,16 @@ class AuthRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'AuthRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.BottomNavigation]
-class BottomNavigation extends _i8.PageRouteInfo<BottomNavigationArgs> {
+class BottomNavigation extends _i12.PageRouteInfo<BottomNavigationArgs> {
   BottomNavigation({
-    _i9.Key? key,
-    required List<_i10.Recommendation> response,
-    List<_i8.PageRouteInfo>? children,
+    _i13.Key? key,
+    required List<_i14.Recommendation> response,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           BottomNavigation.name,
           args: BottomNavigationArgs(
@@ -136,8 +168,8 @@ class BottomNavigation extends _i8.PageRouteInfo<BottomNavigationArgs> {
 
   static const String name = 'BottomNavigation';
 
-  static const _i8.PageInfo<BottomNavigationArgs> page =
-      _i8.PageInfo<BottomNavigationArgs>(name);
+  static const _i12.PageInfo<BottomNavigationArgs> page =
+      _i12.PageInfo<BottomNavigationArgs>(name);
 }
 
 class BottomNavigationArgs {
@@ -146,9 +178,9 @@ class BottomNavigationArgs {
     required this.response,
   });
 
-  final _i9.Key? key;
+  final _i13.Key? key;
 
-  final List<_i10.Recommendation> response;
+  final List<_i14.Recommendation> response;
 
   @override
   String toString() {
@@ -157,11 +189,39 @@ class BottomNavigationArgs {
 }
 
 /// generated route for
-/// [_i4.ForgotPassword]
-class ForgotPassword extends _i8.PageRouteInfo<ForgotPasswordArgs> {
+/// [_i4.BucketScreen]
+class BucketRoute extends _i12.PageRouteInfo<void> {
+  const BucketRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          BucketRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BucketRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i5.FavoriteScreen]
+class FavoriteRoute extends _i12.PageRouteInfo<void> {
+  const FavoriteRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          FavoriteRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FavoriteRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i6.ForgotPassword]
+class ForgotPassword extends _i12.PageRouteInfo<ForgotPasswordArgs> {
   ForgotPassword({
-    _i9.Key? key,
-    List<_i8.PageRouteInfo>? children,
+    _i13.Key? key,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           ForgotPassword.name,
           args: ForgotPasswordArgs(key: key),
@@ -170,14 +230,14 @@ class ForgotPassword extends _i8.PageRouteInfo<ForgotPasswordArgs> {
 
   static const String name = 'ForgotPassword';
 
-  static const _i8.PageInfo<ForgotPasswordArgs> page =
-      _i8.PageInfo<ForgotPasswordArgs>(name);
+  static const _i12.PageInfo<ForgotPasswordArgs> page =
+      _i12.PageInfo<ForgotPasswordArgs>(name);
 }
 
 class ForgotPasswordArgs {
   const ForgotPasswordArgs({this.key});
 
-  final _i9.Key? key;
+  final _i13.Key? key;
 
   @override
   String toString() {
@@ -186,12 +246,12 @@ class ForgotPasswordArgs {
 }
 
 /// generated route for
-/// [_i5.GoogleRegScreen]
-class GoogleRegRoute extends _i8.PageRouteInfo<GoogleRegRouteArgs> {
+/// [_i7.GoogleRegScreen]
+class GoogleRegRoute extends _i12.PageRouteInfo<GoogleRegRouteArgs> {
   GoogleRegRoute({
-    _i9.Key? key,
+    _i13.Key? key,
     required dynamic uid,
-    List<_i8.PageRouteInfo>? children,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           GoogleRegRoute.name,
           args: GoogleRegRouteArgs(
@@ -203,8 +263,8 @@ class GoogleRegRoute extends _i8.PageRouteInfo<GoogleRegRouteArgs> {
 
   static const String name = 'GoogleRegRoute';
 
-  static const _i8.PageInfo<GoogleRegRouteArgs> page =
-      _i8.PageInfo<GoogleRegRouteArgs>(name);
+  static const _i12.PageInfo<GoogleRegRouteArgs> page =
+      _i12.PageInfo<GoogleRegRouteArgs>(name);
 }
 
 class GoogleRegRouteArgs {
@@ -213,7 +273,7 @@ class GoogleRegRouteArgs {
     required this.uid,
   });
 
-  final _i9.Key? key;
+  final _i13.Key? key;
 
   final dynamic uid;
 
@@ -224,12 +284,26 @@ class GoogleRegRouteArgs {
 }
 
 /// generated route for
-/// [_i6.HomeScreen]
-class HomeRoute extends _i8.PageRouteInfo<HomeRouteArgs> {
+/// [_i8.HistoryScreen]
+class HistoryRoute extends _i12.PageRouteInfo<void> {
+  const HistoryRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          HistoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HistoryRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i9.HomeScreen]
+class HomeRoute extends _i12.PageRouteInfo<HomeRouteArgs> {
   HomeRoute({
-    _i11.Key? key,
-    required List<_i10.Recommendation> response,
-    List<_i8.PageRouteInfo>? children,
+    _i15.Key? key,
+    required List<_i14.Recommendation> response,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           HomeRoute.name,
           args: HomeRouteArgs(
@@ -241,8 +315,8 @@ class HomeRoute extends _i8.PageRouteInfo<HomeRouteArgs> {
 
   static const String name = 'HomeRoute';
 
-  static const _i8.PageInfo<HomeRouteArgs> page =
-      _i8.PageInfo<HomeRouteArgs>(name);
+  static const _i12.PageInfo<HomeRouteArgs> page =
+      _i12.PageInfo<HomeRouteArgs>(name);
 }
 
 class HomeRouteArgs {
@@ -251,9 +325,9 @@ class HomeRouteArgs {
     required this.response,
   });
 
-  final _i11.Key? key;
+  final _i15.Key? key;
 
-  final List<_i10.Recommendation> response;
+  final List<_i14.Recommendation> response;
 
   @override
   String toString() {
@@ -262,11 +336,25 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i7.RegisterScreen]
-class RegisterRoute extends _i8.PageRouteInfo<RegisterRouteArgs> {
+/// [_i10.ProfileScreen]
+class ProfileRoute extends _i12.PageRouteInfo<void> {
+  const ProfileRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          ProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i11.RegisterScreen]
+class RegisterRoute extends _i12.PageRouteInfo<RegisterRouteArgs> {
   RegisterRoute({
-    _i9.Key? key,
-    List<_i8.PageRouteInfo>? children,
+    _i13.Key? key,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           RegisterRoute.name,
           args: RegisterRouteArgs(key: key),
@@ -275,14 +363,14 @@ class RegisterRoute extends _i8.PageRouteInfo<RegisterRouteArgs> {
 
   static const String name = 'RegisterRoute';
 
-  static const _i8.PageInfo<RegisterRouteArgs> page =
-      _i8.PageInfo<RegisterRouteArgs>(name);
+  static const _i12.PageInfo<RegisterRouteArgs> page =
+      _i12.PageInfo<RegisterRouteArgs>(name);
 }
 
 class RegisterRouteArgs {
   const RegisterRouteArgs({this.key});
 
-  final _i9.Key? key;
+  final _i13.Key? key;
 
   @override
   String toString() {

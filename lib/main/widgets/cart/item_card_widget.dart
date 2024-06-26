@@ -1,13 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/main/get_all_data.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
 import 'package:flutter_firebase_parfumery/main/bloc/cart/cart_bloc.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
+import 'package:flutter_firebase_parfumery/widgets/loading_widget.dart';
 import 'package:flutter_firebase_parfumery/widgets/show_loading_circle.dart';
 import 'package:flutter_firebase_parfumery/widgets/show_snack_bar.dart';
 import 'package:sizer/sizer.dart';
@@ -70,15 +73,20 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
               child: PageView.builder(
                   itemCount: widget.currentItem.picUrls!.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                        padding:
-                            EdgeInsets.only(right: 4.w, left: 4.w, top: 2.h),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: Image.network(
-                              widget.currentItem.picUrls![index],
-                              fit: BoxFit.fill,
-                            )));
+                    return CachedNetworkImage(
+                      imageUrl: widget.currentItem.picUrls![index],
+                      placeholder: (context, url) {
+                        return const loadingWidget();
+                      },
+                      errorWidget: (context, url, error) {
+                        return Image.asset(errorIcon);
+                      },
+                      imageBuilder: (context, imageProvider) {
+                        return Container(
+                           margin: EdgeInsets.only(right: 4.w, left: 4.w, top: 2.h),
+                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),image: DecorationImage(image: imageProvider,fit: BoxFit.cover)),);
+                      },
+                    );
                   }),
             ),
             SizedBox(

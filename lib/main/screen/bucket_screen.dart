@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
+import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/cart/cart_decoration.dart';
 import 'package:flutter_firebase_parfumery/widgets/loading_widget.dart';
@@ -15,7 +17,7 @@ import 'package:sizer/sizer.dart';
 import '../bloc/bucket/bucket_bloc.dart';
 import '../models/cart/cart.dart';
 import '../widgets/cart/price_widget.dart';
-
+@RoutePage()
 class BucketScreen extends StatefulWidget {
   const BucketScreen({super.key});
 
@@ -64,10 +66,11 @@ class _BucketScreenState extends State<BucketScreen> {
         }
         if(state is BucketLoaded){
           Navigator.of(context).pop();
+          AutoRouter.of(context).push(BottomNavigation(response: recomendationList));
           ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'Beautiful', ContentType.success));
         }
         if(state is BucketFailure){
-          Navigator.of(context).pop();
+          AutoRouter.of(context).popForced();
           ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'you forget information or server error', ContentType.failure));
         }
       },
@@ -190,22 +193,13 @@ class _BucketScreenState extends State<BucketScreen> {
                                                       onPressed: () {
                                                         minusOne() async {
                                                           final countDefenition =
-                                                              currentCart
-                                                                          .count >
-                                                                      0
-                                                                  ? currentCart
-                                                                          .count -
-                                                                      1
-                                                                  : currentCart
-                                                                          .count +
-                                                                      1;
+                                                              currentCart.count > 0 ? currentCart.count -1
+                                                                  : currentCart.count + 1;
                                                           currentCart =
                                                               currentCart.copyWith(
                                                                   count:
                                                                       countDefenition);
-                                                          await mainRepository
-                                                              .changeCard(
-                                                                  currentCart);
+                                                          await mainRepository.changeCard(currentCart);
                                                           sumall = 0;
                                                           minusAllCartItems();
                                                           setState(() {});
@@ -240,12 +234,8 @@ class _BucketScreenState extends State<BucketScreen> {
                                                         plusOne() async {
                                                           currentCart =
                                                               currentCart.copyWith(
-                                                                  count: currentCart
-                                                                          .count +
-                                                                      1);
-                                                          await mainRepository
-                                                              .changeCard(
-                                                                  currentCart);
+                                                                  count: currentCart.count + 1);
+                                                          await mainRepository.changeCard(currentCart);
                                                           sumall = 0;
                                                           sumAllCartitems();
                                                           setState(() {});

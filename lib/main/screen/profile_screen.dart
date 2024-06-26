@@ -19,6 +19,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../core/styles/widget/text_styles.dart';
 
+@RoutePage()
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
