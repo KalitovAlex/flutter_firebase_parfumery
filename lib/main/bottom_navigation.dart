@@ -11,8 +11,8 @@ import 'package:sizer/sizer.dart';
 @RoutePage()
 class BottomNavigationScreen extends StatefulWidget {
 
-  BottomNavigationScreen({super.key, required this.response});
-  List<Recommendation> response; 
+  BottomNavigationScreen({super.key, this.response});
+  List<Recommendation>? response; 
 
   @override
   State<BottomNavigationScreen> createState() => _BottomNavigationState();
@@ -45,7 +45,7 @@ class _BottomNavigationState extends State<BottomNavigationScreen> {
     canPop: false,
     child: AutoTabsRouter(
       routes: [
-        HomeRoute(response: widget.response),
+        HomeRoute(response: widget.response!),
         const BucketRoute(),
         const FavoriteRoute(),
         const HistoryRoute(),

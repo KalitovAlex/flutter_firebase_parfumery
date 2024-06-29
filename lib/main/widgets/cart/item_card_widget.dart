@@ -38,6 +38,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
         'Succesfuly',
         'You add ${widget.currentItem.title} to cart',
         ContentType.success));
+        
         }
         if(state is CartFailure){
         Navigator.of(context).pop();

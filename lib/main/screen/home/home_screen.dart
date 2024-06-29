@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
+import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/banner_widget.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/categories_widget.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/home/recomendation_widget.dart';
 import 'package:sizer/sizer.dart';
 
-import '../models/recomendation/recommendation.dart';
+import '../../models/recomendation/recommendation.dart';
 @RoutePage()
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key,required this.response});
@@ -36,7 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Row(
                   children: [
-                    IconButton(onPressed: (){}, icon: Image.asset('assets/bell_icon.png',width: 10.w,height: 6.h,)),
+                    IconButton(onPressed: (){
+                    AutoRouter.of(context).push(const NotificationRoute());
+                    }, icon: Image.asset('assets/bell_icon.png',width: 10.w,height: 6.h,)),
                     IconButton(onPressed: (){}, icon: Image.asset('assets/search_icon.png', width: 10.w,height: 6.h,))
                   ],
                 ),
