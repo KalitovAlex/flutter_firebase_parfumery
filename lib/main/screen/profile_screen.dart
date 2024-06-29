@@ -66,6 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         final blocCommand = BlocProvider.of<ProfileBloc>(context);
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             title: Text('Profile', style: theme.textTheme.titleMedium),
             centerTitle: false,
           ),

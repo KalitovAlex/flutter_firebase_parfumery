@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_firebase_parfumery/core/main/get_all_data.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 
@@ -12,7 +13,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       try{
       bool? response;
       allCart.indexWhere((element) => element == diCart.copyWith(price: eventI.price, title: eventI.title, rating: eventI.rating, picUrls: eventI.picUrls, count: 1)) != -1 ? emit(CartAlready()) :  response = await mainRepository.makeCard(diCart = diCart.copyWith(price: eventI.price, title: eventI.title, rating: eventI.rating, picUrls: eventI.picUrls, count: 1));
-      response == true ? emit(CartLoaded()) : response == null ? null : emit(CartFailure());
+      if(response == true){
+        await getallCart();
+        emit(CartLoaded());
+      }
+      else if(response == null){
+        null;
+      }
+      else{emit(CartFailure());}
       }
       catch(e){
         talker.error(e);

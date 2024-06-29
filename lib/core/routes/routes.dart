@@ -12,8 +12,8 @@ class AppRouter extends $AppRouter {
   AutoRoute(page: GoogleRegRoute.page),
   AutoRoute(page: ForgotPassword.page),
   AutoRoute(page: BottomNavigationRoute.page, children: [
-  AutoRoute(page: HomeRoute.page,),
-  AutoRoute(page: BucketRoute.page),
+  AutoRoute(page: HomeRoute.page),
+  AutoRoute(page: BucketRoute.page,maintainState: false),
   AutoRoute(page: FavoriteRoute.page),
   AutoRoute(page: HistoryRoute.page),
   AutoRoute(page: ProfileRoute.page)

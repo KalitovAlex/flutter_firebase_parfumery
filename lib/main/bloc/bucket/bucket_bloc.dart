@@ -13,7 +13,8 @@ class BucketBloc extends Bloc<BucketEvent, BucketState> {
       if(event.ifDelete) {
         try{
         final response = await mainRepository.removeCard(event.cart!);
-        allCart = [mainRepository.getCard()];
+        List<dynamic> list = await mainRepository.getCard();
+        allCart = [...list];
         response == true ? emit(BucketLoaded()) : emit(BucketFailure());
         }catch(e){
           talker.error(e);

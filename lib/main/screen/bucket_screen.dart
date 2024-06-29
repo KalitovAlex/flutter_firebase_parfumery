@@ -36,19 +36,16 @@ class _BucketScreenState extends State<BucketScreen> {
     subTotal = sumall + shippingSum;
     talker.log(sumall);
   }
-
-  minusAllCartItems() {
-    for (Cart number in allCart) {
-      sumall += number.price! * number.count!;
-    }
-    shippingSum = sumall / 80;
-    subTotal = sumall + shippingSum;
-    talker.log(sumall);
+  cleansum()  {
+    sumall = 0;
+    shippingSum = 0;
+    subTotal = 0;
   }
 
   @override
   void initState() {
     super.initState();
+    talker.log('inited');
     sumAllCartitems();
   }
 
@@ -64,7 +61,9 @@ class _BucketScreenState extends State<BucketScreen> {
           return showLoadingCircle(context);
         }
         if(state is BucketLoaded){
+          cleansum();
           Navigator.of(context).pop();
+          setState(() {sumAllCartitems();});
           ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner(good, 'Beautiful', ContentType.success));
         }
         if(state is BucketFailure){
@@ -101,6 +100,19 @@ class _BucketScreenState extends State<BucketScreen> {
                         itemCount: allCart.length,
                         itemBuilder: (BuildContext context, int index) {
                           dynamic currentCart = allCart[index];
+                            minusOne() async {
+                            final countDefenition =
+                            currentCart.count > 0 ? currentCart.count -1
+                            : currentCart.count + 1;
+                            currentCart =
+                            currentCart.copyWith(
+                            count:
+                            countDefenition);
+                            await mainRepository.changeCard(currentCart);
+                            sumall = 0;
+                            sumAllCartitems();
+                            setState(() {});
+                          }
                           return CachedNetworkImage(
                               imageUrl: currentCart.picUrls!.first,
                               placeholder: (context, url) {
@@ -190,19 +202,6 @@ class _BucketScreenState extends State<BucketScreen> {
                                                 children: [
                                                   IconButton(
                                                       onPressed: () {
-                                                        minusOne() async {
-                                                          final countDefenition =
-                                                              currentCart.count > 0 ? currentCart.count -1
-                                                                  : currentCart.count + 1;
-                                                          currentCart =
-                                                              currentCart.copyWith(
-                                                                  count:
-                                                                      countDefenition);
-                                                          await mainRepository.changeCard(currentCart);
-                                                          sumall = 0;
-                                                          minusAllCartItems();
-                                                          setState(() {});
-                                                        }
 
                                                         minusOne();
                                                       },

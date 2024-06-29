@@ -54,6 +54,8 @@ class MainRepository  extends AbstractMainRepository{
     try{
       final cartBox = await Hive.openBox(cart);
       cartBox.add(card);
+      List<dynamic> list = await mainRepository.getCard();
+      allCart = list;
       cartBox.close();
       return true;
     } catch(e){

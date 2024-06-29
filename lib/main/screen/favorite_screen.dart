@@ -8,7 +8,9 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Favorites', style: Theme.of(context).textTheme.titleMedium,),centerTitle: false,),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('Favorites', style: Theme.of(context).textTheme.titleMedium,),centerTitle: false,),
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

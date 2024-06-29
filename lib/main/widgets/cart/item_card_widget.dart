@@ -1,12 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/consants.dart';
-import 'package:flutter_firebase_parfumery/core/main/get_all_data.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
-import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
 import 'package:flutter_firebase_parfumery/main/bloc/cart/cart_bloc.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
@@ -35,8 +32,6 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
           showLoadingCircle(context);
         }
         if(state is CartLoaded) {
-        getallCart();
-        context.router.replaceAll([BottomNavigationRoute(response: recomendationList), HomeRoute(response: recomendationList)]);
         ScaffoldMessenger.of(context)
         ..clearMaterialBanners()
         ..showSnackBar(materialBanner(
