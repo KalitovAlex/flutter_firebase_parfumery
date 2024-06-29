@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         }
         if(state is ProfileLoaded){
           Navigator.of(context).pop();
-          AutoRouter.of(context).push(BottomNavigation(response: recomendationList));
+          AutoRouter.of(context).push(BottomNavigationRoute(response: recomendationList));
           ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'you succesfully changed profile info', ContentType.success));
         }
         if(state is ProfileFailure){

@@ -23,13 +23,14 @@ class RecommendationAdapter extends TypeAdapter<Recommendation> {
       rating: fields[3] as double?,
       picUrls: (fields[4] as List?)?.cast<String>(),
       id: fields[5] as int?,
+      category: fields[6] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Recommendation obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class RecommendationAdapter extends TypeAdapter<Recommendation> {
       ..writeByte(4)
       ..write(obj.picUrls)
       ..writeByte(5)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(6)
+      ..write(obj.category);
   }
 
   @override
@@ -69,6 +72,7 @@ _$RecommendationImpl _$$RecommendationImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as String)
           .toList(),
       id: (json['id'] as num?)?.toInt(),
+      category: json['category'] as String?,
     );
 
 Map<String, dynamic> _$$RecommendationImplToJson(
@@ -80,4 +84,5 @@ Map<String, dynamic> _$$RecommendationImplToJson(
       'rating': instance.rating,
       'pic_urls': instance.picUrls,
       'id': instance.id,
+      'category': instance.category,
     };

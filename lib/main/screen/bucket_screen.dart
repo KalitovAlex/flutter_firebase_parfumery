@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
-import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/cart/cart_decoration.dart';
 import 'package:flutter_firebase_parfumery/widgets/loading_widget.dart';
@@ -66,17 +65,17 @@ class _BucketScreenState extends State<BucketScreen> {
         }
         if(state is BucketLoaded){
           Navigator.of(context).pop();
-          AutoRouter.of(context).push(BottomNavigation(response: recomendationList));
-          ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'Beautiful', ContentType.success));
+          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner(good, 'Beautiful', ContentType.success));
         }
         if(state is BucketFailure){
           AutoRouter.of(context).popForced();
-          ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'you forget information or server error', ContentType.failure));
+          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner(oops, 'you forget information or server error', ContentType.failure));
         }
       },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -273,7 +272,7 @@ class _BucketScreenState extends State<BucketScreen> {
                     ),
                     Container(
                       margin:
-                          EdgeInsets.only(left: 3.w, right: 3.w, bottom: 1.h),
+                          EdgeInsets.only(left: 3.w, right: 3.w,top: 1.h),
                       decoration: cartDecoration,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -306,7 +305,7 @@ class _BucketScreenState extends State<BucketScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 12.h,
+                      height: 2.h,
                     )
                   ],
                 ),

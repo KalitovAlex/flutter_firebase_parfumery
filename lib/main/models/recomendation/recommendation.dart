@@ -25,7 +25,10 @@ class Recommendation with _$Recommendation {
         List<String>? picUrls,
         @HiveField(5)
         @JsonKey(name: "id")
-        int? id
+        int? id,
+        @HiveField(6)
+        @JsonKey(name: "category")
+        String? category,
     }) = _Recommendation;
 
     factory Recommendation.fromJson(Map<String, dynamic> json) => _$RecommendationFromJson(json);

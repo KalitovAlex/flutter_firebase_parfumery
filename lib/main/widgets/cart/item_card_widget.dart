@@ -36,9 +36,9 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
         }
         if(state is CartLoaded) {
         getallCart();
-        AutoRouter.of(context).push(BottomNavigation(response: recomendationList));
+        context.router.replaceAll([BottomNavigationRoute(response: recomendationList), HomeRoute(response: recomendationList)]);
         ScaffoldMessenger.of(context)
-        ..clearSnackBars
+        ..clearMaterialBanners()
         ..showSnackBar(materialBanner(
         'Succesfuly',
         'You add ${widget.currentItem.title} to cart',
@@ -47,7 +47,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
         if(state is CartFailure){
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context)
-        ..clearSnackBars
+        ..clearMaterialBanners()
         ..showSnackBar(materialBanner(
         'Oops',
         'Maybye internal server error',
@@ -56,7 +56,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
         if(state is CartAlready){
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context)
-        ..clearSnackBars
+        ..clearMaterialBanners()
         ..showSnackBar(materialBanner(
         'Oops',
         'You have this item in your cart',

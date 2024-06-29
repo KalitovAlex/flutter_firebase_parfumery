@@ -37,7 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
         }
         if(state is AuthLoaded) {
           Navigator.of(context).pop();
-          AutoRouter.of(context).push(BottomNavigation(response: recomendationList));
+          AutoRouter.of(context).push(BottomNavigationRoute(response: recomendationList));
           ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner('Nice', 'You have successfully logged in, good luck! ', ContentType.success));
         }
         if(state is AuthFailure){

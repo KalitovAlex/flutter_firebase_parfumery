@@ -49,11 +49,11 @@ abstract class $AppRouter extends _i12.RootStackRouter {
         child: const _i2.AuthScreen(),
       );
     },
-    BottomNavigation.name: (routeData) {
-      final args = routeData.argsAs<BottomNavigationArgs>();
+    BottomNavigationRoute.name: (routeData) {
+      final args = routeData.argsAs<BottomNavigationRouteArgs>();
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i3.BottomNavigation(
+        child: _i3.BottomNavigationScreen(
           key: args.key,
           response: args.response,
         ),
@@ -151,29 +151,30 @@ class AuthRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.BottomNavigation]
-class BottomNavigation extends _i12.PageRouteInfo<BottomNavigationArgs> {
-  BottomNavigation({
+/// [_i3.BottomNavigationScreen]
+class BottomNavigationRoute
+    extends _i12.PageRouteInfo<BottomNavigationRouteArgs> {
+  BottomNavigationRoute({
     _i13.Key? key,
     required List<_i14.Recommendation> response,
     List<_i12.PageRouteInfo>? children,
   }) : super(
-          BottomNavigation.name,
-          args: BottomNavigationArgs(
+          BottomNavigationRoute.name,
+          args: BottomNavigationRouteArgs(
             key: key,
             response: response,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'BottomNavigation';
+  static const String name = 'BottomNavigationRoute';
 
-  static const _i12.PageInfo<BottomNavigationArgs> page =
-      _i12.PageInfo<BottomNavigationArgs>(name);
+  static const _i12.PageInfo<BottomNavigationRouteArgs> page =
+      _i12.PageInfo<BottomNavigationRouteArgs>(name);
 }
 
-class BottomNavigationArgs {
-  const BottomNavigationArgs({
+class BottomNavigationRouteArgs {
+  const BottomNavigationRouteArgs({
     this.key,
     required this.response,
   });
@@ -184,7 +185,7 @@ class BottomNavigationArgs {
 
   @override
   String toString() {
-    return 'BottomNavigationArgs{key: $key, response: $response}';
+    return 'BottomNavigationRouteArgs{key: $key, response: $response}';
   }
 }
 

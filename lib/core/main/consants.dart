@@ -18,3 +18,4 @@ const String good = 'Good';
 const String oops = 'Oops';
 const String errorIcon = 'assets/error_icon.png';
 const String defaultImageUrl = 'https://www.strasys.uk/wp-content/uploads/2022/02/Depositphotos_484354208_S.jpg';
+const double defaultIconSize = 25;

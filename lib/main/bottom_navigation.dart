@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/routes/routes.gr.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
@@ -8,34 +9,34 @@ import 'package:sizer/sizer.dart';
 
 
 @RoutePage()
-class BottomNavigation extends StatefulWidget {
+class BottomNavigationScreen extends StatefulWidget {
 
-  BottomNavigation({super.key, required this.response});
+  BottomNavigationScreen({super.key, required this.response});
   List<Recommendation> response; 
 
   @override
-  State<BottomNavigation> createState() => _BottomNavigationState();
+  State<BottomNavigationScreen> createState() => _BottomNavigationState();
 }
 
-class _BottomNavigationState extends State<BottomNavigation> {
+class _BottomNavigationState extends State<BottomNavigationScreen> {
 
   List<ItemConfig> _tabs() => [
           ItemConfig(
-            inactiveIcon: const Icon(CupertinoIcons.compass,color: Colors.white,),
-            icon: const Icon(CupertinoIcons.compass_fill,color: Colors.white,),
+            inactiveIcon: const Icon(CupertinoIcons.compass,color: Colors.white,size: defaultIconSize,),
+            icon: const Icon(CupertinoIcons.compass_fill,color: Colors.white,size: defaultIconSize,),
         ),
         ItemConfig(
-            inactiveIcon: const Icon(CupertinoIcons.cart,color: Colors.white,),
-            icon: const Icon(CupertinoIcons.cart_fill,color: Colors.white,),
+            inactiveIcon: const Icon(CupertinoIcons.cart,color: Colors.white,size: defaultIconSize,),
+            icon: const Icon(CupertinoIcons.cart_fill,color: Colors.white,size: defaultIconSize,),
           ),
           ItemConfig(
-            inactiveIcon: const Icon(Icons.favorite_outline,color: Colors.white,),
-            icon: const Icon(Icons.favorite,color: Colors.white,),
+            inactiveIcon: const Icon(Icons.favorite_outline,color: Colors.white,size: defaultIconSize,),
+            icon: const Icon(Icons.favorite,color: Colors.white,size: defaultIconSize,),
           ),
           ItemConfig(
-          inactiveIcon: const Icon(CupertinoIcons.doc,color: Colors.white,),
-          icon: const Icon(CupertinoIcons.doc_fill,color: Colors.white,)),
-          ItemConfig(icon: const Icon(CupertinoIcons.person_fill,color: Colors.white,),inactiveIcon: const Icon(CupertinoIcons.person, color: Colors.white,))
+          inactiveIcon: const Icon(CupertinoIcons.doc,color: Colors.white,size: defaultIconSize,),
+          icon: const Icon(CupertinoIcons.doc_fill,color: Colors.white,size: defaultIconSize,)),
+          ItemConfig(icon: const Icon(CupertinoIcons.person_fill,color: Colors.white,size: defaultIconSize,),inactiveIcon: const Icon(CupertinoIcons.person, color: Colors.white,size: defaultIconSize,))
       ];
 
   @override
@@ -53,7 +54,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
-          bottomNavigationBar:  Card(
+          bottomNavigationBar: Card(
             color: Colors.transparent,
             margin: EdgeInsets.only(bottom: 2.h, left: 5.w, right: 5.w),
             child: Style1BottomNavBar(

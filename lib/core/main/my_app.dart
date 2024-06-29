@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
             final response = await userRepository.sharedAuth(uid!);
             if(response == true){
             await mainRepository.getAllRecomendation();
-            return DeepLink([BottomNavigation(response: recomendationList)]);
+            return DeepLink([BottomNavigationRoute(response: recomendationList)]);
             }
             else{
             return const DeepLink([AuthBoard()]);
