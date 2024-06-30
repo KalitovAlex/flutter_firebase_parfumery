@@ -21,7 +21,6 @@ class price_widget extends StatelessWidget {
         children: [
           Text(title, style: textStyle.titleSmall,),
           Text('$price \$' ,style: textStyle.titleSmall,)
-          
         ],
       ),
     );

@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
+import 'package:flutter_firebase_parfumery/main/models/notification/notifications.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/repository/main/abstract_main_repository.dart';
 import 'package:flutter_firebase_parfumery/main/repository/profile/abstract_profile_repository.dart';
@@ -25,6 +26,7 @@ AbstractMainRepository mainRepository = GetIt.I<AbstractMainRepository>();
 AbstractProfileRepository profileRepository = GetIt.I<AbstractProfileRepository>();
 UserModel userModel = GetIt.I<UserModel>();
 Cart diCart = GetIt.I<Cart>();
+Notifications notificationModel = GetIt.I<Notifications>();
 // AbstractMainRepository mainRepository = GetIt.I<AbstractMainRepository>();
 
 
@@ -37,6 +39,7 @@ final fireStore = FirebaseFirestore.instance;
 //favorites
 List favorite = [];
 List<Recommendation> recomendationList = [];
+List<Notifications> notificationsList = [];
 
 //hive
 late List<dynamic> allCart;
@@ -44,3 +47,8 @@ late List<dynamic> allCart;
 
 //profile
 XFile? selectImage;
+
+//init notifications method
+getNotifications () async {
+  notificationsList = await mainRepository.getAllNotifications();
+}

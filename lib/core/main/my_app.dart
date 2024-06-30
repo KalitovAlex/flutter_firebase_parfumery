@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ForgotPasswordBloc()),
         BlocProvider(create: (context) => CartBloc()),
         BlocProvider(create: (context) => ProfileBloc()),
-        BlocProvider(create: (context) => BucketBloc())
+        BlocProvider(create: (context) => BucketBloc()),
       ],
       child: Sizer(
         builder: (context, orientation, deviceType){
@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
             final response = await userRepository.sharedAuth(uid!);
             if(response == true){
             await mainRepository.getAllRecomendation();
+            getNotifications();
             return DeepLink([BottomNavigationRoute(response: recomendationList)]);
             }
             else{

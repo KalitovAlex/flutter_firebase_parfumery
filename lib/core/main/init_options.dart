@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
+import 'package:flutter_firebase_parfumery/main/models/notification/notifications.dart';
 import 'package:flutter_firebase_parfumery/main/repository/profile/abstract_profile_repository.dart';
 import 'package:flutter_firebase_parfumery/main/repository/profile/profile_repository.dart';
 import 'package:get_it/get_it.dart';
@@ -30,6 +31,7 @@ void initSingletons(){
   GetIt.I.registerLazySingleton<Recommendation>(() => const Recommendation());
   GetIt.I.registerLazySingleton<Cart>(() => const Cart());
   GetIt.I.registerLazySingleton<AbstractProfileRepository>(() => ProfileRepository());
+  GetIt.I.registerLazySingleton<Notifications>(() => const Notifications());
 }
 void initTalker() {
   GetIt.I.registerSingleton<Talker>(talker);

@@ -53,7 +53,8 @@ abstract class $AppRouter extends _i13.RootStackRouter {
       );
     },
     BottomNavigationRoute.name: (routeData) {
-      final args = routeData.argsAs<BottomNavigationRouteArgs>();
+      final args = routeData.argsAs<BottomNavigationRouteArgs>(
+          orElse: () => const BottomNavigationRouteArgs());
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i3.BottomNavigationScreen(
@@ -165,7 +166,7 @@ class BottomNavigationRoute
     extends _i13.PageRouteInfo<BottomNavigationRouteArgs> {
   BottomNavigationRoute({
     _i14.Key? key,
-    required List<_i15.Recommendation> response,
+    List<_i15.Recommendation>? response,
     List<_i13.PageRouteInfo>? children,
   }) : super(
           BottomNavigationRoute.name,
@@ -185,12 +186,12 @@ class BottomNavigationRoute
 class BottomNavigationRouteArgs {
   const BottomNavigationRouteArgs({
     this.key,
-    required this.response,
+    this.response,
   });
 
   final _i14.Key? key;
 
-  final List<_i15.Recommendation> response;
+  final List<_i15.Recommendation>? response;
 
   @override
   String toString() {

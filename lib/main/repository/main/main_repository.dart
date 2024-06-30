@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
+import 'package:flutter_firebase_parfumery/main/models/notification/notifications.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
 import 'package:flutter_firebase_parfumery/main/repository/main/abstract_main_repository.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -22,6 +23,7 @@ class MainRepository  extends AbstractMainRepository{
       return [];
     }
   }
+  
 
   @override
   Future<void> changeCard(Cart currentCart) async{
@@ -75,6 +77,23 @@ class MainRepository  extends AbstractMainRepository{
     } catch(e){
       talker.error(e);
       return false;
+    }
+  }
+
+  @override
+  Future<List<Notifications>> getAllNotifications() async {
+    try{
+      List<Notifications> notifyList = [];
+      final response = await notificationReference.get();
+      notifyList = response.docs.map((element) => Notifications.fromJson(element.data())).toList();
+      return notifyList;
+    } on FirebaseException{
+      talker.error("Error al obtener las notificaciones");
+      return [];
+    }
+     catch(e){
+      talker.error(e);
+      return [];
     }
   }
   

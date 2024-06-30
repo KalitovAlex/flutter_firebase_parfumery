@@ -18,6 +18,6 @@ class AppRouter extends $AppRouter {
   AutoRoute(page: HistoryRoute.page),
   AutoRoute(page: ProfileRoute.page),
   ]),
-  AutoRoute(page: NotificationRoute.page)
+  AutoRoute(page: NotificationRoute.page, maintainState: false)
  ];
 }
