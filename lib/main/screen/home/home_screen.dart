@@ -40,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     IconButton(onPressed: (){
                     AutoRouter.of(context).push(const NotificationRoute());
                     }, icon: Image.asset('assets/bell_icon.png',width: 10.w,height: 6.h,)),
-                    IconButton(onPressed: (){}, icon: Image.asset('assets/search_icon.png', width: 10.w,height: 6.h,))
+                    IconButton(onPressed: (){
+                      AutoRouter.of(context).push(const SearchRoute());
+                    }, icon: Image.asset('assets/search_icon.png', width: 10.w,height: 6.h,))
                   ],
                 ),
               ],

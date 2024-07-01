@@ -22,3 +22,4 @@ const String defaultImageUrl = 'https://www.strasys.uk/wp-content/uploads/2022/0
 const double defaultIconSize = 25;
 const String title = 'title';
 const String desc = 'desc';
+const String search = 'Search';

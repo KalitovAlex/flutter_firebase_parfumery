@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/widgets/cart/cart_decoration.dart';
 import 'package:flutter_firebase_parfumery/widgets/loading_widget.dart';
@@ -38,11 +37,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
             itemCount: notificationsList.length,
             itemBuilder: (BuildContext context, int index) {
               final currentNotification = notificationsList[index];
-              return Container(decoration: cartDecoration,width: double.infinity,height: 25.h,padding: EdgeInsets.only(left: 5.w,right: 5.w,top: 2.h),child:  Row(
+              return Container(decoration: cartDecoration,width: double.infinity,height:30.h,margin: EdgeInsets.only(left: 5.w,right: 5.w,top: 2.h),child:  Row(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 2.h),
-                    child: CachedNetworkImage(
+                  CachedNetworkImage(
                       imageUrl: currentNotification.picUrls!,
                       imageBuilder:(context, imageProvider) {
                         return ClipRRect(borderRadius: BorderRadius.circular(30),child: Container(width: 35.w, height: 25.h,decoration: BoxDecoration(image: DecorationImage(image: imageProvider,fit: BoxFit.cover))));
@@ -51,15 +48,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         return const loadingWidget();
                       },
                     ),
-                  ),
                   SizedBox(width: 3.w,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 4.h,),
-                      Text(title, style: theme.textTheme.titleSmall,),
+                      SizedBox(height: 2.h,),
                       Text(currentNotification.title!, style: theme.textTheme.titleMedium,),
-                      Text(desc, style: theme.textTheme.titleSmall,),
+                      SizedBox(height: 20.h, width: 51.w,child: Text(currentNotification.desc!, softWrap: true, overflow: TextOverflow.fade,maxLines: 10,),),
                     ],
                   )
                 ],
