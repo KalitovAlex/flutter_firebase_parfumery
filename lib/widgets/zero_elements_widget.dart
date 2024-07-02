@@ -24,7 +24,7 @@ class ZeroElementsWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: 4.h,),
-        Text('You dont $move any elements in $title', style: Theme.of(context).textTheme.titleMedium,)
+        Text('I dont $move any $title', style: Theme.of(context).textTheme.titleMedium,)
       ],
     ),);
   }

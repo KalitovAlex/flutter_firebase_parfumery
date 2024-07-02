@@ -33,9 +33,6 @@ class _BottomNavigationState extends State<BottomNavigationScreen> {
             inactiveIcon: const Icon(Icons.favorite_outline,color: Colors.white,size: defaultIconSize,),
             icon: const Icon(Icons.favorite,color: Colors.white,size: defaultIconSize,),
           ),
-          ItemConfig(
-          inactiveIcon: const Icon(CupertinoIcons.doc,color: Colors.white,size: defaultIconSize,),
-          icon: const Icon(CupertinoIcons.doc_fill,color: Colors.white,size: defaultIconSize,)),
           ItemConfig(icon: const Icon(CupertinoIcons.person_fill,color: Colors.white,size: defaultIconSize,),inactiveIcon: const Icon(CupertinoIcons.person, color: Colors.white,size: defaultIconSize,))
       ];
 
@@ -48,7 +45,6 @@ class _BottomNavigationState extends State<BottomNavigationScreen> {
         HomeRoute(response: widget.response!),
         const BucketRoute(),
         const FavoriteRoute(),
-        const HistoryRoute(),
         const ProfileRoute(),
       ],
       builder: (context, child) {

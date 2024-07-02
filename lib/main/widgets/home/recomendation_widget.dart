@@ -63,7 +63,7 @@ class _recomendation_widgetState extends State<recomendation_widget> {
                                     ClipRRect(
                                             borderRadius: BorderRadius.circular(30),
                                               child: SizedBox(
-                                                height: 20.h,
+                                                height: 19.h,
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                     image: DecorationImage(image: 
