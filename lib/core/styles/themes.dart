@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme = ThemeData(
   appBarTheme: const AppBarTheme(color: Colors.transparent,surfaceTintColor: Colors.transparent),
-  colorScheme: ColorScheme.fromSeed(seedColor:  const Color.fromARGB(255, 117, 164, 245).withOpacity(0.7),brightness: Brightness.light).copyWith(surface: Colors.blue),
+  colorScheme: ColorScheme.fromSeed(seedColor:  Colors.white,brightness: Brightness.light).copyWith(surface: Colors.white),
   textTheme: TextTheme(
     headlineLarge: GoogleFonts.robotoSerif(
       color: Colors.green,
