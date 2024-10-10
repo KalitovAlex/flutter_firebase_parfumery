@@ -33,20 +33,29 @@ class GoogleRegScreen extends StatelessWidget {
           AutoRouter.of(context).push(HomeRoute(response: recomendationList));
           ScaffoldMessenger.of(context)
             ..clearMaterialBanners()
-            ..showSnackBar(materialBanner('Хорошо', 'Вы успешно вошли в систему, удачи!', ContentType.success));
+            ..showSnackBar(materialBanner('Хорошо',
+                'Вы успешно вошли в систему, удачи!', ContentType.success));
         }
         if (state is GoogleFailure) {
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context)
             ..clearMaterialBanners()
-            ..showSnackBar(materialBanner('Проблема', 'У нас могут быть проблемы с сервером, попробуйте войти снова, мы все исправим в ближайшее время', ContentType.failure));
+            ..showSnackBar(materialBanner(
+                'Проблема',
+                'У нас могут быть проблемы с сервером, попробуйте войти снова, мы все исправим в ближайшее время',
+                ContentType.failure));
         }
       },
       builder: (context, state) {
         return Scaffold(
             body: Stack(children: [
           Container(
-            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/background_main.png',), fit: BoxFit.cover)),
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                      'assets/background_main.png',
+                    ),
+                    fit: BoxFit.cover)),
             padding: EdgeInsets.only(left: 5.w, right: 5.w, top: 35.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -73,7 +82,8 @@ class GoogleRegScreen extends StatelessWidget {
                   decoration: authTextStyles,
                   height: 6.h,
                   child: TextFormField(
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                     maxLength: 11,
                     controller: _phoneNumberController,
                     decoration: textFormFieldRegistrationDecoration(
@@ -89,12 +99,18 @@ class GoogleRegScreen extends StatelessWidget {
                   height: 6.h,
                   child: TextButton(
                       onPressed: () {
-                        if (_fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty) {
-                          blocCommand.add(GoogleEvent(fullName: _fullNameController.text, phoneNumber: _phoneNumberController.text));
+                        if (_fullNameController.text.isNotEmpty &&
+                            _phoneNumberController.text.isNotEmpty) {
+                          blocCommand.add(GoogleEvent(
+                              fullName: _fullNameController.text,
+                              phoneNumber: _phoneNumberController.text));
                         } else {
                           ScaffoldMessenger.of(context)
                             ..clearSnackBars()
-                            ..showSnackBar(materialBanner('Упс', 'Заполните все поля правильно, возможно, вы где-то ошиблись', ContentType.failure));
+                            ..showSnackBar(materialBanner(
+                                'Упс',
+                                'Заполните все поля правильно, возможно, вы где-то ошиблись',
+                                ContentType.failure));
                         }
                       },
                       child: Text(

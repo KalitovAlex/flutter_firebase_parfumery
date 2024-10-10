@@ -34,35 +34,32 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => BucketBloc()),
       ],
       child: Sizer(
-        builder: (context, orientation, deviceType){
+        builder: (context, orientation, deviceType) {
           return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: appRouter.config(
-            deepLinkBuilder: (deepLink) async {
-            final preferences = await SharedPreferences.getInstance();
-            final authUid = preferences.getString('uid');
-            uid = preferences.getString('uid');
-            if(authUid != null){
-            final response = await userRepository.sharedAuth(uid!);
-            if(response == true){
-            await mainRepository.getAllRecomendation();
-            getNotifications();
-            return DeepLink([BottomNavigationRoute(response: recomendationList)]);
-            }
-            else{
-            return const DeepLink([AuthBoard()]);
-            }
-            }
-            else { 
-              return const DeepLink([AuthBoard()]);
-            }
-            },
-            navigatorObservers: () => [
-              TalkerRouteObserver(talker)
-            ],
-          ),
-          theme: lightTheme,
-        );
+            debugShowCheckedModeBanner: false,
+            routerConfig: appRouter.config(
+              deepLinkBuilder: (deepLink) async {
+                final preferences = await SharedPreferences.getInstance();
+                final authUid = preferences.getString('uid');
+                uid = preferences.getString('uid');
+                if (authUid != null) {
+                  final response = await userRepository.sharedAuth(uid!);
+                  if (response == true) {
+                    await mainRepository.getAllRecomendation();
+                    getNotifications();
+                    return DeepLink(
+                        [BottomNavigationRoute(response: recomendationList)]);
+                  } else {
+                    return const DeepLink([AuthBoard()]);
+                  }
+                } else {
+                  return const DeepLink([AuthBoard()]);
+                }
+              },
+              navigatorObservers: () => [TalkerRouteObserver(talker)],
+            ),
+            theme: lightTheme,
+          );
         },
       ),
     );
