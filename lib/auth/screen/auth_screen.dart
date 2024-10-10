@@ -137,9 +137,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       child: TextButton(
                           onPressed: () async {
                             if (_emailController.text.isNotEmpty &&
-                                _passwordController.text.isNotEmpty &&
-                                _emailController.text.contains('@') &&
-                                _emailController.text.contains('.')) {
+                                _passwordController.text.isNotEmpty) {
                               blocCommand.add(AuthEvent(
                                   ifGoogle: false,
                                   email: _emailController.text,
@@ -163,7 +161,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       height: 1.5.h,
                     ),
                     Text(
-                      '---------------------- или войдите с помощью ----------------------',
+                      '-------------- или войдите с помощью --------------',
                       style: textStylePicker(context).labelMedium,
                     ),
                     Row(

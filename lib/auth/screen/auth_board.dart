@@ -22,7 +22,7 @@ class AuthBoard extends StatelessWidget {
               height: 2.h,
             ),
             RichText(
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.center,
                 text: TextSpan(children: [
                   TextSpan(
                       text: 'Открывая мир ',
@@ -74,7 +74,7 @@ class AuthBoard extends StatelessWidget {
               height: 0.5.h,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Уже есть аккаунт?',
