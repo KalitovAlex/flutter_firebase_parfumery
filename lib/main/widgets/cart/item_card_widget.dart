@@ -128,7 +128,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Total Price",
+                                  "Итоговая цена",
                                   style: textStylePicker(context).titleMedium,
                                 ),
                                 Text(
@@ -146,7 +146,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                                     bloccommand.add(CartEvent(currentItem: widget.currentItem));
                                   },
                                   child: Text(
-                                    'Add to cart',
+                                    'В корзину',
                                     style: textStylePicker(context)
                                         .displayMedium,
                                   ))

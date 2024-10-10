@@ -10,11 +10,11 @@ class FavoriteScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Favorites', style: Theme.of(context).textTheme.titleMedium,),centerTitle: false,),
+        title: Text('Избранное', style: Theme.of(context).textTheme.titleMedium,),centerTitle: false,),
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-        favorites_widget(),
+        FavoritesWidget(),
         ],
       ),
     );

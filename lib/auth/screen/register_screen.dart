@@ -28,22 +28,34 @@ class RegisterScreen extends StatelessWidget {
     final blocCommand = BlocProvider.of<RegisterBloc>(context);
     return BlocConsumer<RegisterBloc, RegisterState>(
       listener: (context, state) {
-        if(state is RegisterLoading){
+        if (state is RegisterLoading) {
           showLoadingCircle(context);
         }
-        if(state is RegisterLoaded){
+        if (state is RegisterLoaded) {
           Navigator.pop(context);
-          AutoRouter.of(context).push(BottomNavigationRoute(response: recomendationList));
-          ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Good', 'Good luck)', ContentType.success));
+          AutoRouter.of(context)
+              .push(BottomNavigationRoute(response: recomendationList));
+          ScaffoldMessenger.of(context)
+            ..clearSnackBars()
+            ..showSnackBar(
+                materialBanner('Хорошо', 'Удачи!', ContentType.success));
         }
-        if(state is RegisterLoadedWithGoogle){
+        if (state is RegisterLoadedWithGoogle) {
           Navigator.pop(context);
           AutoRouter.of(context).push(GoogleRegRoute(uid: state.uid));
-          ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Good', 'Super! fill in all the information in order to get into the world of the best smells', ContentType.success));
+          ScaffoldMessenger.of(context)
+            ..clearSnackBars()
+            ..showSnackBar(materialBanner(
+                'Хорошо',
+                'Супер! Заполните всю информацию, чтобы попасть в мир лучших ароматов',
+                ContentType.success));
         }
-        if(state is RegisterFailure){
+        if (state is RegisterFailure) {
           Navigator.pop(context);
-          ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Oops', 'Our servers are currently down, we will fix it soon, try again later :)', ContentType.failure));
+          ScaffoldMessenger.of(context)
+            ..clearSnackBars()
+            ..showSnackBar(materialBanner(
+                'Упс', state.error.toString(), ContentType.failure));
         }
       },
       builder: (context, state) {
@@ -56,10 +68,10 @@ class RegisterScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Registration',
+                  'Регистрация',
                   style: textStylePicker(context).headlineLarge,
                 ),
-                Text('Join the community of the best platform',
+                Text('Присоединяйтесь к сообществу лучшей платформы',
                     style: textStylePicker(context).labelMedium),
                 Container(
                   margin: EdgeInsets.only(top: 2.h),
@@ -68,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
                   child: TextFormField(
                     controller: _fullNameController,
                     decoration: textFormFieldRegistrationDecoration(
-                        CupertinoIcons.person_fill, 'Full name'),
+                        CupertinoIcons.person_fill, 'Полное имя'),
                   ),
                 ),
                 Container(
@@ -78,7 +90,7 @@ class RegisterScreen extends StatelessWidget {
                   child: TextFormField(
                     controller: _emailController,
                     decoration: textFormFieldRegistrationDecoration(
-                        CupertinoIcons.mail_solid, 'Email'),
+                        CupertinoIcons.mail_solid, 'Электронная почта'),
                   ),
                 ),
                 Container(
@@ -89,7 +101,7 @@ class RegisterScreen extends StatelessWidget {
                     obscureText: true,
                     controller: _passwordController,
                     decoration: textFormFieldRegistrationDecoration(
-                        CupertinoIcons.lock_fill, 'Password'),
+                        CupertinoIcons.lock_fill, 'Пароль'),
                   ),
                 ),
                 Container(
@@ -100,7 +112,7 @@ class RegisterScreen extends StatelessWidget {
                     obscureText: true,
                     controller: _confirmPasswordController,
                     decoration: textFormFieldRegistrationDecoration(
-                        CupertinoIcons.lock_fill, 'Confirm Password'),
+                        CupertinoIcons.lock_fill, 'Подтвердите пароль'),
                   ),
                 ),
                 Container(
@@ -108,11 +120,12 @@ class RegisterScreen extends StatelessWidget {
                   decoration: authTextStyles,
                   height: 6.h,
                   child: TextFormField(
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                     maxLength: 11,
                     controller: _phoneNumberController,
                     decoration: textFormFieldRegistrationDecoration(
-                        CupertinoIcons.person_fill, 'Phone Number'),
+                        CupertinoIcons.person_fill, 'Номер телефона'),
                   ),
                 ),
                 SizedBox(
@@ -124,21 +137,39 @@ class RegisterScreen extends StatelessWidget {
                   height: 6.h,
                   child: TextButton(
                       onPressed: () {
-                        if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _confirmPasswordController.text.isNotEmpty && _fullNameController.text.isNotEmpty && _phoneNumberController.text.isNotEmpty && _passwordController.text == _confirmPasswordController.text && _emailController.text.contains('@') && _emailController.text.contains('.')){
-                        blocCommand.add(RegisterEvent(ifGoogle: false, email: _emailController.text, password: _passwordController.text, userName: _fullNameController.text, phoneNumber: _phoneNumberController.text));}
-                        else{
-                          ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Oops', 'fill in all the fields correctly, you may have made a mistake somewhere)', ContentType.failure));
+                        if (_emailController.text.isNotEmpty &&
+                            _passwordController.text.isNotEmpty &&
+                            _confirmPasswordController.text.isNotEmpty &&
+                            _fullNameController.text.isNotEmpty &&
+                            _phoneNumberController.text.isNotEmpty &&
+                            _passwordController.text ==
+                                _confirmPasswordController.text &&
+                            _emailController.text.contains('@') &&
+                            _emailController.text.contains('.')) {
+                          blocCommand.add(RegisterEvent(
+                              ifGoogle: false,
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                              userName: _fullNameController.text,
+                              phoneNumber: _phoneNumberController.text));
+                        } else {
+                          ScaffoldMessenger.of(context)
+                            ..clearSnackBars()
+                            ..showSnackBar(materialBanner(
+                                'Упс',
+                                'Заполните все поля правильно, возможно, вы где-то ошиблись',
+                                ContentType.failure));
                         }
                       },
                       child: Text(
-                        'Sign Up',
+                        'Зарегистрироваться',
                         style: textStylePicker(context).displayMedium,
                       )),
                 ),
                 SizedBox(
                   height: 2.h,
                 ),
-                Text('------------------- Or continue with -------------------',
+                Text('------------------- Или продолжите с -------------------',
                     style: textStylePicker(context).labelMedium),
                 SizedBox(
                   height: 2.h,

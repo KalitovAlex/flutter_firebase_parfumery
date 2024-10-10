@@ -45,7 +45,7 @@ class _BucketScreenState extends State<BucketScreen> {
   @override
   void initState() {
     super.initState();
-    talker.log('inited');
+    talker.log('инициализировано');
     sumAllCartitems();
   }
 
@@ -64,11 +64,11 @@ class _BucketScreenState extends State<BucketScreen> {
           cleansum();
           Navigator.of(context).pop();
           setState(() {sumAllCartitems();});
-          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner(good, 'Beautiful', ContentType.success));
+          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner("Успешно", 'Вы успешно удалили товар из корзины', ContentType.success));
         }
         if(state is BucketFailure){
           AutoRouter.of(context).popForced();
-          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner(oops, 'you forget information or server error', ContentType.failure));
+          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner(oops, 'вы забыли информацию или ошибка сервера', ContentType.failure));
         }
       },
       builder: (context, state) {
@@ -80,10 +80,10 @@ class _BucketScreenState extends State<BucketScreen> {
               children: [
                 Text(
                   textAlign: TextAlign.left,
-                  'My Cart',
+                  'Моя корзина',
                   style: textStylePicker(context).titleMedium,
                 ),
-                Text('${allCart.length} items',
+                Text('${allCart.length} предметов',
                     style: textStylePicker(context).titleMedium)
               ],
             ),
@@ -91,7 +91,7 @@ class _BucketScreenState extends State<BucketScreen> {
           ),
           body: listIsempty
               ? const Center(
-                  child: Text('Cart is empty'),
+                  child: Text('Корзина пуста'),
                 )
               : Column(
                   children: [
@@ -279,15 +279,15 @@ class _BucketScreenState extends State<BucketScreen> {
                           price_widget(
                             textStyle: textStyle,
                             price: sumall.toString(),
-                            title: 'Cart items price:',
+                            title: 'Цена товаров в корзине:',
                           ),
                           price_widget(
                               textStyle: textStyle,
-                              title: 'Shipping price',
+                              title: 'Цена доставки',
                               price: shippingSum.toString()),
                           price_widget(
                               textStyle: textStyle,
-                              title: 'Subtotal',
+                              title: 'Итого',
                               price: subTotal.toString()),
                           Container(
                             margin: EdgeInsets.only(
@@ -296,7 +296,7 @@ class _BucketScreenState extends State<BucketScreen> {
                             child: TextButton(
                                 onPressed: () {},
                                 child: Text(
-                                  'Checkout',
+                                  'Оформить заказ',
                                   style: textStyle.displayMedium,
                                 )),
                           )

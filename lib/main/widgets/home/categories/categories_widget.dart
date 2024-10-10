@@ -25,11 +25,12 @@ class categories_widget extends StatelessWidget {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: snapshots.data!.docs.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector( // Добавляем GestureDetector для обработки нажатий
+                itemBuilder: (context, indext) {
+                  return GestureDetector(
                     onTap: () {
-                      // Переход на экран подкатегории с ошибкой
-                      AutoRouter.of(context).push(SubCategoriesRoute(subCategoryName: snapshots.data!.docs[index]['title'])); // Замените SubcategoryRoute на ваш экран
+                      AutoRouter.of(context).push(SubCategoriesRoute(
+                          subCategoryName: snapshots.data!.docs[indext]
+                              ['title']));
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,7 +45,7 @@ class categories_widget extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: CachedNetworkImage(
-                                imageUrl: snapshots.data!.docs[index]
+                                imageUrl: snapshots.data!.docs[indext]
                                     ['image_url'],
                                 imageBuilder: (context, imageProvider) {
                                   return Container(
@@ -65,7 +66,7 @@ class categories_widget extends StatelessWidget {
                           height: 0.5.h,
                         ),
                         Text(
-                          snapshots.data!.docs[index]['title'],
+                          snapshots.data!.docs[indext]['title'],
                           style: textStylePicker(context).titleSmall,
                         )
                       ],

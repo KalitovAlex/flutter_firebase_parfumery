@@ -10,6 +10,8 @@ import 'package:sizer/sizer.dart';
 
 import '../../../core/main/colors.dart';
 import '../../../core/styles/widget/text_styles.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/cart/item_card_widget.dart'; // Импортируем ItemCardWidget
+
 @RoutePage()
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -28,67 +30,94 @@ class _SearchScreenState extends State<SearchScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(search,style: Theme.of(context).textTheme.titleMedium,),
+        title: Text(search, style: Theme.of(context).textTheme.titleMedium,),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 5.w,right: 5.w),
+        padding: EdgeInsets.only(left: 5.w, right: 5.w),
         child: Column(
           children: [
             Container(
-            decoration:  BoxDecoration(
-              color: grayColor,
-              borderRadius: BorderRadius.circular(30),
+              decoration: BoxDecoration(
+                color: grayColor,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: TextFormField(
+                onChanged: (value) { searchMethod(); },
+                decoration: searchDecoration(),
+                controller: searchController,
+              ),
             ),
-            child: TextFormField(
-              onChanged: (value) {searchMethod();},
-              decoration: searchDecoration(),
-              controller: searchController,
-            ),
-           ),
             searchRecomendationList.isNotEmpty ? Expanded(
               child: ListView.builder(
-                    padding: EdgeInsets.only(top: 3.h),
-                    itemCount: searchRecomendationList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final currentSearchEl = searchRecomendationList[index];
-                        return Container(margin: EdgeInsets.only(top: 1.5.h),decoration: cartDecoration, width: double.infinity,height: 10.h,child: Row(
-                          children: [
-                            Container(padding: EdgeInsets.only(bottom: 1.5.h,top: 1.5.h,left: 2.5.w),child: ClipRRect(borderRadius: BorderRadius.circular(30),child: Image.network(currentSearchEl.picUrls!.first,fit: BoxFit.cover))),
-                            SizedBox(width: 3.w,),
-                            Text(currentSearchEl.title! ,style: theme.textTheme.titleMedium,),
-                            SizedBox(width: 4.w,),
-                            Text('${currentSearchEl.price}\$',style: theme.textTheme.headlineSmall,),
-                          ],
-                        ),);
+                padding: EdgeInsets.only(top: 3.h),
+                itemCount: searchRecomendationList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final currentSearchEl = searchRecomendationList[index];
+                  return GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => ItemCardWidget( // Заменяем на ItemCardWidget
+                          currentItem: currentSearchEl, // Передаем текущий элемент
+                          index: index,
+                        ),
+                      );
                     },
-                  ),
-            ) : Container(padding: EdgeInsets.only(top: 1.5.h),child: SingleChildScrollView(
-                    child:
-                    ZeroElementsWidget(title: 'Element',move: 'found',),
-                  ),),
-                  Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 crossAxisAlignment: CrossAxisAlignment.center,
-                 children: [
-                   Text('Most popular searches',style: theme.textTheme.titleSmall,),
-                   TextButton(onPressed: (){
-                    Navigator.of(context).pop();
-                   }, child: Text('Watch all',style: theme.textTheme.titleMedium,))
-                 ],
-               ),
-               recomendation_widget(recomendation: recomendationList)
+                    child: Container(
+                      margin: EdgeInsets.only(top: 1.5.h),
+                      decoration: cartDecoration,
+                      width: double.infinity,
+                      height: 10.h,
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(bottom: 1.5.h, top: 1.5.h, left: 2.5.w),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Image.network(currentSearchEl.picUrls!.first, fit: BoxFit.cover),
+                            ),
+                          ),
+                          SizedBox(width: 3.w,),
+                          Text(currentSearchEl.title! , style: theme.textTheme.titleMedium,),
+                          SizedBox(width: 4.w,),
+                          Text('${currentSearchEl.price}\$', style: theme.textTheme.headlineSmall,),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ) : Container(
+              padding: EdgeInsets.only(top: 1.5.h),
+              child: SingleChildScrollView(
+                child: ZeroElementsWidget(title: 'Товаров', move: 'найдено',),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('Самые популярные запросы', style: theme.textTheme.titleSmall,),
+                TextButton(onPressed: (){
+                  Navigator.of(context).pop();
+                }, child: Text('Смотреть все', style: theme.textTheme.titleMedium,))
+              ],
+            ),
+            recomendation_widget(recomendation: recomendationList)
           ],
         ),
       ),
     );
   }
 
-  searchMethod(){
+  searchMethod() {
     if (searchController.text.isNotEmpty) {
-    searchRecomendationList = recomendationList.where((item) =>
-        item.title.toString().toLowerCase().contains(
-            searchController.text.toLowerCase())).toList();
-  }
+      searchRecomendationList = recomendationList.where((item) =>
+          item.title.toString().toLowerCase().contains(
+              searchController.text.toLowerCase())).toList();
+    }
 
     setState(() {
       searchRecomendationList;

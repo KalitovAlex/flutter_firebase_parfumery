@@ -16,4 +16,9 @@ class RegisterLoadedWithGoogle extends RegisterState {
   });
 }
 
-final class RegisterFailure extends RegisterState{}
+final class RegisterFailure extends RegisterState {
+  String? error;
+  RegisterFailure({
+    required this.error,
+  });
+}

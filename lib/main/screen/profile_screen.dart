@@ -51,15 +51,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         if(state is ProfileLoaded){
           Navigator.of(context).pop();
           AutoRouter.of(context).push(BottomNavigationRoute(response: recomendationList));
-          ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'you succesfully changed profile info', ContentType.success));
+          ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'Вы успешно изменили информацию профиля', ContentType.success));
         }
         if(state is ProfileFailure){
           Navigator.of(context).pop();
-          ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'failed, you wrong type info', ContentType.failure));
+          ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'Ошибка, вы ввели неверную информацию', ContentType.failure));
         }
         if(state is ProfileFirestoreFailure){
           Navigator.of(context).pop();
-          ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'Our servers are currently sleeping, we will fix this soon, sorry', ContentType.failure));
+          ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'Наши серверы временно недоступны, мы скоро это исправим, извините', ContentType.failure));
         }
       },
       builder: (context, state) {
@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text('Profile', style: theme.textTheme.titleMedium),
+            title: Text('Профиль', style: theme.textTheme.titleMedium),
             centerTitle: false,
           ),
           body: Container(
@@ -100,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     setState(() {
                                       selectImage = image;
                                     });
-                                    ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'Succesfully changed your avatar', ContentType.success));
+                                    ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(good, 'Вы успешно изменили свой аватар', ContentType.success));
                                  },
                                  icon: const Icon(CupertinoIcons.camera)),
                         ),
@@ -159,14 +159,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 decoration: auth_button_container,
                 child: TextButton(onPressed: (){
                 if(emailController.text == userModel.email && passwordController.text == userModel.password && phoneNumberController.text == userModel.phoneNumber && userNameController == userModel.username && selectImage == userModel.pic_url){
-                  ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'You dont Change any parameters', ContentType.failure));
+                  ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'Вы не изменили ни одного параметра', ContentType.failure));
                 }
                 else if(emailController.text.isEmpty && passwordController.text.isEmpty && phoneNumberController.text.isEmpty && userNameController.text.isEmpty){
-                  ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'All fields cannot be empty', ContentType.failure));
+                  ScaffoldMessenger.of(context)..clearSnackBars..showSnackBar(materialBanner(oops, 'Все поля не могут быть пустыми', ContentType.failure));
                 }
                 else{
                 blocCommand.add(ProfileEvent(uniqueName: userModel.email! + avatar, selectedImage: selectImage, emai: emailController.text,password: passwordController.text, phoneNumber: phoneNumberController.text, username: userNameController.text));}
-                }, child: Text('Save info', style: textStylePicker(context).displayMedium)),
+                }, child: Text('Сохранить информацию', style: textStylePicker(context).displayMedium)),
               )
             ]),
           ),

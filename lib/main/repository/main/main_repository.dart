@@ -7,94 +7,97 @@ import 'package:flutter_firebase_parfumery/main/repository/main/abstract_main_re
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/main/consants.dart';
 
-class MainRepository  extends AbstractMainRepository{
+class MainRepository extends AbstractMainRepository {
+  late final Box<Cart> _cartBox;
+
+  MainRepository() {
+    _cartBox = Hive.box<Cart>(cart);
+  }
+
   @override
-  Future<List<Recommendation>> getAllRecomendation()  async{
-    try{
-      List<Recommendation> recList = [];
-      final response = await fireStore.collection(recomendationCollection).get();
-      recList = response.docs.map((element) =>  Recommendation.fromJson(element.data())).toList();
-      return recList;
-    } on FirebaseException {
-      talker.error('firebase error');
+  Future<List<Recommendation>> getAllRecomendation() async {
+    try {
+      final response =
+          await fireStore.collection(recomendationCollection).get();
+      return response.docs
+          .map((element) => Recommendation.fromJson(element.data()))
+          .toList();
+    } on FirebaseException catch (e) {
+      talker.error('Firebase error: ${e.message}');
       return [];
-    } catch(e){
-      talker.error(e);
+    } catch (e) {
+      talker.error('Error: $e');
       return [];
     }
   }
-  
 
   @override
-  Future<void> changeCard(Cart currentCart) async{
-    try{
-      final cartBox = await Hive.openBox(cart);
-      final cartList = cartBox.values.toList();
-      await cartBox.putAt(cartList.indexWhere((element) => currentCart.title == element.title), currentCart);
-      allCart = cartList;
-      await cartBox.close();
-    } catch(e){
-      talker.error(e);
+  Future<void> changeCard(Cart currentCart) async {
+    try {
+      final cartList = _cartBox.values.toList();
+      final index =
+          cartList.indexWhere((element) => currentCart.title == element.title);
+      if (index != -1) {
+        await _cartBox.putAt(index, currentCart);
+        allCart = cartList;
+      }
+    } catch (e) {
+      talker.error('Error changing card: $e');
     }
   }
 
   @override
   Future<List<dynamic>> getCard() async {
-    try{
-      final cartBox = await Hive.openBox(cart);
-      final cartList = cartBox.values.toList();
-      await cartBox.close();
-      return cartList;
-    } catch(e){
-      talker.error(e);
+    try {
+      return _cartBox.values.toList();
+    } catch (e) {
+      talker.error('Error getting card: $e');
       return [];
     }
   }
 
   @override
-  Future<bool> makeCard(Cart card) async{
-    try{
-      final cartBox = await Hive.openBox(cart);
-      cartBox.add(card);
-      List<dynamic> list = await mainRepository.getCard();
-      allCart = list;
-      cartBox.close();
+  Future<bool> makeCard(Cart card) async {
+    try {
+      await _cartBox.add(card);
+      allCart = await getCard(); // Use the updated getCard method
       return true;
-    } catch(e){
-      talker.error(e);
+    } catch (e) {
+      talker.error('Error making card: $e');
       return false;
     }
   }
-  
+
   @override
-  Future<bool> removeCard(Cart cartelement) async{
-    try{
-      final cartBox = await Hive.openBox(cart);
-      final cartList = cartBox.values.toList();
-      await cartBox.deleteAt(cartList.indexWhere((element) => element.title == cartelement.title));
-      await cartBox.close();
-      return true;
-    } catch(e){
-      talker.error(e);
+  Future<bool> removeCard(Cart cartelement) async {
+    try {
+      final cartList = _cartBox.values.toList();
+      final index =
+          cartList.indexWhere((element) => element.title == cartelement.title);
+      if (index != -1) {
+        await _cartBox.deleteAt(index);
+        return true;
+      }
+      return false; // Return false if the item was not found
+    } catch (e) {
+      talker.error('Error removing card: $e');
       return false;
     }
   }
 
   @override
   Future<List<Notifications>> getAllNotifications() async {
-    try{
-      List<Notifications> notifyList = [];
+    try {
       final response = await notificationReference.get();
-      notifyList = response.docs.map((element) => Notifications.fromJson(element.data())).toList();
-      return notifyList;
-    } on FirebaseException{
-      talker.error("Error al obtener las notificaciones");
+      return response.docs
+          .map((element) => Notifications.fromJson(element.data()))
+          .toList();
+    } on FirebaseException catch (e) {
+      talker.error("Error getting notifications: ${e.message}");
       return [];
-    }
-     catch(e){
-      talker.error(e);
+    } catch (e) {
+      talker.error('Error: $e');
       return [];
     }
   }
-  
 }

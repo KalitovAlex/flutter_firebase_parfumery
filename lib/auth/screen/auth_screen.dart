@@ -12,6 +12,7 @@ import 'package:sizer/sizer.dart';
 import '../../core/main/globals.dart';
 import '../../core/styles/widget/button_styles.dart';
 import '../../core/styles/widget/text_styles.dart';
+
 @RoutePage()
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -22,9 +23,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _emailController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
-
   bool isChecked = false;
 
   @override
@@ -38,11 +37,11 @@ class _AuthScreenState extends State<AuthScreen> {
         if(state is AuthLoaded) {
           Navigator.of(context).pop();
           AutoRouter.of(context).push(BottomNavigationRoute(response: recomendationList));
-          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner('Nice', 'You have successfully logged in, good luck! ', ContentType.success));
+          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner('Хорошо', 'Вы успешно вошли в систему, удачи! ', ContentType.success));
         }
         if(state is AuthFailure){
           Navigator.of(context).pop();
-          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner('Bad', 'We may have problems on the server, try logging in again, we will fix everything soon', ContentType.failure));
+          ScaffoldMessenger.of(context)..clearMaterialBanners()..showSnackBar(materialBanner('Проблема', 'У нас могут быть проблемы с сервером, попробуйте войти снова, мы все исправим в ближайшее время', ContentType.failure));
         }
       },
       builder: (context, state) {
@@ -60,14 +59,14 @@ class _AuthScreenState extends State<AuthScreen> {
               children: [
                 Image.asset('assets/parfumery_backround.png',width: 100.w,height: 45.h,alignment: Alignment.topCenter,fit: BoxFit.cover,),
                 SizedBox(height: 2.h,),
-                Text('Authorization', style: textStylePicker(context).headlineLarge,),
-                Text('Enter the world of the best cosmetics', style: textStylePicker(context).labelMedium),
+                Text('Авторизация', style: textStylePicker(context).headlineLarge,),
+                Text('Введите мир лучших косметических средств', style: textStylePicker(context).labelMedium),
                 Container(
                   margin: EdgeInsets.only(left: 5.w,right: 5.w,top: 2.h),
-                  decoration: authTextStyles,height: 6.h,child: TextFormField(obscureText: false,controller: _emailController,decoration: textFormFieldRegistrationDecoration(CupertinoIcons.person_fill, 'Email'),),),
+                  decoration: authTextStyles,height: 6.h,child: TextFormField(obscureText: false,controller: _emailController,decoration: textFormFieldRegistrationDecoration(CupertinoIcons.person_fill, 'Электронная почта'),),),
                 Container(
                   margin: EdgeInsets.only(left: 5.w,right: 5.w,top: 2.h),
-                  decoration: authTextStyles,height: 6.h,child: TextFormField(obscureText: true,controller: _passwordController,decoration: textFormFieldRegistrationDecoration(CupertinoIcons.lock_fill, 'Password'),),),
+                  decoration: authTextStyles,height: 6.h,child: TextFormField(obscureText: true,controller: _passwordController,decoration: textFormFieldRegistrationDecoration(CupertinoIcons.lock_fill, 'Пароль'),),),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -77,23 +76,23 @@ class _AuthScreenState extends State<AuthScreen> {
                           setState(() {
                           isChecked = newbool!;
                           });}),
-                        Text('Remember me', style: textStylePicker(context).labelMedium),
+                        Text('Запомнить меня', style: textStylePicker(context).labelMedium),
                       ],
                     ),
                       TextButton(onPressed: () {
                         AutoRouter.of(context).push(ForgotPassword());
-                      }, child: Text('Forgot password ?',style: textStylePicker(context).headlineSmall,)),
+                      }, child: Text('Забыли пароль?',style: textStylePicker(context).headlineSmall,)),
                   ],
                 ),
                 Container(height: 6.h,width: 90.w,decoration: auth_button_container, child: TextButton(onPressed: () async{
                   if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _emailController.text.contains('@') && _emailController.text.contains('.')){
                     blocCommand.add(AuthEvent(ifGoogle: false, email: _emailController.text, password: _passwordController.text,rememberMe: isChecked));
                   } else{
-                    ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Oops', 'Check your email and password,maybye you forget your email or password', ContentType.failure));
+                    ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(materialBanner('Упс', 'Проверьте свою электронную почту и пароль, возможно, вы забыли их', ContentType.failure));
                   }
-                }, child: Text('Login', style: textStylePicker(context).displayMedium,)),),
+                }, child: Text('Войти', style: textStylePicker(context).displayMedium,)),),
                 SizedBox(height: 1.5.h,),
-                Text('---------------------- or login with ----------------------',style: textStylePicker(context).labelMedium,),
+                Text('---------------------- или войдите с помощью ----------------------',style: textStylePicker(context).labelMedium,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

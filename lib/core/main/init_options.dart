@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/cart/cart.dart';
@@ -16,23 +17,26 @@ import '../../main/models/recomendation/recommendation.dart';
 import '../../main/repository/main/abstract_main_repository.dart';
 import '../../main/repository/main/main_repository.dart';
 import 'consants.dart';
-void initHive() async{
+
+Future<void> initHive() async {
   await Hive.initFlutter();
   Hive.registerAdapter(RecommendationAdapter());
   Hive.registerAdapter(CartAdapter());
   await Hive.openBox(favorites);
-  await Hive.openBox(cart);
-  allCart = await mainRepository.getCard();
-  }
-void initSingletons(){
+  await Hive.openBox<Cart>(cart);
+}
+
+void initSingletons() {
   GetIt.I.registerLazySingleton<AbstractUserRepository>(() => UserRepository());
   GetIt.I.registerLazySingleton<UserModel>(() => const UserModel());
   GetIt.I.registerLazySingleton<AbstractMainRepository>(() => MainRepository());
   GetIt.I.registerLazySingleton<Recommendation>(() => const Recommendation());
   GetIt.I.registerLazySingleton<Cart>(() => const Cart());
-  GetIt.I.registerLazySingleton<AbstractProfileRepository>(() => ProfileRepository());
+  GetIt.I.registerLazySingleton<AbstractProfileRepository>(
+      () => ProfileRepository());
   GetIt.I.registerLazySingleton<Notifications>(() => const Notifications());
 }
+
 void initTalker() {
   GetIt.I.registerSingleton<Talker>(talker);
   talker.info('App Started');
@@ -44,4 +48,17 @@ void initTalker() {
           printStateFullData: true,
           printChanges: true,
           printEventFullData: true));
+}
+
+Future<void> initAllData() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initHive();
+  initSingletons();
+  initTalker();
+
+  if (mainRepository != null) {
+    allCart = await mainRepository.getCard();
+  } else {
+    print('Error: mainRepository is not initialized.');
+  }
 }
