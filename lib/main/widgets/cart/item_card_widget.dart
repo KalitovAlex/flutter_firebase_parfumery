@@ -35,8 +35,8 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
         ScaffoldMessenger.of(context)
         ..clearMaterialBanners()
         ..showSnackBar(materialBanner(
-        'Succesfuly',
-        'You add ${widget.currentItem.title} to cart',
+        'Успешно',
+        'Вы добавили ${widget.currentItem.title} в корзину',
         ContentType.success));
         
         }
@@ -45,8 +45,8 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
         ScaffoldMessenger.of(context)
         ..clearMaterialBanners()
         ..showSnackBar(materialBanner(
-        'Oops',
-        'Maybye internal server error',
+        'Упс',
+        'Возможно, ошибка внутреннего сервера',
         ContentType.failure));
         }
         if(state is CartAlready){
@@ -54,8 +54,8 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
         ScaffoldMessenger.of(context)
         ..clearMaterialBanners()
         ..showSnackBar(materialBanner(
-        'Oops',
-        'You have this item in your cart',
+        'Упс',
+        'Этот товар уже в вашей корзине',
         ContentType.help));
         }
       },

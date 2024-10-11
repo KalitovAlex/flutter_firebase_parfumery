@@ -85,7 +85,6 @@ class _AuthScreenState extends State<AuthScreen> {
                       decoration: authTextStyles,
                       height: 6.h,
                       child: TextFormField(
-                        obscureText: false,
                         controller: _emailController,
                         decoration: textFormFieldRegistrationDecoration(
                             CupertinoIcons.person_fill, 'Электронная почта'),
