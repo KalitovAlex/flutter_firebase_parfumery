@@ -27,36 +27,31 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
   Widget build(BuildContext context) {
     final bloccommand = BlocProvider.of<CartBloc>(context);
     return BlocListener<CartBloc, CartState>(
-      listener: (context, state)  {
-        if(state is CartLoading){
+      listener: (context, state) {
+        if (state is CartLoading) {
           showLoadingCircle(context);
         }
-        if(state is CartLoaded) {
-        ScaffoldMessenger.of(context)
-        ..clearMaterialBanners()
-        ..showSnackBar(materialBanner(
-        'Успешно',
-        'Вы добавили ${widget.currentItem.title} в корзину',
-        ContentType.success));
-        
+        if (state is CartLoaded) {
+          ScaffoldMessenger.of(context)
+            ..clearMaterialBanners()
+            ..showSnackBar(materialBanner(
+                'Успешно',
+                'Вы добавили ${widget.currentItem.title} в корзину',
+                ContentType.success));
+          Navigator.of(context).pop();
         }
-        if(state is CartFailure){
-        Navigator.of(context).pop();
-        ScaffoldMessenger.of(context)
-        ..clearMaterialBanners()
-        ..showSnackBar(materialBanner(
-        'Упс',
-        'Возможно, ошибка внутреннего сервера',
-        ContentType.failure));
+        if (state is CartFailure) {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context)
+            ..clearMaterialBanners()
+            ..showSnackBar(materialBanner('Упс',
+                'Возможно, ошибка внутреннего сервера', ContentType.failure));
         }
-        if(state is CartAlready){
-        Navigator.of(context).pop();
-        ScaffoldMessenger.of(context)
-        ..clearMaterialBanners()
-        ..showSnackBar(materialBanner(
-        'Упс',
-        'Этот товар уже в вашей корзине',
-        ContentType.help));
+        if (state is CartAlready) {
+          ScaffoldMessenger.of(context)
+            ..clearMaterialBanners()
+            ..showSnackBar(materialBanner(
+                'Упс', 'Этот товар уже в вашей корзине', ContentType.help));
         }
       },
       child: Scaffold(
@@ -79,8 +74,13 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                       },
                       imageBuilder: (context, imageProvider) {
                         return Container(
-                           margin: EdgeInsets.only(right: 4.w, left: 4.w, top: 2.h),
-                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),image: DecorationImage(image: imageProvider,fit: BoxFit.cover)),);
+                          margin:
+                              EdgeInsets.only(right: 4.w, left: 4.w, top: 2.h),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover)),
+                        );
                       },
                     );
                   }),
@@ -139,18 +139,18 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                               ],
                             ),
                             Container(
-                              width: 45.w,
-                              decoration: auth_button_container,
-                              child:  TextButton(
-                                  onPressed: () {
-                                    bloccommand.add(CartEvent(currentItem: widget.currentItem));
-                                  },
-                                  child: Text(
-                                    'В корзину',
-                                    style: textStylePicker(context)
-                                        .displayMedium,
-                                  ))
-                            )
+                                width: 45.w,
+                                decoration: auth_button_container,
+                                child: TextButton(
+                                    onPressed: () {
+                                      bloccommand.add(CartEvent(
+                                          currentItem: widget.currentItem));
+                                    },
+                                    child: Text(
+                                      'В корзину',
+                                      style: textStylePicker(context)
+                                          .displayMedium,
+                                    )))
                           ],
                         ),
                         SizedBox(

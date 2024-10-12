@@ -11,7 +11,7 @@ import 'package:sizer/sizer.dart';
 class ProductCardWidget extends StatelessWidget {
   final Recommendation currentRecomendation;
   final bool isFavorite;
-  final VoidCallback onFavoriteToggle; 
+  final VoidCallback onFavoriteToggle;
   final int index;
 
   const ProductCardWidget({
@@ -19,7 +19,7 @@ class ProductCardWidget extends StatelessWidget {
     required this.currentRecomendation,
     required this.isFavorite,
     required this.onFavoriteToggle,
-    required this.index, 
+    required this.index,
   });
 
   @override
@@ -70,7 +70,9 @@ class ProductCardWidget extends StatelessWidget {
                       ),
                       Positioned(
                         child: IconButton(
-                          onPressed: onFavoriteToggle, // Упрощено
+                          onPressed: () {
+                            onFavoriteToggle(); 
+                          },
                           icon: isFavorite
                               ? const Icon(Icons.favorite, color: Colors.red)
                               : const Icon(Icons.favorite_border_outlined,

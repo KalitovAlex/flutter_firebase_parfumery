@@ -72,6 +72,7 @@ class RegisterScreen extends StatelessWidget {
                   style: textStylePicker(context).headlineLarge,
                 ),
                 Text('Присоединяйтесь к сообществу лучшей платформы',
+                    textAlign: TextAlign.center,
                     style: textStylePicker(context).labelMedium),
                 Container(
                   margin: EdgeInsets.only(top: 2.h),
@@ -169,7 +170,7 @@ class RegisterScreen extends StatelessWidget {
                 SizedBox(
                   height: 2.h,
                 ),
-                Text('------------------- Или продолжите с -------------------',
+                Text('---------------- Или продолжите с ----------------',
                     style: textStylePicker(context).labelMedium),
                 SizedBox(
                   height: 2.h,
