@@ -1,8 +1,9 @@
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 
-getallData () async {
+getallData() async {
   recomendationList = await mainRepository.getAllRecomendation();
 }
-getallCart() async{
+
+getallCart() async {
   allCart = await mainRepository.getCard();
 }
