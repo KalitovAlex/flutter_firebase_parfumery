@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/core/styles/widget/button_styles.dart';
-import 'package:flutter_firebase_parfumery/main/widgets/cart/cart_decoration.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/cart/item_card_widget/style/cart_decoration.dart';
 import 'package:flutter_firebase_parfumery/widgets/loading_widget.dart';
 import 'package:flutter_firebase_parfumery/widgets/show_loading_circle.dart';
 import 'package:flutter_firebase_parfumery/widgets/show_snack_bar.dart';

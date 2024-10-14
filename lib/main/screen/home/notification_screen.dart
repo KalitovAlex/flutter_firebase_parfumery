@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
-import 'package:flutter_firebase_parfumery/main/widgets/cart/cart_decoration.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/cart/item_card_widget/style/cart_decoration.dart';
 import 'package:flutter_firebase_parfumery/widgets/loading_widget.dart';
 import 'package:sizer/sizer.dart';
 import '../../../widgets/failure_widget.dart';

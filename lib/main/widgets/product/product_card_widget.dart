@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_parfumery/core/main/consants.dart';
 import 'package:flutter_firebase_parfumery/core/main/globals.dart';
 import 'package:flutter_firebase_parfumery/main/models/recomendation/recommendation.dart';
-import 'package:flutter_firebase_parfumery/main/widgets/cart/item_card_widget.dart';
+import 'package:flutter_firebase_parfumery/main/widgets/cart/item_card_widget/item_card_widget.dart';
 import 'package:flutter_firebase_parfumery/widgets/loading_widget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sizer/sizer.dart';
@@ -71,7 +71,7 @@ class ProductCardWidget extends StatelessWidget {
                       Positioned(
                         child: IconButton(
                           onPressed: () {
-                            onFavoriteToggle(); 
+                            onFavoriteToggle();
                           },
                           icon: isFavorite
                               ? const Icon(Icons.favorite, color: Colors.red)
@@ -97,9 +97,16 @@ class ProductCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(currentRecomendation.title ?? '',
-                    style: textStylePicker(context)
-                        .titleSmall), // Проверка на null
+                Expanded(
+                  // Добавлено для предотвращения переполнения
+                  child: Text(
+                    currentRecomendation.title ?? '',
+                    style: textStylePicker(context).titleSmall,
+                    overflow:
+                        TextOverflow.ellipsis, // Добавлено для обрезки текста
+                    maxLines: 1, // Ограничение на одну строку
+                  ),
+                ),
               ],
             );
           },
