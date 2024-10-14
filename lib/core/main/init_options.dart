@@ -59,6 +59,6 @@ Future<void> initAllData() async {
   if (mainRepository != null) {
     allCart = await mainRepository.getCard();
   } else {
-    print('Error: mainRepository is not initialized.');
+    talker.log('mainRepository is not initialized.');
   }
 }
